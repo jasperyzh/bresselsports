@@ -1,0 +1,12 @@
+/*
+Theme Name: Twenty Twenty Four Bressel
+Theme URI: https://bresselpadel.com
+Author: BRESSEL Team
+Author URI: https://bresselpadel.com
+Description: Lean, high-performance child theme for BRESSEL™ Padel. Built on Twenty Twenty-Four with Tailwind CSS v4.
+Version: 1.0.0
+Template: twentytwentyfour
+Text Domain: twentytwentyfour-bressel
+*/
+
+@import url("/dist/main.css");
