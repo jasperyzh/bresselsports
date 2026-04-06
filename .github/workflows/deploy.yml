@@ -17,13 +17,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          cd twentytwentyfour-bressel
+          npm install
 
       - name: Build Assets (Vite)
-        run: npm run build
+        run: |
+          cd twentytwentyfour-bressel
+          npm run build
 
       - name: Deploy to Server via Rsync
         uses: easingthemes/ssh-deploy@main
