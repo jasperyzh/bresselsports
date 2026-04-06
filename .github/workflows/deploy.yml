@@ -33,7 +33,7 @@ jobs:
             -rlgo
             -v
             --delete
-          SOURCE:"twentytwentyfour-bressel/"
-          REMOTE_HOST:${{ secrets.SSH_HOST }}
-          REMOTE_USER:${{ secrets.SSH_USER }}
+          SOURCE: "twentytwentyfour-bressel/"
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
           TARGET: "/var/www/html/wp-content/themes/twentytwentyfour-bressel/"
