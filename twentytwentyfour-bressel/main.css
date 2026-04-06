@@ -1,43 +1,265 @@
 @import "tailwindcss";
 
 @theme {
+  --font-header: "Oswald", sans-serif;
+  --font-body: "Inter", sans-serif;
   --color-bressel-red: #E62E2D;
+  --color-bressel-black: #000000;
+  --color-bressel-white: #ffffff;
+  --color-bressel-zinc-100: #f4f4f5;
+  --color-bressel-zinc-300: #d4d4d8;
+  --color-bressel-zinc-400: #a1a1aa;
+  --color-bressel-zinc-500: #71717a;
+  --color-bressel-zinc-600: #52525b;
+  --color-bressel-zinc-700: #3f3f46;
+  --color-bressel-zinc-800: #27272a;
+  --color-bressel-zinc-900: #18181b;
 }
 
 @layer base {
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-bold text-zinc-900 uppercase tracking-wide;
+  body {
+    font-family: var(--font-body);
+    background-color: var(--color-bressel-black);
+    color: var(--color-bressel-zinc-100);
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-header);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-style: italic;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    color: var(--color-bressel-white);
+  }
+
+  h1 { font-size: clamp(3rem, 8vw, 9rem); }
+  h2 { font-size: clamp(2.25rem, 5vw, 7rem); }
+  h3 { font-size: clamp(1.875rem, 4vw, 5rem); }
+  h4 { font-size: clamp(1.5rem, 3vw, 4rem); }
+
   p {
-    @apply leading-relaxed text-zinc-700 mb-4;
+    color: var(--color-bressel-zinc-300);
+    line-height: 1.625;
+    margin-bottom: 1.5rem;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 500;
   }
 
   a {
-    @apply text-bressel-red hover:underline transition-colors;
+    transition: all 0.2s ease;
   }
 
-  body {
-    @apply bg-black text-white antialiased;
+  .prose {
+    color: var(--color-bressel-zinc-200);
+  }
+  
+  .prose h1, .prose h2, .prose h3 {
+    color: var(--color-bressel-white);
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .prose strong {
+    color: var(--color-bressel-white);
+    font-weight: 700;
   }
 }
 
 @layer components {
-  .btn-primary {
-    @apply bg-bressel-red text-white font-bold uppercase px-6 py-3 rounded-lg hover:bg-neutral-700 transition-colors;
+  .section-padding {
+    padding-top: clamp(4rem, 10vw, 10rem);
+    padding-bottom: clamp(4rem, 10vw, 10rem);
+  }
+  
+  .container-custom {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1.5rem, 5vw, 3rem);
+    padding-right: clamp(1.5rem, 5vw, 3rem);
   }
 
-  .card-base {
-    @apply bg-zinc-900 rounded-lg overflow-hidden shadow-lg;
+  .text-gradient-red {
+    background: linear-gradient(to bottom right, white, white, var(--color-bressel-red));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .accent-bar {
+    width: clamp(3rem, 5vw, 4rem);
+    height: 0.25rem;
+    background-color: var(--color-bressel-red);
+    margin-bottom: 1.5rem;
+  }
+
+  .bg-dark-accent {
+    background-color: rgba(24, 24, 27, 0.4);
+    border: 1px solid rgba(63, 63, 70, 0.6);
+    border-radius: 2rem;
+    backdrop-filter: blur(4px);
   }
 }
 
-body {
-  background-color: red !important;
+@layer utilities {
+  .text-shadow-red {
+    text-shadow: 0 0 30px rgba(230, 46, 45, 0.4);
+  }
+
+  .mask-gradient-to-b {
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  }
 }
+
+/* Navigation */
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  font-size: 11px;
+}
+
+nav ul li a {
+  color: var(--color-bressel-zinc-400);
+  position: relative;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  overflow: hidden;
+}
+
+nav ul li a:hover {
+  color: var(--color-bressel-white);
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-bressel-red);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+nav ul li.current-menu-item a {
+  color: var(--color-bressel-white);
+}
+
+nav ul li.current-menu-item a::after {
+  transform: scaleX(1);
+}
+
+/* Fluent Forms - Classless Dark Mode Styling */
+.fluentform {
+  font-family: var(--font-body);
+}
+
+.fluentform .ff-el-form-control {
+  width: 100%;
+  background-color: var(--color-bressel-zinc-900);
+  border: 1px solid var(--color-bressel-zinc-800);
+  color: var(--color-bressel-white);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.fluentform .ff-el-form-control::placeholder {
+  color: var(--color-bressel-zinc-600);
+}
+
+.fluentform .ff-el-form-control:focus {
+  outline: none;
+  border-color: var(--color-bressel-red);
+  box-shadow: 0 0 0 1px rgba(230, 46, 45, 0.5);
+}
+
+.fluentform .ff-el-input--label {
+  color: var(--color-bressel-zinc-400);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-size: 10px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.fluentform .ff-btn-submit {
+  width: 100%;
+  background-color: var(--color-bressel-red);
+  color: var(--color-bressel-white);
+  text-transform: uppercase;
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.1em;
+  font-size: 1.125rem;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.fluentform .ff-btn-submit:hover {
+  background-color: var(--color-bressel-white);
+  color: var(--color-bressel-red);
+  border-color: var(--color-bressel-red);
+}
+
+.fluentform .ff-errors-in-stack {
+  color: var(--color-bressel-red);
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  font-weight: 700;
+}
+
+/* Mobile Menu */
+#mobile-menu {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#mobile-menu:not(.hidden) {
+  opacity: 1;
+  visibility: visible;
+}
+
+#mobile-menu nav ul {
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 2.25rem;
+  letter-spacing: -0.05em;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }

@@ -1,15 +1,24 @@
 <?php
-// Astro-style Merch Card Component
-$name      = $args['name'] ?? 'BRESSEL Merch';
-$image     = $args['image'] ?? get_template_directory_uri() . '/assets/images/default-merch.jpg';
-$price     = $args['price'] ?? '€0.00';
-$product_id = $args['product_id'] ?? 0;
+/**
+ * Title: Merch Card Component
+ * Description: Displays a product card for the shop catalog.
+ * How-to Use: get_template_part('components/merch-card', null, array('name' => '...', 'image' => '...', 'price' => '...'));
+ */
+$name  = $args['name'] ?? 'Bressel Gear';
+$image = $args['image'] ?? get_template_directory_uri() . '/assets/images/merch-default.jpg';
+$price = $args['price'] ?? 'TBA';
 ?>
-<div class="flex flex-col bg-zinc-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-    <img src="<?= esc_url($image) ?>" alt="<?= esc_attr($name) ?>" class="object-cover w-full h-64" />
+<div class="group relative flex flex-col bg-zinc-900 rounded-lg overflow-hidden shadow-lg h-full transition-transform hover:-translate-y-1">
+    <div class="aspect-square overflow-hidden bg-zinc-800">
+        <img src="<?= esc_url($image) ?>" alt="<?= esc_attr($name) ?>" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" />
+    </div>
     <div class="p-6 flex flex-col flex-grow">
-        <h3 class="text-white text-xl font-bold uppercase mb-2"><?= esc_html($name) ?></h3>
-        <p class="text-[#E62E2D] text-lg font-semibold mb-4"><?= esc_html($price) ?></p>
-        <?php get_template_part('components/button', null, ['text' => 'Inquire to Buy', 'class' => 'bg-[#E62E2D] hover:bg-red-700']); ?>
+        <div class="flex justify-between items-start mb-2">
+            <h3 class="text-white text-lg font-bold uppercase"><?= esc_html($name) ?></h3>
+            <span class="text-[#E62E2D] font-bold text-xl"><?= esc_html($price) ?>€</span>
+        </div>
+        <div class="mt-auto">
+            <?php get_template_part('components/button', null, ['text' => 'Inquire to Buy', 'variant' => 'outline']); ?>
+        </div>
     </div>
 </div>

@@ -1,28 +1,26 @@
-# Dependencies
+# 🛑 Dependencies & Build Artifacts (Don't push these)
 node_modules/
 vendor/
+dist/
 
-# Build output
-assets/css/*.css
-assets/js/*.js
-!
-assets/.vite/
-
-# Environment
+# 🛑 Local Environments & Secrets (Never push keys/DB info!)
 .env
-.env.local
+.env.*
+!env.example
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS
+# 🛑 IDE & OS Junk
+.vscode
+.idea
 .DS_Store
 Thumbs.db
+*.swp
+*.swo
 
-# WordPress
-wp-content/uploads/
-wp-config.php
+# 🛑 WordPress Plugin/Theme specific (Usually plugins are managed via server or Composer)
+# If you are building a specific plugin, comment that out. Otherwise, keep ignored.
+plugins/
+
+# 🛑 Documentation Junk (Keep AGENTS.md, DEPLOYMENT.md in root, ignore the rest)
+# Only ignore specific messy folders if they exist
+bressel--docs/
+readme-project_*

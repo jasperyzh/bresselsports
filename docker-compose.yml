@@ -27,15 +27,33 @@ services:
       WORDPRESS_CONFIG_EXTRA: |
         define('WP_ENVIRONMENT_TYPE', 'development');
     volumes:
+      - wp_data:/var/www/html
       - ./twentytwentyfour-bressel:/var/www/html/wp-content/themes/twentytwentyfour-bressel
     ports:
       - "8080:80"
     networks:
       - bressel_network
 
+  wp-cli:
+    image: wordpress:cli
+    container_name: bressel_wpcli
+    depends_on:
+      - db
+      - wordpress
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: ${MYSQL_USER:-bressel_user}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD:-securepassword123}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE:-bressel_db}
+    volumes:
+      - wp_data:/var/www/html
+      - ./twentytwentyfour-bressel:/var/www/html/wp-content/themes/twentytwentyfour-bressel
+    networks:
+      - bressel_network
+
 volumes:
   db_data:
-  wp_content:
+  wp_data:
 
 networks:
   bressel_network:

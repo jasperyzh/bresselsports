@@ -1,6 +1,8 @@
 <?php
 /**
- * BRESSEL Child Theme Functions
+ * Title: BRESSEL Child Theme Functions
+ * Description: Core theme logic, including asset enqueuing, CPT registration, and CMB2 field setup.
+ * How-to Use: Automatically loaded by WordPress. Requires the CMB2 plugin for custom field functionality.
  *
  * @package Bressel_Child
  */
@@ -11,7 +13,6 @@ if (!defined('ABSPATH')) {
 
 // Define constants
 define('BRESSSELTHEME_VERSION', '1.0.0');
-define('BRESSSELCMB2_DIR', get_template_directory() . '/vendor/cmb2');
 
 /**
  * Enqueue Vite assets and theme styles
@@ -29,8 +30,12 @@ function bressel_enqueue_assets() {
     if (wp_get_environment_type() !== 'development') {
         $dist_path = get_stylesheet_directory() . '/dist';
         $dist_uri  = get_stylesheet_directory_uri() . '/dist';
+        // Check both common manifest locations
         $manifest_path = $dist_path . '/.vite/manifest.json';
-        
+        if (!file_exists($manifest_path)) {
+            $manifest_path = $dist_path . '/manifest.json';
+        }
+
         if (file_exists($manifest_path)) {
             $manifest = json_decode(file_get_contents($manifest_path), true);
             
@@ -84,6 +89,17 @@ add_action('wp_head', function() {
 });
 
 /**
+ * Register Theme Features
+ */
+function bressel_theme_setup() {
+    add_theme_support('post-thumbnails');
+    register_nav_menus(array(
+        'primary' => __('Primary Menu', 'bressel'),
+    ));
+}
+add_action('after_setup_theme', 'bressel_theme_setup');
+
+/**
  * Register Custom Post Types
  */
 function bressel_register_cpts() {
@@ -97,7 +113,8 @@ function bressel_register_cpts() {
         'has_archive' => true,
         'rewrite' => array('slug' => 'coaches'),
         'supports' => array('title', 'editor', 'thumbnail'),
-        'show_in_rest' => true
+        'show_in_rest' => true,
+        'menu_icon' => 'dashicons-groups'
     ));
 
     // Merch CPT
@@ -110,38 +127,88 @@ function bressel_register_cpts() {
         'has_archive' => true,
         'rewrite' => array('slug' => 'shop'),
         'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
-        'show_in_rest' => true
+        'show_in_rest' => true,
+        'menu_icon' => 'dashicons-cart'
+    ));
+
+    // Event CPT
+    register_post_type('event', array(
+        'labels' => array(
+            'name' => __('Events', 'bressel'),
+            'singular_name' => __('Event', 'bressel')
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => array('slug' => 'events'),
+        'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+        'show_in_rest' => true,
+        'menu_icon' => 'dashicons-calendar-alt'
     ));
 }
 add_action('init', 'bressel_register_cpts');
 
 /**
- * Register CMB2 Fields for Coaches
+ * CMB2 Fields Implementation
  */
-function bressel_coach_fields($cmb) {
-    $cmb->add_field(array(
-        'name' => __('Coach Role', 'bressel'),
-        'desc' => 'e.g., Head Coach, Junior Instructor',
-        'type' => 'text',
-        'field_key' => '_bressel_coach_role'
-    ));
+if (function_exists('new_cmb2_box')) {
+    
+    // 1. Coaches Metadata
+    add_action('cmb2_admin_init', 'bressel_register_coach_metabox');
+    function bressel_register_coach_metabox() {
+        $cmb = new_cmb2_box(array(
+            'id'            => 'coach_metabox',
+            'title'         => __('Coach Details', 'bressel'),
+            'object_types'  => array('coach'),
+        ));
 
-    $cmb->add_field(array(
-        'name' => __('Years of Experience', 'bressel'),
-        'type' => 'text',
-        'field_key' => '_bressel_coach_experience'
-    ));
-}
+        $cmb->add_field(array(
+            'name' => __('Coach Role', 'bressel'),
+            'desc' => 'e.g., Head Coach, Junior Instructor',
+            'id'   => '_bressel_coach_role',
+            'type' => 'text',
+        ));
 
-/**
- * Register CMB2 Fields for Merch
- */
-function bressel_merch_fields($cmb) {
-    $cmb->add_field(array(
-        'name' => __('Price (€)', 'bressel'),
-        'type' => 'text',
-        'field_key' => '_bressel_merch_price'
-    ));
+        $cmb->add_field(array(
+            'name' => __('Years of Experience', 'bressel'),
+            'id'   => '_bressel_coach_experience',
+            'type' => 'text',
+        ));
+    }
+
+    // 2. Merch Metadata
+    add_action('cmb2_admin_init', 'bressel_register_merch_metabox');
+    function bressel_register_merch_metabox() {
+        $cmb = new_cmb2_box(array(
+            'id'            => 'merch_metabox',
+            'title'         => __('Product Details', 'bressel'),
+            'object_types'  => array('merch'),
+        ));
+
+        $cmb->add_field(array(
+            'name' => __('Price (€)', 'bressel'),
+            'id'   => '_bressel_merch_price',
+            'type' => 'text',
+        ));
+    }
+
+    // 3. Global Options Page
+    add_action('cmb2_admin_init', 'bressel_register_theme_options_metabox');
+    function bressel_register_theme_options_metabox() {
+        $cmb = new_cmb2_box(array(
+            'id'           => 'bressel_option_metabox',
+            'title'        => __('BRESSEL Settings', 'bressel'),
+            'object_types' => array('options-page'),
+            'option_key'      => 'bressel_options',
+            'icon_url'        => 'dashicons-admin-generic',
+        ));
+
+        $cmb->add_field(array(
+            'name' => __('Tracking Scripts', 'bressel'),
+            'desc' => __('Add tracking scripts (Google Analytics, Pixels, etc.)', 'bressel'),
+            'id'   => '_bressel_tracking_scripts',
+            'type' => 'textarea_code',
+        ));
+    }
 }
 
 /**
@@ -161,9 +228,11 @@ add_action('admin_init', 'bressel_restrict_admin_menu');
  * Output custom tracking scripts from BRESSEL Settings
  */
 function bressel_output_tracking() {
-    $tracking = get_option('_bressel_tracking_scripts');
+    $options = get_option('bressel_options');
+    $tracking = $options['_bressel_tracking_scripts'] ?? '';
     if ($tracking) {
-        echo "<script>\n{$tracking}\n</script>";
+        echo $tracking;
     }
 }
 add_action('wp_head', 'bressel_output_tracking');
+
