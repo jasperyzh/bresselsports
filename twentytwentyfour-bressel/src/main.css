@@ -1,0 +1,123 @@
+/* ============================================
+   BRESSEL™ CSS Entry Point
+   Tailwind v4 - Full import structure
+   ============================================ */
+
+/* Tailwind v4 */
+@import "tailwindcss";
+
+/* ============================================
+   Components (@layer components)
+   ============================================ */
+@import './css/components/layout.css';
+@import './css/components/buttons.css';
+@import './css/components/header.css';
+@import './css/components/forms.css';
+@import './css/components/faq.css';
+@import './css/components/modal.css';
+
+/* ============================================
+   Modifiers & Animations
+   ============================================ */
+@import './css/modifiers/effects.css';
+
+/* ============================================
+   Utilities & Helpers
+   ============================================ */
+@import './css/utilities/helpers.css';
+
+/* ============================================
+   @theme Directive (merged into main.css)
+   ============================================ */
+@theme {
+  /* BRAND COLORS */
+  --color-bressel-red: #FF331F;
+  --color-bressel-black: #090808;
+  --color-bressel-white: #FBFBFF;
+  --color-bressel-yellow: #EEFF2C;
+  --color-bressel-darkyellow: #C1DE00;
+
+  /* TYPOGRAPHY */
+  --font-header: "Oswald", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* ZINC SCALE (Grayscale for monochrome sections) - Even values only */
+  --color-bressel-zinc-200: #e4e4e7;
+  --color-bressel-zinc-400: #a1a1aa;
+  --color-bressel-zinc-600: #52525b;
+  --color-bressel-zinc-800: #27272a;
+}
+/* ============================================
+   Tailwind v4 @base Directive - Custom Base Styles
+   ============================================ */
+
+/* ====== LAYERED STYLES ====== */
+/* Put CSS here that you want utilities to easily override */
+@layer base {
+  :root {
+    --color-bressel-white: #ffffff;
+    --color-bressel-black: #000000;
+  }
+}
+
+/* ====== UNLAYERED STYLES (WordPress Overrides) ====== */
+/* Keep HTML tag overrides OUTSIDE @layer base so they beat WordPress's unlayered global-styles */
+
+html body {
+  font-family: var(--font-body);
+  color: var(--color-bressel-white);
+  background-color: var(--color-bressel-black);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  color: var(--color-bressel-white);
+}
+
+a {
+  color: var(--color-bressel-yellow);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-bressel-white);
+}
+
+/* Buttons - semantic styling */
+button, .btn {
+  cursor: pointer;
+}
+
+/* Forms - base styles */
+input, textarea, select {
+  font-family: var(--font-body);
+}
+
+/* Utility: text centering */
+.text-center {
+  text-align: center;
+}
+
+/* Utility: overflow hidden */
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* Utility: flex center */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Utility: gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--color-bressel-red) 0%, var(--color-bressel-yellow) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+

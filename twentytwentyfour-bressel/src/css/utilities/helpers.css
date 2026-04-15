@@ -1,0 +1,102 @@
+/* ============================================
+   Utilities & Helpers
+   ============================================ */
+
+/* Fluent Forms Validation States */
+.fluentform .ff-el-form-control.is-invalid {
+  border-color: var(--color-bressel-red) !important;
+  box-shadow: 0 0 0 1px rgba(230, 46, 45, 0.5) !important;
+}
+
+.fluentform .ff-success-message,
+.fluentform .ff-message-success {
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  color: #22c55e;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.fluentform .ff-errors-on-top,
+.fluentform .ff-message-error {
+  background-color: rgba(230, 46, 45, 0.1);
+  border: 1px solid rgba(230, 46, 45, 0.5);
+  color: var(--color-bressel-red);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* Form Prefill Indicator */
+.fluentform .has-prefill::before {
+  content: '';
+  display: block;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-bressel-red), transparent);
+  margin-bottom: 1rem;
+  border-radius: 2px;
+}
+
+/* Footer */
+footer h4 {
+  color: var(--color-bressel-white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-style: normal;
+  margin-bottom: 1.5rem;
+}
+
+footer li > a {
+  color: var(--color-bressel-white);
+}
+
+/* Hero */
+.hero-section {
+  min-height: 100svh;
+}
+
+.hero-headline {
+  font-family: var(--font-header);
+  font-weight: 700;
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  color: #ffffff;
+  font-size: clamp(3.5rem, 9vw, 9.5rem);
+}
+
+/* Ticker / News Bar */
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  animation: ticker-scroll 22s linear infinite;
+  will-change: transform;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* Ghost Watermark Text */
+.watermark-text {
+  font-family: var(--font-header);
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(6rem, 18vw, 20rem);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+  text-stroke: 1px rgba(255,255,255,0.04);
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  white-space: nowrap;
+  line-height: 1;
+}

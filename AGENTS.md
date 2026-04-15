@@ -919,3 +919,313 @@ Tests:
 Full help available: `backlog --help`
 
 <!-- BACKLOG.MD GUIDELINES END -->
+
+---
+
+## CSS Architecture - Import Structure
+
+**Date:** 2026-04-15  
+**Scope:** `@twentytwentyfour-bressel/src/main.css`
+
+### Full Import Structure
+
+```css
+/* 1. Tailwind v4 */
+@import "tailwindcss";
+
+/* 2. Components (@layer components) */
+@import './css/components/layout.css';
+@import './css/components/buttons.css';
+@import './css/components/header.css';
+@import './css/components/forms.css';
+@import './css/components/faq.css';
+@import './css/components/modal.css';
+
+/* 4. Modifiers & Animations */
+@import './css/modifiers/effects.css';
+
+/* 5. Utilities & Helpers */
+@import './css/utilities/helpers.css';
+```
+
+### File Organization
+
+| Directory | Files | Purpose |
+|-----------|-------|--------|
+| `base/` | `theme.css` | @theme directive, CSS custom properties, @layer base |
+| `components/` | `layout.css` | Section padding, container, gradient text, accent bar |
+| | `buttons.css` | Button system with variants (solid, outline) and sizes (sm, md, lg) |
+| | `header.css` | Header scroll transitions, desktop navigation |
+| | `forms.css` | Fluent Forms dark mode styling |
+| | `faq.css` | FAQ accordion styles |
+| | `modal.css` | Mobile menu & modal overlay |
+| `modifiers/` | `effects.css` | Button ripple, glow effects, animations, parallax |
+| `utilities/` | `helpers.css` | Form validation states, hero section, ticker animation, watermark |
+
+### Key Notes
+
+1. **@theme is inline** - CSS custom properties are defined directly in `main.css` (not imported)
+2. **Components use `@layer components`** - They can be overridden by utilities
+3. **Modifiers include animations** - Keyframes for fade-in-up, ticker scroll, button spin
+4. **Utilities include helper classes** - `.text-center`, `.overflow-hidden`, `.flex-center`, `.gradient-text`
+5. **WordPress overrides are unlayered** - Keep outside `@layer base` to beat Gutenberg's global-styles
+
+### Build Process
+
+```bash
+# Development (HMR + live reload)
+cd twentytwentyfour-bressel && npm run dev
+
+# Production build
+cd twentytwentyfour-bressel && npm run build
+```
+
+---
+
+## CSS Cleanup Log - Zinc Scale Standardization
+
+**Date:** 2026-04-15  
+**Scope:** `@twentytwentyfour-bressel/src/css/`
+
+### Changes Applied
+
+#### 1. `src/css/base/theme.css`
+**Action:** Removed all commented-out odd zinc values  
+**Result:** Zinc scale now contains only 4 even values:
+- `--color-bressel-zinc-200: #e4e4e7;`
+- `--color-bressel-zinc-400: #a1a1aa;`
+- `--color-bressel-zinc-600: #52525b;`
+- `--color-bressel-zinc-800: #27272a;`
+
+**Removed (commented out):**
+- `--color-bressel-zinc-100`
+- `--color-bressel-zinc-300`
+- `--color-bressel-zinc-500`
+- `--color-bressel-zinc-700`
+- `--color-bressel-zinc-900`
+
+#### 2. `src/css/components/forms.css`
+**Action:** Replaced odd zinc with nearest even equivalent  
+**Change:** Line 11 - `var(--color-bressel-zinc-900)` → `var(--color-bressel-zinc-800)`
+
+### Rationale
+
+Minimalist KISE-aligned design philosophy - reducing CSS bloat while maintaining sufficient grayscale variation for monochrome sections. The 4 even values provide adequate contrast hierarchy without the overhead of a full 9-value scale.
+
+### Verification
+
+```bash
+grep -rn "zinc-[13579]" twentytwentyfour-bressel/src/css/
+# Result: No odd zinc values found
+```
+
+---
+
+## CSS Structure Update - Tailwind v4 @base Directive Test
+
+**Date:** 2026-04-15  
+**Scope:** `@twentytwentyfour-bressel/src/main.css`
+
+### Architecture Note
+
+**CSS Import Path:** `src/main.js` → imports `./src/main.css` → builds to `dist/`
+
+### Changes Applied
+
+#### `src/main.css`
+**Action:** Added Tailwind v4 `@base` directive with custom base styles
+
+**New @base Styles Added:**
+
+1. **Global Typography**
+   - `body`: Uses `--font-body`, `--color-bressel-white`, `--color-bressel-black`
+   - Headings (`h1-h6`): Uses `--font-header` with tight line-height
+
+2. **Links**
+   - Red (`--color-bressel-red`) with white hover state
+   - Smooth color transition
+
+3. **Buttons**
+   - Header font, uppercase, letter-spacing for brand consistency
+
+4. **Form Elements**
+   - Body font for consistency
+
+5. **Utility Classes**
+   - `.text-center` - text alignment
+   - `.overflow-hidden` - overflow control
+   - `.flex-center` - flexbox centering
+   - `.gradient-text` - gradient text effect (red→yellow)
+
+### Verification
+
+```bash
+cat src/main.css | grep -A 50 "@base"
+```
+
+### Notes
+
+- The `@base` directive allows semantic CSS alongside Tailwind utility classes
+- Mix of semantic base styles + utility classes is the recommended approach
+- Can enable component imports later when needed:
+  - `layout.css`, `buttons.css`, `header.css`, `forms.css`, `faq.css`, `modal.css`
+
+---
+
+## CSS Order Fix - Gutenberg Global Styles Override
+
+**Date:** 2026-04-15  
+**Scope:** `@twentytwentyfour-bressel/functions.php`
+
+### Problem
+
+WordPress's Gutenberg editor injects **global styles** via the `global-styles` handler. These styles use CSS custom properties like `--wp-preset--color-...` and apply at a high specificity level, which was overriding our custom Tailwind/base styles.
+
+The inline styles appear as `<style id="global-styles-inline-css">` in the page head.
+
+### Solution Applied
+
+Added `'global-styles'` as a dependency to ensure our Vite CSS loads **after** Gutenberg's global styles. (Note: The correct handle is `'global-styles'`, not `'wp-global-styles'`.)
+
+#### Changes in `functions.php`
+
+**1. Manifest-based CSS enqueue (line 61-68):**
+```php
+wp_enqueue_style(
+    'bressel-main-style-' . $index,
+    $dist_uri . '/' . $css_file,
+    array('global-styles'), // ← Added dependency
+    BRESSSELTHEME_VERSION
+);
+```
+
+**2. Fallback direct CSS enqueue (line 71):**
+```php
+wp_enqueue_style(
+    'bressel-tailwind', 
+    $dist_uri . '/main.css', 
+    array('global-styles'), // ← Added dependency
+    BRESSSELTHEME_VERSION
+);
+```
+
+### How It Works
+
+WordPress's dependency system ensures that when you add a dependency like `'global-styles'`, WordPress will automatically enqueue that dependency first, then your stylesheet. This guarantees the correct load order:
+
+1. Gutenberg global styles (`global-styles`) ← loaded first
+2. Our Vite/Tailwind styles (`bressel-main-style-*` or `bressel-tailwind`) ← loaded second, can override
+
+### Verification
+
+**Command-line check:**
+```bash
+# In WordPress root directory
+wp eval 'global $wp_styles; echo "global-styles deps: "; print_r($wp_styles->registered["global-styles"]->deps);'
+# Should output: Array ( )
+```
+
+**Page source check:**
+```html
+<!-- Should see: global-styles loaded BEFORE bressel-tailwind -->
+<style id="global-styles-inline-css">...</style>
+<link rel='stylesheet' id='bressel-tailwind-css' ... />
+```
+
+Or inspect an element that was being overridden and verify your custom styles are applied.
+
+### Notes
+
+- No need to manually adjust `add_action` priority - WordPress dependency system handles this
+- The correct handle is `'global-styles'` (not `'wp-global-styles'`)
+- This fix applies to both production (manifest) and fallback modes
+
+### Critical Issue: Tailwind v4 Native CSS Layers
+
+**Date:** 2026-04-15  
+**Scope:** `@twentytwentyfour-bressel/src/main.css`
+
+---
+
+#### The Core Problem
+
+**Tailwind v4 now uses Native CSS Cascade Layers** directly in the browser, not a compiled "fake" layer like v3.
+
+---
+
+#### The Golden Rule of Native CSS Layers
+
+**Unlayered CSS ALWAYS overrides Layered CSS, regardless of specificity.**
+
+```css
+/* Even with MASSIVE specificity inside @layer base, this LOSES: */
+@layer base {
+  html body main article div.content h1#super-title { 
+    color: white; 
+  }
+}
+
+/* This simple unlayered rule WINS: */
+h1 { color: black; }
+```
+
+**Why?** WordPress's `global-styles` is **unlayered** (no `@layer` directive). Your styles inside `@layer base` are **layered**. The browser ignores specificity and WordPress wins automatically.
+
+---
+
+#### Why WordPress Wins
+
+| Style | Layered? | Query Monitor Position | Result |
+|-------|----------|------------------------|--------|
+| WordPress `global-styles` | ❌ Unlayered | Position 6 | **Wins** |
+| Your CSS (inside @layer base) | ✅ Layered | Position 8 | Loses |
+| Your CSS (outside @layer base) | ❌ Unlayered | Position 8 | **Wins** |
+
+---
+
+#### Solution: Keep WordPress Override Styles Unlayered
+
+Move base styles that need to override WordPress OUTSIDE of `@layer base`:
+
+```css
+/* ====== LAYERED STYLES ====== */
+/* Put CSS you want utilities to easily override HERE */
+@layer base {
+  :root {
+    --color-bressel-white: #ffffff;
+    --color-bressel-black: #000000;
+  }
+}
+
+/* ====== UNLAYERED STYLES (WordPress Overrides) ====== */
+/* Keep HTML tag overrides OUTSIDE @layer base */
+
+html body {
+  font-family: var(--font-body);
+  color: var(--color-bressel-white);
+  background-color: var(--color-bressel-black);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+  color: var(--color-bressel-white);
+}
+
+a {
+  color: var(--color-bressel-red);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-bressel-white);
+}
+```
+
+**Why this works:**
+
+By keeping your WordPress override styles **unlayered**, they respect source order. Your Position 8 enqueued CSS wins over WordPress's Position 6 because both are now on the same "unlayered" playing field.
+
+

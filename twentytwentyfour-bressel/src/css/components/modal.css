@@ -1,0 +1,21 @@
+/* ============================================
+   Modal & Mobile Menu
+   ============================================ */
+
+#mobile-menu {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#mobile-menu:not(.hidden) {
+  opacity: 1;
+  visibility: visible;
+}
+
+#mobile-menu nav ul {
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 2.25rem;
+  letter-spacing: -0.05em;
+}

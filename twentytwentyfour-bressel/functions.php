@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Title: BRESSEL Child Theme Functions
  * Description: Core theme logic, including asset enqueuing, CPT registration, and CMB2 field setup.
@@ -17,7 +18,8 @@ define('BRESSSELTHEME_VERSION', '1.0.0');
 /**
  * Enqueue Vite assets and theme styles
  */
-function bressel_enqueue_assets() {
+function bressel_enqueue_assets()
+{
     // 1. Enqueue the main style.css (theme declaration)
     wp_enqueue_style(
         'bressel-style',
@@ -38,7 +40,7 @@ function bressel_enqueue_assets() {
 
         if (file_exists($manifest_path)) {
             $manifest = json_decode(file_get_contents($manifest_path), true);
-            
+
             if (isset($manifest['main.js'])) {
                 $main_entry = $manifest['main.js'];
 
@@ -59,7 +61,7 @@ function bressel_enqueue_assets() {
                         wp_enqueue_style(
                             'bressel-main-style-' . $index,
                             $dist_uri . '/' . $css_file,
-                            array(),
+                            array('global-styles'), // Load after Gutenberg global styles
                             BRESSSELTHEME_VERSION
                         );
                     }
@@ -68,7 +70,7 @@ function bressel_enqueue_assets() {
         } else {
             // Fallback if manifest is missing but files exist directly
             if (file_exists($dist_path . '/main.css')) {
-                wp_enqueue_style('bressel-tailwind', $dist_uri . '/main.css', array(), BRESSSELTHEME_VERSION);
+                wp_enqueue_style('bressel-tailwind', $dist_uri . '/main.css', array('global-styles'), BRESSSELTHEME_VERSION);
             }
             if (file_exists($dist_path . '/main.js')) {
                 wp_enqueue_script('bressel-main', $dist_uri . '/main.js', array(), BRESSSELTHEME_VERSION, true);
@@ -76,12 +78,13 @@ function bressel_enqueue_assets() {
         }
     }
 }
-add_action('wp_enqueue_scripts', 'bressel_enqueue_assets');
+add_action('wp_enqueue_scripts', 'bressel_enqueue_assets', 10);
+
 
 /**
  * Output Vite Dev Client and main.css when in development mode
  */
-add_action('wp_head', function() {
+add_action('wp_head', function () {
     if (wp_get_environment_type() === 'development') {
         echo '<script type="module" src="http://localhost:5173/@vite/client"></script>';
         echo '<link rel="stylesheet" href="http://localhost:5173/main.css">';
@@ -92,7 +95,8 @@ add_action('wp_head', function() {
 /**
  * Register Theme Features
  */
-function bressel_theme_setup() {
+function bressel_theme_setup()
+{
     add_theme_support('post-thumbnails');
     register_nav_menus(array(
         'primary' => __('Primary Menu', 'bressel'),
@@ -103,7 +107,8 @@ add_action('after_setup_theme', 'bressel_theme_setup');
 /**
  * Register Custom Post Types
  */
-function bressel_register_cpts() {
+function bressel_register_cpts()
+{
     // Coach CPT
     register_post_type('coach', array(
         'labels' => array(
@@ -138,10 +143,11 @@ add_action('init', 'bressel_register_cpts');
  * CMB2 Fields Implementation
  */
 if (function_exists('new_cmb2_box')) {
-    
+
     // 1. Coaches Metadata
     add_action('cmb2_admin_init', 'bressel_register_coach_metabox');
-    function bressel_register_coach_metabox() {
+    function bressel_register_coach_metabox()
+    {
         $cmb = new_cmb2_box(array(
             'id'            => 'coach_metabox',
             'title'         => __('Coach Details', 'bressel'),
@@ -164,7 +170,8 @@ if (function_exists('new_cmb2_box')) {
 
     // 2. Merch Metadata
     add_action('cmb2_admin_init', 'bressel_register_merch_metabox');
-    function bressel_register_merch_metabox() {
+    function bressel_register_merch_metabox()
+    {
         $cmb = new_cmb2_box(array(
             'id'            => 'merch_metabox',
             'title'         => __('Product Details', 'bressel'),
@@ -180,7 +187,8 @@ if (function_exists('new_cmb2_box')) {
 
     // 3. Global Options Page
     add_action('cmb2_admin_init', 'bressel_register_theme_options_metabox');
-    function bressel_register_theme_options_metabox() {
+    function bressel_register_theme_options_metabox()
+    {
         $cmb = new_cmb2_box(array(
             'id'           => 'bressel_option_metabox',
             'title'        => __('BRESSEL Settings', 'bressel'),
@@ -201,7 +209,8 @@ if (function_exists('new_cmb2_box')) {
 /**
  * Hide admin menus for Editors
  */
-function bressel_restrict_admin_menu() {
+function bressel_restrict_admin_menu()
+{
     if (!current_user_can('administrator')) {
         remove_menu_page('themes.php');
         remove_menu_page('plugins.php');
@@ -214,7 +223,8 @@ add_action('admin_init', 'bressel_restrict_admin_menu');
 /**
  * Output custom tracking scripts from BRESSEL Settings
  */
-function bressel_output_tracking() {
+function bressel_output_tracking()
+{
     $options = get_option('bressel_options');
     $tracking = $options['_bressel_tracking_scripts'] ?? '';
     if ($tracking) {
@@ -222,4 +232,3 @@ function bressel_output_tracking() {
     }
 }
 add_action('wp_head', 'bressel_output_tracking');
-
