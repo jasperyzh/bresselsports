@@ -9,17 +9,17 @@
 /* ============================================
    Components (@layer components)
    ============================================ */
-@import './css/components/layout.css';
+/* @import './css/components/layout.css';
 @import './css/components/buttons.css';
 @import './css/components/header.css';
 @import './css/components/forms.css';
 @import './css/components/faq.css';
-@import './css/components/modal.css';
+@import './css/components/modal.css'; */
 
 /* ============================================
    Modifiers & Animations
    ============================================ */
-@import './css/modifiers/effects.css';
+/* @import './css/modifiers/effects.css'; */
 
 /* ============================================
    Utilities & Helpers
@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a {
-  color: var(--color-bressel-yellow);
+  color: var(--color-bressel-red);
   transition: color 0.2s ease;
 }
 
