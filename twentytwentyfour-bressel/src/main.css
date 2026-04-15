@@ -96,28 +96,12 @@ input, textarea, select {
   font-family: var(--font-body);
 }
 
-/* Utility: text centering */
-.text-center {
-  text-align: center;
-}
 
-/* Utility: overflow hidden */
-.overflow-hidden {
-  overflow: hidden;
-}
 
-/* Utility: flex center */
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Utility: gradient text */
-.gradient-text {
+/* Utility: gradient text - Tailwind v4 native */
+@utility gradient-text {
   background: linear-gradient(135deg, var(--color-bressel-red) 0%, var(--color-bressel-yellow) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 

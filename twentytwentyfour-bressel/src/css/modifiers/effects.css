@@ -2,13 +2,19 @@
    Button Modifiers & Animations
    ============================================ */
 
-/* Button Ripple Effect */
-.btn-ripple {
+/* Button Ripple Effect - WordPress Core compatible */
+.btn-ripple,
+.wp-block-button__link,
+button,
+input[type="submit"] {
   position: relative;
   overflow: hidden;
 }
 
-.btn-ripple::after {
+.btn-ripple::after,
+.wp-block-button__link::after,
+button::after,
+input[type="submit"]::after {
   content: ''; 
   position: absolute;
   top: 50%;
@@ -22,19 +28,28 @@
   opacity: 0;
 }
 
-.btn-ripple:active::after {
+.btn-ripple:active::after,
+.wp-block-button__link:active::after,
+button:active::after,
+input[type="submit"]:active::after {
   width: 300px;
   height: 300px;
   opacity: 1;
   transition: width 0s, height 0s, opacity 0s;
 }
 
-/* Button Glow on Hover */
-.btn-glow {
+/* Button Glow on Hover - WordPress Core compatible */
+.btn-glow,
+.wp-block-button__link,
+button,
+input[type="submit"] {
   position: relative;
 }
 
-.btn-glow::before {
+.btn-glow::before,
+.wp-block-button__link::before,
+button::before,
+input[type="submit"]::before {
   content: ''; 
   position: absolute;
   inset: -2px;
@@ -46,7 +61,10 @@
   transition: opacity 0.3s ease;
 }
 
-.btn-glow:hover::before {
+.btn-glow:hover::before,
+.wp-block-button__link:hover::before,
+button:hover::before,
+input[type="submit"]:hover::before {
   opacity: 0.6;
 }
 

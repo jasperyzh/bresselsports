@@ -3,8 +3,11 @@
    Unified button styles with variants and modifiers
    ============================================ */
 
-/* Base button */
-.btn {
+/* Base button - WordPress Core & Form compatible */
+.btn,
+.wp-block-button__link,
+button,
+input[type="submit"] {
   display: inline-flex;
   align-items: center;
   font-family: var(--font-header);
@@ -36,33 +39,51 @@
 }
 
 /* Variants */
-.btn-solid {
+.btn-solid,
+.wp-block-button__link,
+button,
+input[type="submit"] {
   background-color: var(--color-bressel-red);
   color: #ffffff;
 }
 
-.btn-solid:hover {
+.btn-solid:hover,
+.wp-block-button__link:hover,
+button:hover,
+input[type="submit"]:hover {
   background-color: #fff;
   color: var(--color-bressel-red);
 }
 
-.btn-solid-sm {
+.btn-solid-sm,
+.wp-block-button__link,
+button,
+input[type="submit"] {
   background-color: var(--color-bressel-red);
   color: #fff;
 }
 
-.btn-solid-sm:hover {
+.btn-solid-sm:hover,
+.wp-block-button__link:hover,
+button:hover,
+input[type="submit"]:hover {
   background-color: transparent;
   color: var(--color-bressel-red);
 }
 
-.btn-outline {
+.btn-outline,
+.wp-block-button__link,
+button,
+input[type="submit"] {
   background-color: transparent;
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.4);
 }
 
-.btn-outline:hover {
+.btn-outline:hover,
+.wp-block-button__link:hover,
+button:hover,
+input[type="submit"]:hover {
   border-color: #ffffff;
   color: #ffffff;
 }
