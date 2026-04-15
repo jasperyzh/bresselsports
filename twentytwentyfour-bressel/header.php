@@ -22,11 +22,24 @@
   <?php wp_head(); ?>
 </head>
 <body <?php body_class('bg-black text-white antialiased'); ?> style="background-color: #000000;">
+<style>
+  /* Custom header styles - migrated from classes */
+  .header-transparent {
+    background-color: transparent;
+    backdrop-filter: blur(0px);
+    border-bottom: 1px solid transparent;
+  }
+  .header-scrolled {
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(24, 24, 27, 0.6);
+  }
+</style>
 <header id="main-header" class="header-transparent text-white sticky top-0 z-[100] transition-all duration-500">
-  <div class="container-custom flex justify-between items-center h-16 md:h-20">
+  <div class="max-w-6xl mx-auto flex justify-between items-center h-16 md:h-20">
 
     <!-- Logo -->
-    <a href="<?= esc_url(home_url('/')); ?>" class="flex items-center gap-2 hover:opacity-80 transition-opacity relative z-[210]">
+    <a href="<?= esc_url(home_url('/')); ?>" class="flex items-center gap-2 hover:opacity-80 transition-opacity relative z-[210] header-cta btn-ripple">
       <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-bressel-white.png') ?>" alt="BRESSEL™" class="h-8 md:h-20 w-auto" loading="eager" />
     </a>
 
@@ -60,7 +73,7 @@
 </header>
 
 <!-- Full-Screen Mobile Menu Overlay -->
-<div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-3xl z-[200] hidden flex-col justify-center items-center">
+<div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-3xl z-[200] hidden flex flex-col justify-center items-center">
     <!-- Close Button (Top Right) -->
     <button id="mobile-menu-close" class="absolute top-6 right-6 text-white hover:text-bressel-red transition-colors p-2 z-[220]">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
