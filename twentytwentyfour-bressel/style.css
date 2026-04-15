@@ -9,4 +9,8 @@ Template: twentytwentyfour
 Text Domain: twentytwentyfour-bressel
 */
 
-@import url("/dist/main.css");
+/* 
+ * Note: Tailwind CSS is processed by Vite and enqueued via functions.php
+ * - Development: Loaded from Vite dev server (localhost:5173)
+ * - Production: Loaded from /dist/ with hashed filenames via manifest.json
+ */

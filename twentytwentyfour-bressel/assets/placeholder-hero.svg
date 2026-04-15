@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="heroGrad" cx="60%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#2a0a0a"/>
+      <stop offset="60%" stop-color="#0d0d0d"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+  </defs>
+  <rect width="1440" height="900" fill="url(#heroGrad)"/>
+  <!-- Court lines suggestion -->
+  <g opacity="0.08" stroke="#ffffff" stroke-width="1" fill="none">
+    <line x1="720" y1="0" x2="720" y2="900"/>
+    <line x1="0" y1="450" x2="1440" y2="450"/>
+    <rect x="200" y="100" width="1040" height="700"/>
+    <rect x="360" y="100" width="720" height="700"/>
+    <line x1="360" y1="450" x2="1080" y2="450"/>
+  </g>
+  <!-- Subtle BRESSEL watermark -->
+  <text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle"
+        font-family="Arial Black, sans-serif" font-weight="900" font-style="italic"
+        font-size="160" fill="#E62E2D" opacity="0.04" letter-spacing="-8">
+    BRESSEL
+  </text>
+</svg>

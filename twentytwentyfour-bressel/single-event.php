@@ -1,8 +1,8 @@
 <?php
 /**
- * Title: Single Event Template
- * Description: Detailed view of a single event or announcement.
- * How-to Use: Automatically handled by WordPress for 'event' post type.
+ * Title: Single Post Template (Event Tag)
+ * Description: Detailed view of posts tagged with 'event'.
+ * How-to Use: Used when viewing a single post with the 'event' tag.
  */
 
 get_header();
@@ -19,7 +19,7 @@ get_header();
         </div>
         <div class="container-custom relative z-10">
             <nav class="mb-12">
-                <a href="<?= esc_url(get_post_type_archive_link('event')) ?>" class="text-zinc-500 hover:text-bressel-red transition-colors font-bold uppercase tracking-widest text-sm">&larr; Back to Events</a>
+                <a href="<?= esc_url(get_tag_permalink('event')) ?>" class="text-zinc-500 hover:text-bressel-red transition-colors font-bold uppercase tracking-widest text-sm">&larr; Back to Announcements</a>
             </nav>
             <div class="inline-block bg-bressel-red text-white px-4 py-1 font-black italic text-sm uppercase tracking-widest mb-6">
                 <?= get_the_date('F d, Y') ?>
@@ -41,10 +41,10 @@ get_header();
     <section class="section-padding bg-zinc-950 border-t border-zinc-900">
         <div class="container-custom flex justify-between gap-8">
             <div class="w-1/2">
-                <?php previous_post_link('%link', '&larr; Previous Announcement', true, '', 'event'); ?>
+                <?php previous_post_link('%link', '&larr; Previous Announcement', true); ?>
             </div>
             <div class="w-1/2 text-right">
-                <?php next_post_link('%link', 'Next Announcement &rarr;', true, '', 'event'); ?>
+                <?php next_post_link('%link', 'Next Announcement &rarr;', true); ?>
             </div>
         </div>
     </section>

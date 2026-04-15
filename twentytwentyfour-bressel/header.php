@@ -22,29 +22,39 @@
   <?php wp_head(); ?>
 </head>
 <body <?php body_class('bg-black text-white antialiased'); ?> style="background-color: #000000;">
-<header class="bg-black/80 backdrop-blur-xl text-white py-4 md:py-6 sticky top-0 z-[100] border-b border-zinc-900/50">
-  <div class="container-custom flex justify-between items-center">
-    <a href="<?php echo esc_url(home_url('/')); ?>" class="text-3xl md:text-4xl font-black italic uppercase tracking-tighter hover:text-bressel-red transition-all duration-300 relative z-[210]">
-      BRESSEL<span class="text-bressel-red">™</span>
+<header id="main-header" class="header-transparent text-white sticky top-0 z-[100] transition-all duration-500">
+  <div class="container-custom flex justify-between items-center h-16 md:h-20">
+
+    <!-- Logo -->
+    <a href="<?= esc_url(home_url('/')); ?>" class="flex items-center gap-2 hover:opacity-80 transition-opacity relative z-[210]">
+      <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-bressel-white.png') ?>" alt="BRESSEL™" class="h-8 md:h-20 w-auto" loading="eager" />
     </a>
-    
-    <!-- Desktop Nav -->
-    <nav class="hidden lg:block">
+
+    <!-- Desktop Nav (centered) -->
+    <nav class="hidden lg:block absolute left-1/2 -translate-x-1/2">
       <?php
         wp_nav_menu([
           'theme_location' => 'primary',
           'container' => false,
-          'menu_class' => 'flex space-x-12 uppercase font-bold tracking-[0.2em] text-[11px]',
+          'menu_class' => 'bressel-desktop-nav',
           'fallback_cb' => false,
         ]);
       ?>
     </nav>
-    
-    <!-- Mobile Menu Toggle -->
-    <div class="lg:hidden relative z-[210]">
-        <button id="mobile-menu-btn" class="text-white uppercase font-bold tracking-widest text-xs p-2 focus:outline-none focus:text-bressel-red transition-colors">
-            <span id="mobile-menu-text">Menu</span>
-        </button>
+
+    <!-- Right: CTA + Mobile toggle -->
+    <div class="flex items-center gap-4 relative z-[210]">
+        <a href="<?php echo esc_url(home_url('/contact/?intent=booking')); ?>"
+         class="group header-cta btn-ripple hidden md:inline-flex">
+        BOOK SESSION
+        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-white.svg') ?>" alt="Brain Icon" class="w-8 h-8 group-hover:hidden" />
+        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-red.svg') ?>" alt="Brain Icon" class="hidden w-8 h-8 group-hover:block" />
+      </a>
+
+      <!-- Mobile Menu Toggle -->
+      <button id="mobile-menu-btn" class="lg:hidden text-white uppercase font-bold tracking-widest text-xs p-2 focus:outline-none focus:text-[var(--color-bressel-red)] transition-colors">
+        <span id="mobile-menu-text">Menu</span>
+      </button>
     </div>
   </div>
 </header>

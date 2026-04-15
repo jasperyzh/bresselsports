@@ -1,0 +1,9 @@
+--- twentytwentyfour-bressel/functions.php
++++ twentytwentyfour-bressel/functions.php
+@@ -75,7 +75,7 @@
+         echo '<script type="module" src="http://localhost:5173/main.js"></script>';
+     }
+-});
++}, 999);
+ 
+ /**

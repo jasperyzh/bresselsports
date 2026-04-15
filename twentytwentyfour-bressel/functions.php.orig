@@ -87,7 +87,7 @@ add_action('wp_head', function() {
         echo '<link rel="stylesheet" href="http://localhost:5173/main.css">';
         echo '<script type="module" src="http://localhost:5173/main.js"></script>';
     }
-}, 999);
+});
 
 /**
  * Register Theme Features

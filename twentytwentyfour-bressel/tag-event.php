@@ -1,8 +1,8 @@
 <?php
 /**
- * Title: Events Archive Template
- * Description: Displays a timeline of events and announcements.
- * How-to Use: Automatically handled by WordPress at /events/
+ * Title: Event Tag Archive Template
+ * Description: Displays posts tagged with 'event' (announcements, news).
+ * How-to Use: Automatically handles /tag/event/ URL for default posts
  */
 
 get_header();
@@ -11,7 +11,7 @@ get_header();
 <main class="bg-black text-white py-20">
     <div class="container-custom">
         <header class="mb-20">
-            <h1 class="italic italic leading-none mb-4">EVENTS &<br/><span class="text-bressel-red">ANNOUNCEMENTS</span></h1>
+            <h1 class="italic italic leading-none mb-4">ANNOUNCEMENTS &<br/><span class="text-bressel-red">NEWS</span></h1>
             <p class="text-xl text-zinc-400">Stay up to date with the latest from the BRESSEL community.</p>
         </header>
 
@@ -43,7 +43,7 @@ get_header();
                 </article>
             <?php endwhile; else : ?>
                 <div class="text-center py-20 bg-zinc-900 rounded-3xl border border-zinc-800">
-                    <p class="text-zinc-500 italic text-2xl font-bold uppercase">No events scheduled at the moment.</p>
+                    <p class="text-zinc-500 italic text-2xl font-bold uppercase">No announcements at the moment.</p>
                 </div>
             <?php endif; ?>
         </div>
