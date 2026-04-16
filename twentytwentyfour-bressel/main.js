@@ -320,6 +320,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Accordion Toggle (for UI demo)
+    document.querySelectorAll('.accordion-toggle').forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+            const content = document.getElementById(this.getAttribute('aria-controls'));
+            const icon = this.querySelector('.accordion-icon');
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+            // Close all other accordions in same group
+            this.closest('.space-y-3, .space-y-0').querySelectorAll('.accordion-toggle').forEach(function(other) {
+                if (other !== toggle) {
+                    other.setAttribute('aria-expanded', 'false');
+                    other.closest('.accordion').querySelector('.accordion-content').classList.add('hidden');
+                    other.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+                }
+            });
+
+            // Toggle current
+            this.setAttribute('aria-expanded', !isExpanded);
+            content.classList.toggle('hidden');
+            icon.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
+        });
+    });
+
     // Quote Carousel
     const quoteCarousel = document.querySelector('#quote-carousel');
     if (quoteCarousel) {
