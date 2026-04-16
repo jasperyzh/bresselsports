@@ -4,7 +4,7 @@ title: CSS Refactor — Migrate to Classless Architecture
 status: To Do
 assignee: []
 created_date: '2026-04-16 17:18'
-updated_date: '2026-04-16 17:32'
+updated_date: '2026-04-16 17:52'
 labels:
   - css
   - refactor
@@ -117,3 +117,9 @@ Refactor the entire CSS system from Tailwind-heavy utility classes + custom comp
 5.4 Mobile responsiveness test
 5.5 Mark task Done
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Phase 2 (base.css rewrite) complete. Front page and UI demo render pixel-identically. CSS reduced from 1,120 lines to 602 lines (46% reduction) across 3 files instead of 10. Tailwind @utility blocks eliminated. Next: Phase 3 (component CSS consolidation) and Phase 4 (PHP template refactoring to remove Tailwind utilities from HTML).
+<!-- SECTION:NOTES:END -->
