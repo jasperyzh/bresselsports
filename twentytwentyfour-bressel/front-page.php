@@ -19,11 +19,21 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
     ═══════════════════════════════════════ -->
     <section id="hero" class="hero-section relative min-h-screen flex flex-col justify-end pb-24 md:pb-32" data-parallax>
 
+    <!-- Static fallback background (shown if video fails to load) -->
+    <div class="absolute inset-0 z-0">
+        <img src="<?= esc_url($assets_base . 'hero-bg.jpg') ?>"
+             alt=""
+             class="w-full h-[115%] object-cover select-none pointer-events-none opacity-40"
+             aria-hidden="true"
+             style="<?php if (!file_exists(get_stylesheet_directory() . '/assets/background-video.mp4')): ?>display:block;<?php else: ?>display:none;<?php endif; ?>"
+             id="hero-fallback-bg" />
+    </div>
+
     <!-- BG Video (with poster fallback) -->
     <video data-parallax-target
            autoplay loop muted playsinline
            poster="<?= esc_url($assets_base . 'cta-bg-overlay.jpg') ?>"
-           class="absolute inset-0 w-full h-[115%] object-cover select-none pointer-events-none opacity-40">
+           class="absolute inset-0 w-full h-[115%] object-cover select-none pointer-events-none opacity-40"<?php if (!file_exists(get_stylesheet_directory() . '/assets/background-video.mp4')): ?> onload="this.style.display='none'; document.getElementById('hero-fallback-bg').style.display='block';" onerror="this.style.display='none'; document.getElementById('hero-fallback-bg').style.display='block';"<?php endif; ?>>
         <source src="<?= esc_url($assets_base . 'background-video.mp4') ?>" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -129,25 +139,21 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
          3. TICKER — Scrolling news bar
     ═══════════════════════════════════════ -->
     <div class="news-ticker border-y border-zinc-800 bg-zinc-950 overflow-hidden py-3">
-        <div class="ticker-track flex gap-0 whitespace-nowrap">
+        <div class="ticker-track flex flex-nowrap gap-0 whitespace-nowrap">
             <?php
             $ticker_items = [
                 ['label' => 'UPCOMING', 'text' => 'MALAYSIA OPEN QUALIFIERS'],
                 ['label' => 'EVENT',    'text' => 'BRESSEL JUNIOR PADEL CIRCUIT', 'accent' => true],
                 ['label' => 'LIVE',     'text' => 'ACADEMY RANKING UPDATES'],
                 ['label' => 'NEW DROP', 'text' => 'PRECISION SERIES V2'],
-                ['label' => 'UPCOMING', 'text' => 'MALAYSIA OPEN QUALIFIERS'],
-                ['label' => 'EVENT',    'text' => 'BRESSEL JUNIOR PADEL CIRCUIT', 'accent' => true],
-                ['label' => 'LIVE',     'text' => 'ACADEMY RANKING UPDATES'],
-                ['label' => 'NEW DROP', 'text' => 'PRECISION SERIES V2'],
             ];
             foreach ($ticker_items as $item) : ?>
-                <span class="ticker-item inline-flex items-center gap-3 px-8 text-xs font-bold uppercase tracking-widest">
+                <span class="ticker-item inline-flex items-center gap-3 px-6 text-xs font-bold uppercase tracking-widest">
                     <span class="<?= !empty($item['accent']) ? 'text-[var(--color-bressel-red)]' : 'text-zinc-600' ?>">
                         <?= esc_html($item['label']) ?>
                     </span>
                     <span class="text-zinc-300"><?= esc_html($item['text']) ?></span>
-                    <span class="text-zinc-700 mx-2">—</span>
+                    <span class="ticker-separator w-4 h-px bg-zinc-700"></span>
                 </span>
             <?php endforeach; ?>
         </div>
@@ -171,29 +177,69 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 <h2 class="text-5xl md:text-7xl">PROGRAM PILLARS</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <?php
                 $pillars = [
-                    ['title' => 'PROFESSIONAL', 'desc' => 'World-class training using BRESSEL methodology. Racket mechanics, shot precision, and match-level IQ.', 'icon' => '🏆'],
-                    ['title' => 'COMPETITION',  'desc' => 'Designed for regional tournament competitors. Tactics, endurance, and mental toughness under pressure.', 'icon' => '🎯'],
-                    ['title' => 'COACHES',      'desc' => 'Certification programs using the BRESSEL methodology. Become the next generation of padel excellence instructors.', 'icon' => '👨‍🏫'],
+                    [
+                        'title' => 'PROFESSIONAL',
+                        'desc'  => 'World-class training using BRESSEL methodology. Racket mechanics, shot precision, and match-level IQ.',
+                        'img'   => $assets_base . 'academy-card.jpg',
+                        'alt'   => 'Professional padel training',
+                        'url'   => home_url('/contact/?intent=inquiry&source=professional'),
+                    ],
+                    [
+                        'title' => 'COMPETITION',
+                        'desc'  => 'Designed for regional tournament competitors. Tactics, endurance, and mental toughness under pressure.',
+                        'img'   => $assets_base . 'quote-bg-silhouette.jpg',
+                        'alt'   => 'Competition tournament',
+                        'url'   => home_url('/contact/?intent=inquiry&source=competition'),
+                    ],
+                    [
+                        'title' => 'COACHES',
+                        'desc'  => 'Certification programs using the BRESSEL methodology. Become the next generation of padel excellence instructors.',
+                        'img'   => $assets_base . 'community-card.jpg',
+                        'alt'   => 'Coach certification program',
+                        'url'   => home_url('/contact/?intent=inquiry&source=coaches'),
+                    ],
                 ];
-                foreach ($pillars as $pillar) : ?>
-                    <article class="pillar-card group relative p-8 rounded-xl border border-zinc-800 hover:border-zinc-600 hover:bg-zinc-900/50 transition-all duration-500 cursor-pointer text-center" data-animate>
-                        <!-- Icon -->
-                        <div class="text-5xl mb-6"><?= esc_html($pillar['icon']) ?></div>
-                        <!-- Content -->
-                        <div>
-                            <h3 class="text-2xl md:text-3xl font-black uppercase italic mb-4">
+                foreach ($pillars as $i => $pillar) : ?>
+                    <article class="pillar-card group relative h-[420px] rounded-xl overflow-hidden border border-zinc-800 hover:border-zinc-600 transition-all duration-500 cursor-pointer" data-animate>
+                        <!-- Full-bleed background image -->
+                        <img src="<?= esc_url($pillar['img']) ?>"
+                             alt="<?= esc_attr($pillar['alt']) ?>"
+                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        
+                        <!-- Dark gradient overlay (bottom-heavy for text readability) -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20"></div>
+                        
+                        <!-- Red accent bar (top) -->
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-[var(--color-bressel-red)] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                        
+                        <!-- Content overlay -->
+                        <div class="absolute inset-0 flex flex-col justify-end p-8">
+                            <!-- Red icon accent -->
+                            <div class="w-12 h-12 rounded-lg bg-[var(--color-bressel-red)]/20 border border-[var(--color-bressel-red)]/40 flex items-center justify-center mb-4 backdrop-blur-sm">
+                                <svg class="w-6 h-6 text-[var(--color-bressel-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <?php if ($i === 0) : ?>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+                                    <?php elseif ($i === 1) : ?>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                    <?php else : ?>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                                    <?php endif; ?>
+                                </svg>
+                            </div>
+                            
+                            <h3 class="text-3xl font-black uppercase italic text-white mb-3 drop-shadow-lg">
                                 <?= esc_html($pillar['title']) ?>
                             </h3>
-                            <p class="text-zinc-400 text-sm leading-relaxed max-w-xs mx-auto mb-6">
+                            <p class="text-zinc-200 text-sm leading-relaxed max-w-sm mb-5 opacity-90">
                                 <?= esc_html($pillar['desc']) ?>
                             </p>
-                            <a href="<?= esc_url(home_url('/contact/?intent=inquiry&source=' . strtolower($pillar['title']))) ?>"
-                               class="inline-flex items-center gap-2 text-[var(--color-bressel-red)] font-black uppercase tracking-widest text-xs hover:text-white transition-colors">
+                            <a href="<?= esc_url($pillar['url']) ?>"
+                               class="inline-flex items-center gap-2 text-[var(--color-bressel-red)] font-black uppercase tracking-widest text-xs hover:text-white transition-colors group/link">
                                 INQUIRE NOW
-                                <svg class="w-3 h-3 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                <svg class="w-3 h-3 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                             </a>
                         </div>
                     </article>
@@ -261,16 +307,16 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     </div>
                 </div>
 
-                <!-- Right: image grid (3 courts) -->
+                <!-- Right: image grid (3 courts) — B&W toned court photography -->
                 <div class="grid grid-cols-2 gap-3" data-animate>
-                    <div class="col-span-2 rounded-xl overflow-hidden aspect-video">
-                        <img src="<?= esc_url($assets_base . 'placeholder.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover opacity-50" />
+                    <div class="col-span-2 rounded-xl overflow-hidden aspect-video relative">
+                        <img src="<?= esc_url($assets_base . 'hero-bg.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover grayscale brightness-50" />
                     </div>
-                    <div class="rounded-xl overflow-hidden aspect-square">
-                        <img src="<?= esc_url($assets_base . 'placeholder.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover opacity-40" />
+                    <div class="rounded-xl overflow-hidden aspect-square relative">
+                        <img src="<?= esc_url($assets_base . 'cta-bg-overlay.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover grayscale brightness-40" />
                     </div>
-                    <div class="rounded-xl overflow-hidden aspect-square">
-                        <img src="<?= esc_url($assets_base . 'placeholder.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover opacity-30" />
+                    <div class="rounded-xl overflow-hidden aspect-square relative">
+                        <img src="<?= esc_url($assets_base . 'quote-bg-silhouette.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover grayscale brightness-30" />
                     </div>
                 </div>
 
@@ -283,14 +329,14 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
          TICKER #2 — Same bar, repeated
     ═══════════════════════════════════════ -->
     <div class="news-ticker border-y border-zinc-800 bg-zinc-950 overflow-hidden py-3">
-        <div class="ticker-track flex gap-0 whitespace-nowrap">
+        <div class="ticker-track flex flex-nowrap gap-0 whitespace-nowrap">
             <?php foreach ($ticker_items as $item) : ?>
-                <span class="ticker-item inline-flex items-center gap-3 px-8 text-xs font-bold uppercase tracking-widest">
+                <span class="ticker-item inline-flex items-center gap-3 px-6 text-xs font-bold uppercase tracking-widest">
                     <span class="<?= !empty($item['accent']) ? 'text-[var(--color-bressel-red)]' : 'text-zinc-600' ?>">
                         <?= esc_html($item['label']) ?>
                     </span>
                     <span class="text-zinc-300"><?= esc_html($item['text']) ?></span>
-                    <span class="text-zinc-700 mx-2">—</span>
+                    <span class="ticker-separator w-4 h-px bg-zinc-700"></span>
                 </span>
             <?php endforeach; ?>
         </div>
@@ -328,23 +374,20 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     'posts_per_page' => 2,
                 ]);
 
-                // Fallback image for products without featured images
-                $fallback_img = $assets_base . 'placeholder.jpg';
-
                 // Fallback product data if no merch posts yet
                 $fallback_products = [
                     [
                         'name'    => 'BRESSEL PADEL-X',
                         'series'  => 'FLAGSHIP SERIES',
                         'price'   => 'RM160.00',
-                        'bg'      => 'product-bg-teal',
+                        'img'     => $assets_base . 'cta-bg-overlay.jpg',
                         'url'     => home_url('/contact/?intent=purchase&target=Bressel+Padel-X'),
                     ],
                     [
                         'name'    => 'KINETIC GRIP-V1',
                         'series'  => '',
                         'price'   => 'RM159.00',
-                        'bg'      => '',
+                        'img'     => $assets_base . 'quote-bg-silhouette.jpg',
                         'url'     => home_url('/contact/?intent=purchase&target=Kinetic+Grip-V1'),
                     ],
                 ];
@@ -353,10 +396,11 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     $i = 0;
                     while ($merch_query->have_posts()) : $merch_query->the_post();
                         $price    = get_post_meta(get_the_ID(), '_bressel_merch_price', true) ?: '—';
-                        $img_url  = get_the_post_thumbnail_url(get_the_ID(), 'large') ?: $fallback_img;
+                        $img_url  = get_the_post_thumbnail_url(get_the_ID(), 'large');
                         $fb       = $fallback_products[$i] ?? $fallback_products[0];
+                        if (empty($img_url)) $img_url = $fb['img'];
                 ?>
-                    <article class="product-card <?= $i === 0 ? 'product-bg-teal' : '' ?> rounded-xl overflow-hidden border border-zinc-800 hover:border-zinc-600 transition-colors">
+                    <article class="product-card rounded-xl overflow-hidden border border-zinc-800 hover:border-zinc-600 transition-colors">
                         <div class="relative h-64 md:h-72 bg-zinc-900 overflow-hidden">
                             <img src="<?= esc_url($img_url) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="w-full h-full object-cover" />
                         </div>
@@ -379,9 +423,9 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     wp_reset_postdata();
                 else :
                     foreach ($fallback_products as $i => $p) : ?>
-                        <article class="product-card <?= esc_attr($p['bg']) ?> rounded-xl overflow-hidden border border-zinc-800">
+                        <article class="product-card rounded-xl overflow-hidden border border-zinc-800">
                             <div class="relative h-64 md:h-72 bg-zinc-900 overflow-hidden">
-                                <img src="<?= esc_url($fallback_img) ?>" alt="<?= esc_attr($p['name']) ?>" class="w-full h-full object-cover" />
+                                <img src="<?= esc_url($p['img']) ?>" alt="<?= esc_attr($p['name']) ?>" class="w-full h-full object-cover opacity-60" />
                             </div>
                             <div class="p-6">
                                 <?php if ($p['series']) : ?>

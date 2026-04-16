@@ -40,7 +40,7 @@
 
     <!-- Logo -->
     <a id="header-logo" href="<?= esc_url(home_url('/')); ?>" class="flex items-center gap-2 relative z-[210]">
-      <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-bressel-white.png') ?>" alt="BRESSEL™" class="h-8 md:h-20 w-auto" loading="eager" />
+      <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-bressel-white.png') ?>" alt="BRESSEL™" class="h-7 md:h-10 w-auto" loading="eager" />
     </a>
 
     <!-- Desktop Nav (centered) -->
@@ -60,8 +60,8 @@
         <a href="<?php echo esc_url(home_url('/contact/?intent=booking')); ?>"
          class="group btn-cta btn-md ripple hidden md:inline-flex">
         BOOK SESSION
-        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-white.svg') ?>" alt="Brain Icon" class="w-8 h-8 group-hover:hidden" />
-        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-red.svg') ?>" alt="Brain Icon" class="hidden w-8 h-8 group-hover:block" />
+        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-white.svg') ?>" alt="Brain Icon" class="w-5 h-5 group-hover:hidden" />
+        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-red.svg') ?>" alt="Brain Icon" class="hidden w-5 h-5 group-hover:block" />
       </a>
 
       <!-- Mobile Menu Toggle -->

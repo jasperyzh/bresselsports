@@ -167,6 +167,31 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollObserver.observe(el);
     });
 
+    // Hero Video Fallback — show static image if video fails
+    const heroVideo = document.querySelector('#hero video');
+    const heroFallback = document.getElementById('hero-fallback-bg');
+    if (heroVideo && heroFallback) {
+        heroVideo.addEventListener('error', function() {
+            heroVideo.style.display = 'none';
+            heroFallback.style.display = 'block';
+        });
+        // Also check if video plays (some browsers block autoplay)
+        heroVideo.addEventListener('canplay', function() {
+            // Video plays fine, keep it
+        });
+        heroVideo.addEventListener('playing', function() {
+            // Video is playing, hide fallback
+            heroFallback.style.display = 'none';
+        });
+        // Timeout fallback: if video hasn't started playing after 3s, use static image
+        setTimeout(function() {
+            if (heroVideo.readyState < 2) {
+                heroVideo.style.display = 'none';
+                heroFallback.style.display = 'block';
+            }
+        }, 3000);
+    }
+
     // Parallax Hero Effect
     const parallaxContainer = document.querySelector('[data-parallax]');
     const parallaxTarget = parallaxContainer?.querySelector('[data-parallax-target]');
@@ -313,11 +338,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Ticker — duplicate content for seamless infinite loop
     document.querySelectorAll('.ticker-track').forEach(track => {
-        // Clone all children and append so the animation loops seamlessly
+        // Only clone once: mark with data attribute to prevent double-cloning
+        if (track.dataset.cloned) return;
         const items = Array.from(track.children);
         items.forEach(item => {
             track.appendChild(item.cloneNode(true));
         });
+        track.dataset.cloned = 'true';
     });
 
     // Accordion Toggle (for UI demo)

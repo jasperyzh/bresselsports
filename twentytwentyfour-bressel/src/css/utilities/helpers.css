@@ -77,13 +77,21 @@ footer li > a {
   100% { transform: translateX(-50%); }
 }
 
+.news-ticker {
+  position: relative;
+}
+
 .ticker-track {
-  animation: ticker-scroll 22s linear infinite;
+  animation: ticker-scroll 30s linear infinite;
   will-change: transform;
 }
 
 .ticker-track:hover {
   animation-play-state: paused;
+}
+
+.ticker-item {
+  flex-shrink: 0;
 }
 
 /* Ghost Watermark Text */

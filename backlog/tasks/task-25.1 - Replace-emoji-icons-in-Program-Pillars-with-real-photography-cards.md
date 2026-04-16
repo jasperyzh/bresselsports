@@ -1,9 +1,11 @@
 ---
 id: TASK-25.1
 title: Replace emoji icons in Program Pillars with real photography cards
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@kise-engineer'
 created_date: '2026-04-16 16:54'
+updated_date: '2026-04-16 17:10'
 labels:
   - quick-win
   - high-impact
@@ -20,8 +22,8 @@ Program Pillars section uses emoji icons (🏆🎯👨‍🏫) on simple bordere
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 Replace emoji icon divs with full-bleed background images for each pillar (Professional, Competition, Coaches)
-- [ ] #2 Add white text overlay with title, description, and 'INQUIRE NOW' link on each card
-- [ ] #3 Add subtle dark gradient overlay so text pops over images
-- [ ] #4 Ensure images are responsive with object-cover and proper aspect ratio
+- [x] #1 Replace emoji icon divs with full-bleed background images for each pillar (Professional, Competition, Coaches)
+- [x] #2 Add white text overlay with title, description, and 'INQUIRE NOW' link on each card
+- [x] #3 Add subtle dark gradient overlay so text pops over images
+- [x] #4 Ensure images are responsive with object-cover and proper aspect ratio
 <!-- AC:END -->

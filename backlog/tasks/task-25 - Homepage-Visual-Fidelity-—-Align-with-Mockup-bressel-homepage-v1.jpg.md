@@ -1,9 +1,11 @@
 ---
 id: TASK-25
 title: Homepage Visual Fidelity — Align with Mockup (bressel - homepage v1.jpg)
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - '@kise-engineer'
 created_date: '2026-04-16 16:54'
+updated_date: '2026-04-16 16:55'
 labels:
   - mockup
   - visual-fidelity
