@@ -263,14 +263,14 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
 
                 <!-- Right: image grid (3 courts) -->
                 <div class="grid grid-cols-2 gap-3" data-animate>
-                    <div class="col-span-2 bg-zinc-800 rounded-xl flex items-center justify-center aspect-video">
-                        <svg class="w-16 h-16 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    <div class="col-span-2 rounded-xl overflow-hidden aspect-video">
+                        <img src="<?= esc_url($assets_base . 'placeholder.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover opacity-50" />
                     </div>
-                    <div class="bg-zinc-800 rounded-xl flex items-center justify-center aspect-square">
-                        <svg class="w-12 h-12 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    <div class="rounded-xl overflow-hidden aspect-square">
+                        <img src="<?= esc_url($assets_base . 'placeholder.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover opacity-40" />
                     </div>
-                    <div class="bg-zinc-800 rounded-xl flex items-center justify-center aspect-square">
-                        <svg class="w-12 h-12 text-zinc-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    <div class="rounded-xl overflow-hidden aspect-square">
+                        <img src="<?= esc_url($assets_base . 'placeholder.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover opacity-30" />
                     </div>
                 </div>
 
@@ -328,6 +328,9 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     'posts_per_page' => 2,
                 ]);
 
+                // Fallback image for products without featured images
+                $fallback_img = $assets_base . 'placeholder.jpg';
+
                 // Fallback product data if no merch posts yet
                 $fallback_products = [
                     [
@@ -350,12 +353,12 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     $i = 0;
                     while ($merch_query->have_posts()) : $merch_query->the_post();
                         $price    = get_post_meta(get_the_ID(), '_bressel_merch_price', true) ?: '—';
-                        $img_url  = get_the_post_thumbnail_url(get_the_ID(), 'large') ?: ($assets_base . ($i === 0 ? 'placeholder-product.svg' : 'placeholder-card.svg'));
+                        $img_url  = get_the_post_thumbnail_url(get_the_ID(), 'large') ?: $fallback_img;
                         $fb       = $fallback_products[$i] ?? $fallback_products[0];
                 ?>
                     <article class="product-card <?= $i === 0 ? 'product-bg-teal' : '' ?> rounded-xl overflow-hidden border border-zinc-800 hover:border-zinc-600 transition-colors">
-                        <div class="relative h-64 md:h-72 bg-zinc-900 flex items-center justify-center overflow-hidden">
-                            <svg class="w-20 h-20 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 19l-7-7 7-7m0 14l7-7-7-7"/></svg>
+                        <div class="relative h-64 md:h-72 bg-zinc-900 overflow-hidden">
+                            <img src="<?= esc_url($img_url) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="w-full h-full object-cover" />
                         </div>
                         <div class="p-6">
                             <p class="text-[var(--color-bressel-red)] text-[10px] font-bold uppercase tracking-widest mb-1"><?= esc_html($fb['series']) ?></p>
@@ -377,8 +380,8 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 else :
                     foreach ($fallback_products as $i => $p) : ?>
                         <article class="product-card <?= esc_attr($p['bg']) ?> rounded-xl overflow-hidden border border-zinc-800">
-                            <div class="relative h-64 md:h-72 bg-zinc-900 flex items-center justify-center overflow-hidden">
-                                <svg class="w-20 h-20 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 19l-7-7 7-7m0 14l7-7-7-7"/></svg>
+                            <div class="relative h-64 md:h-72 bg-zinc-900 overflow-hidden">
+                                <img src="<?= esc_url($fallback_img) ?>" alt="<?= esc_attr($p['name']) ?>" class="w-full h-full object-cover" />
                             </div>
                             <div class="p-6">
                                 <?php if ($p['series']) : ?>

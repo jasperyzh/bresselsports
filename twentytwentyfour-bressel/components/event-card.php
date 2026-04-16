@@ -44,9 +44,8 @@ $type_label = $event_types['upcoming'] ?? 'EVENT';
         <?php if (has_post_thumbnail($event_id)) : ?>
             <?php echo get_the_post_thumbnail($event_id, 'large', ['class' => 'w-full h-full object-cover group-hover:scale-105 transition-transform duration-500']); ?>
         <?php else : ?>
-            <svg class="w-16 h-16 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-            </svg>
+            <img src="<?= get_stylesheet_directory_uri() ?>/assets/placeholder.jpg"
+                 alt="" class="w-full h-full object-cover opacity-40" />
         <?php endif; ?>
         
         <!-- Date overlay if available -->

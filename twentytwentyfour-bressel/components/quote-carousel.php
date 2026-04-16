@@ -52,9 +52,7 @@ $auto_play_interval = 6000; // 6 seconds per slide
                     <div class="quote-slide <?= $index === 0 ? 'active' : '' ?>" data-slide-index="<?= $index ?>">
                         <div class="flex items-center justify-center gap-3 mb-8">
                             <span class="block w-8 h-0.5 bg-[var(--color-bressel-red)]"></span>
-                            <svg class="w-6 h-6 text-[var(--color-bressel-red)]" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                            </svg>
+                            <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-red.svg') ?>" alt="Brand Icon" class="w-12 h-12 group-hover:block" />
                             <span class="block w-8 h-0.5 bg-[var(--color-bressel-red)]"></span>
                         </div>
 
