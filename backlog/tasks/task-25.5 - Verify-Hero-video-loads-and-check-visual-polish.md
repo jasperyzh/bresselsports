@@ -2,8 +2,10 @@
 id: TASK-25.5
 title: Verify Hero video loads and check visual polish
 status: To Do
-assignee: []
+assignee:
+  - '@kise-engineer'
 created_date: '2026-04-16 16:54'
+updated_date: '2026-04-16 17:11'
 labels:
   - bugfix
   - hero

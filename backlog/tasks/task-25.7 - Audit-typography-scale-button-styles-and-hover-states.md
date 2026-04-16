@@ -2,8 +2,10 @@
 id: TASK-25.7
 title: 'Audit typography scale, button styles, and hover states'
 status: To Do
-assignee: []
+assignee:
+  - '@kise-engineer'
 created_date: '2026-04-16 16:54'
+updated_date: '2026-04-16 17:11'
 labels:
   - polish
   - typography

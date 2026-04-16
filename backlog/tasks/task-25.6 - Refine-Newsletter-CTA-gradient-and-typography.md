@@ -2,8 +2,10 @@
 id: TASK-25.6
 title: Refine Newsletter CTA gradient and typography
 status: To Do
-assignee: []
+assignee:
+  - '@kise-engineer'
 created_date: '2026-04-16 16:54'
+updated_date: '2026-04-16 17:11'
 labels:
   - polish
   - newsletter
