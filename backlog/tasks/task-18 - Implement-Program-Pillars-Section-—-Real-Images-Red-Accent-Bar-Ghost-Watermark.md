@@ -7,7 +7,7 @@ status: Done
 assignee:
   - '@myself'
 created_date: '2026-04-13 07:57'
-updated_date: '2026-04-13 11:15'
+updated_date: '2026-04-16 16:54'
 labels:
   - sections
   - program-pillars
@@ -24,7 +24,7 @@ The Program Pillars section (id=programs) exists in front-page.php and renders 3
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [x] #1 Confirm .watermark-text CSS class renders correctly (font-size clamp, -webkit-text-stroke, transparent fill)
+- [ ] #1 Confirm .watermark-text CSS class renders correctly (font-size clamp, -webkit-text-stroke, transparent fill)
 - [x] #2 Confirm red top-border hover accent (scale-x-0 to scale-x-100 transition) works on pillar cards
 - [x] #3 Confirm pillar card hover shows description text (opacity-0 to opacity-100 transition)
 - [x] #4 Confirm 3-column grid renders correctly at md: breakpoint
