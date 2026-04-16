@@ -31,8 +31,30 @@
 /* ====== Components (@layer components) ====== */
 @import './css/components.css';
 
+/* ====== Sections (classless styles for each section) ====== */
+@import './css/sections.css';
+
+/* ====== Utilities (semantic replacements for Tailwind) ====== */
+@import './css/utilities.css';
+
 /* ====== Helpers (animations + minimal utilities) ====== */
 @import './css/helpers.css';
+
+/* ====== Responsive styles (@layer components) ====== */
+@layer components {
+  .hero-ctas-lg { flex-direction: row; }
+  .hero-body-lg { font-size: 1.125rem; }
+  .hero-section-lg { padding-bottom: clamp(8rem, 20vw, 16rem); }
+  .about-card-img-lg { height: 20rem; }
+  .about-card-content-lg { padding: 2rem; }
+  .about-card-title-lg { font-size: 2.25rem; }
+  .section-title-lg { font-size: 4.5rem; }
+  .product-card-name-lg { font-size: 1.5rem; }
+  .location-name-lg { font-size: 1.5rem; }
+  .shop-header-lg { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+  .newsletter-title-lg { font-size: clamp(5rem, 12vw, 12rem); }
+  .newsletter-form-row-lg { flex-direction: row; }
+}
 
 /* ====== Unlayered styles (WordPress override) ====== */
 /* These sit outside @layer base so they beat WordPress global-styles */

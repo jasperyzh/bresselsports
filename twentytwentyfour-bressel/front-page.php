@@ -10,20 +10,20 @@ get_header();
 $assets_base = get_stylesheet_directory_uri() . '/assets/';
 ?>
 
-<main class="bg-black text-white overflow-x-hidden">
+<main class="page-dark">
 
     <!-- ═══════════════════════════════════════
          1. HERO
          Full-screen dark photo, EST. tagline,
          two-line headline, body, dual CTAs
     ═══════════════════════════════════════ -->
-    <section id="hero" class="hero-section relative min-h-screen flex flex-col justify-end pb-24 md:pb-32" data-parallax>
+    <section id="hero" class="hero-section relative min-h-screen flex-col justify-end pb-24 md:pb-32" data-parallax>
 
     <!-- Static fallback background (shown if video fails to load) -->
     <div class="absolute inset-0 z-0">
         <img src="<?= esc_url($assets_base . 'hero-bg.jpg') ?>"
              alt=""
-             class="w-full h-[115%] object-cover select-none pointer-events-none opacity-40"
+             class="img-cover select-none pointer-events-none opacity-40"
              aria-hidden="true"
              style="<?php if (!file_exists(get_stylesheet_directory() . '/assets/background-video.mp4')): ?>display:block;<?php else: ?>display:none;<?php endif; ?>"
              id="hero-fallback-bg" />
@@ -33,7 +33,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
     <video data-parallax-target
            autoplay loop muted playsinline
            poster="<?= esc_url($assets_base . 'cta-bg-overlay.jpg') ?>"
-           class="absolute inset-0 w-full h-[115%] object-cover select-none pointer-events-none opacity-40"<?php if (!file_exists(get_stylesheet_directory() . '/assets/background-video.mp4')): ?> onload="this.style.display='none'; document.getElementById('hero-fallback-bg').style.display='block';" onerror="this.style.display='none'; document.getElementById('hero-fallback-bg').style.display='block';"<?php endif; ?>>
+           class="absolute inset-0 img-cover select-none pointer-events-none opacity-40"<?php if (!file_exists(get_stylesheet_directory() . '/assets/background-video.mp4')): ?> onload="this.style.display='none'; document.getElementById('hero-fallback-bg').style.display='block';" onerror="this.style.display='none'; document.getElementById('hero-fallback-bg').style.display='block';"<?php endif; ?>>
         <source src="<?= esc_url($assets_base . 'background-video.mp4') ?>" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -45,9 +45,9 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
         <div class="relative z-20 container-custom">
 
             <!-- EST / tagline line -->
-            <div class="flex items-center gap-4 mb-6">
+            <div class="hero-tagline mb-6">
                 <span class="block w-8 h-0.5 bg-[var(--color-bressel-red)]"></span>
-                <span class="text-[var(--color-bressel-red)] font-bold uppercase tracking-[0.25em] text-xs">EST. 2020 / PLAY BEYOND</span>
+                <span class="text-[var(--color-bressel-red)] uppercase text-xs">EST. 2020 / PLAY BEYOND</span>
                 <span class="block w-8 h-0.5 bg-[var(--color-bressel-red)]"></span>
             </div>
 
@@ -58,27 +58,27 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
             </h1>
 
             <!-- Body copy -->
-            <p class="text-zinc-300 text-base md:text-lg max-w-xl mb-10 leading-relaxed font-normal">
+            <p class="hero-body text-zinc-300 max-w-xl mb-10 leading-relaxed">
                 Unlock your potential with elite coaching modules,<br class="hidden md:block">
                 community integration, and the precision of BRESSEL™ PRO equipment.
             </p>
 
             <!-- CTAs -->
-            <div class="flex flex-col sm:flex-row gap-4">
+            <div class="hero-ctas sm:flex-row">
                 <a href="<?= esc_url(home_url('/contact/?intent=booking')) ?>"
-                   class="btn-solid btn-ripple inline-flex items-center gap-3 px-8 py-4 text-sm font-black uppercase tracking-widest">
+                   class="btn-solid btn-ripple">
                     BOOK SESSION
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm7 4l-1.4 1.4L14.2 12l-3.6 3.6L12 17l5-5-5-5z"/></svg>
                 </a>
                 <a href="#programs"
-                   class="btn-outline inline-flex items-center gap-3 px-8 py-4 text-sm font-black uppercase tracking-widest">
+                   class="btn-outline">
                     EXPLORE PROGRAMMES
                 </a>
             </div>
         </div>
 
         <!-- Scroll hint -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-40">
+        <div class="scroll-hint absolute bottom-8 left-half translate-half z-20">
             <span class="text-[9px] uppercase tracking-[0.3em] text-white">Scroll</span>
             <div class="w-0.5 h-8 bg-white animate-pulse"></div>
         </div>
@@ -88,19 +88,19 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
     <!-- ═══════════════════════════════════════
          2. ABOUT — Academy + Community cards
     ═══════════════════════════════════════ -->
-    <section id="about" class="section-padding bg-black">
+    <section id="about" class="section-padding page-dark">
         <div class="container-custom">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="about-grid md:grid-cols-2">
 
                 <!-- Academy card -->
-                <div class="about-card group relative overflow-hidden rounded-md border border-zinc-800 hover:border-zinc-600 transition-colors duration-500" data-animate>
+                <div class="about-card" data-animate>
                     <img src="<?= esc_url($assets_base . 'academy-card.jpg') ?>"
                          alt="BRESSEL Academy"
-                         class="w-full h-64 md:h-80 object-cover transition-transform duration-700 group-hover:scale-105" />
+                         class="about-card-img" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
-                    <div class="absolute bottom-0 left-0 p-6 md:p-8">
-                        <h3 class="text-3xl md:text-4xl font-black uppercase italic mb-2">ACADEMY</h3>
-                        <p class="text-zinc-400 text-sm mb-6 max-w-sm">
+                    <div class="about-card-content">
+                        <h3 class="about-card-title">ACADEMY</h3>
+                        <p class="about-card-desc">
                             Master the technical precision of the pros. Our elite-level training modules focus on footwork, court positioning, and explosive agility.
                         </p>
                         <a href="<?= esc_url(get_post_type_archive_link('coach')) ?>"
@@ -112,14 +112,15 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 </div>
 
                 <!-- Community card -->
-                <div class="about-card group relative overflow-hidden rounded-md border border-zinc-800 hover:border-zinc-600 transition-colors duration-500" data-animate>
+                <!-- Community card -->
+                <div class="about-card" data-animate>
                     <img src="<?= esc_url($assets_base . 'community-card.jpg') ?>"
                          alt="BRESSEL Community"
-                         class="w-full h-64 md:h-80 object-cover transition-transform duration-700 group-hover:scale-105" />
+                         class="about-card-img" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
-                    <div class="absolute bottom-0 left-0 p-6 md:p-8">
-                        <h3 class="text-3xl md:text-4xl font-black uppercase italic mb-2">COMMUNITY</h3>
-                        <p class="text-zinc-400 text-sm mb-6 max-w-sm">
+                    <div class="about-card-content">
+                        <h3 class="about-card-title">COMMUNITY</h3>
+                        <p class="about-card-desc">
                             Connect with players who match your intensity. Join local ladders, enter international tournaments, and rank up.
                         </p>
                         <a href="<?= esc_url(home_url('/contact/')) ?>"
@@ -138,8 +139,8 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
     <!-- ═══════════════════════════════════════
          3. TICKER — Scrolling news bar
     ═══════════════════════════════════════ -->
-    <div class="news-ticker border-y border-zinc-800 bg-zinc-950 overflow-hidden py-3">
-        <div class="ticker-track flex flex-nowrap gap-0 whitespace-nowrap">
+    <div class="news-ticker">
+        <div class="ticker-track">
             <?php
             $ticker_items = [
                 ['label' => 'UPCOMING', 'text' => 'MALAYSIA OPEN QUALIFIERS'],
@@ -148,11 +149,11 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 ['label' => 'NEW DROP', 'text' => 'PRECISION SERIES V2'],
             ];
             foreach ($ticker_items as $item) : ?>
-                <span class="ticker-item inline-flex items-center gap-3 px-6 text-xs font-bold uppercase tracking-widest">
-                    <span class="<?= !empty($item['accent']) ? 'text-[var(--color-bressel-red)]' : 'text-zinc-600' ?>">
+                <span class="ticker-item">
+                    <span class="ticker-label">
                         <?= esc_html($item['label']) ?>
                     </span>
-                    <span class="text-zinc-300"><?= esc_html($item['text']) ?></span>
+                    <span class="ticker-text"><?= esc_html($item['text']) ?></span>
                     <span class="ticker-separator w-4 h-px bg-zinc-700"></span>
                 </span>
             <?php endforeach; ?>
@@ -164,7 +165,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
          4. PROGRAM PILLARS
          Ghost "ACADEMY" watermark, 3 image cards
     ═══════════════════════════════════════ -->
-    <section id="programs" class="section-padding bg-black relative overflow-hidden">
+    <section id="programs" class="section-padding page-dark relative overflow-hidden">
 
         <!-- Ghost watermark -->
         <div class="watermark-text absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none z-0 leading-none">
@@ -172,12 +173,12 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
         </div>
 
         <div class="container-custom relative z-10">
-            <div class="mb-12" data-animate>
-                <p class="text-zinc-600 text-xs uppercase tracking-widest mb-3">Engineered for community excellence.</p>
-                <h2 class="text-5xl md:text-7xl">PROGRAM PILLARS</h2>
+            <div class="programs-header mb-12" data-animate>
+                <p class="section-subtitle">Engineered for community excellence.</p>
+                <h2 class="section-title lg:text-7xl">PROGRAM PILLARS</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="pillar-grid md:grid-cols-3">
                 <?php
                 $pillars = [
                     [
@@ -203,11 +204,11 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     ],
                 ];
                 foreach ($pillars as $i => $pillar) : ?>
-                    <article class="pillar-card group relative h-[420px] rounded-xl overflow-hidden border border-zinc-800 hover:border-zinc-600 transition-all duration-500 cursor-pointer" data-animate>
+                    <article class="pillar-card" data-animate>
                         <!-- Full-bleed background image -->
                         <img src="<?= esc_url($pillar['img']) ?>"
                              alt="<?= esc_attr($pillar['alt']) ?>"
-                             class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                             class="pillar-card-img" />
                         
                         <!-- Dark gradient overlay (bottom-heavy for text readability) -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20"></div>
@@ -216,9 +217,9 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                         <div class="absolute top-0 left-0 right-0 h-1 bg-[var(--color-bressel-red)] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                         
                         <!-- Content overlay -->
-                        <div class="absolute inset-0 flex flex-col justify-end p-8">
+                        <div class="pillar-card-content">
                             <!-- Red icon accent -->
-                            <div class="w-12 h-12 rounded-lg bg-[var(--color-bressel-red)]/20 border border-[var(--color-bressel-red)]/40 flex items-center justify-center mb-4 backdrop-blur-sm">
+                            <div class="pillar-card-icon">
                                 <svg class="w-6 h-6 text-[var(--color-bressel-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <?php if ($i === 0) : ?>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
@@ -230,14 +231,14 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                                 </svg>
                             </div>
                             
-                            <h3 class="text-3xl font-black uppercase italic text-white mb-3 drop-shadow-lg">
+                            <h3 class="pillar-card-title">
                                 <?= esc_html($pillar['title']) ?>
                             </h3>
-                            <p class="text-zinc-200 text-sm leading-relaxed max-w-sm mb-5 opacity-90">
+                            <p class="pillar-card-desc">
                                 <?= esc_html($pillar['desc']) ?>
                             </p>
                             <a href="<?= esc_url($pillar['url']) ?>"
-                               class="inline-flex items-center gap-2 text-[var(--color-bressel-red)] font-black uppercase tracking-widest text-xs hover:text-white transition-colors group/link">
+                               class="pillar-card-link">
                                 INQUIRE NOW
                                 <svg class="w-3 h-3 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                             </a>
@@ -259,43 +260,43 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
          6. BRESSEL ACADEMY
          Left: title + pricing + locations. Right: court image grid
     ═══════════════════════════════════════ -->
-    <section id="centers" class="section-padding bg-black">
+    <section id="centers" class="section-padding page-dark">
         <div class="container-custom">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+            <div class="centers-grid lg:grid-cols-2">
 
                 <!-- Left: info -->
                 <div data-animate>
                     <div class="accent-bar"></div>
                     <h2 class="mb-8">BRESSEL ACADEMY</h2>
-                    <p class="text-zinc-400 mb-8 max-w-sm">
+                    <p class="centers-desc max-w-sm">
                         From Malaysia to Philippines, our state-of-the-art facilities offer the signature Kinetic Blue experience with precision climate control.
                     </p>
 
                     <!-- Pricing cards -->
-                    <div class="grid grid-cols-2 gap-4 mb-10">
-                        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-                            <p class="text-zinc-500 text-xs uppercase tracking-widest mb-2">GROUP</p>
-                            <p class="text-2xl font-black text-white mb-1">RM 150<span class="text-sm font-normal text-zinc-500">/session</span></p>
-                            <p class="text-zinc-600 text-xs">4-6 players</p>
+                    <div class="pricing-grid mb-10">
+                        <div class="pricing-card">
+                            <p class="pricing-label">GROUP</p>
+                            <p class="pricing-amount">RM 150<span>/session</span></p>
+                            <p class="pricing-detail">4-6 players</p>
                         </div>
-                        <div class="bg-zinc-900 border border-zinc-800 rounded-lg p-5">
-                            <p class="text-zinc-500 text-xs uppercase tracking-widest mb-2">PRIVATE</p>
-                            <p class="text-2xl font-black text-white mb-1">RM 250<span class="text-sm font-normal text-zinc-500">/session</span></p>
-                            <p class="text-zinc-600 text-xs">1-on-1 coaching</p>
+                        <div class="pricing-card">
+                            <p class="pricing-label">PRIVATE</p>
+                            <p class="pricing-amount">RM 250<span>/session</span></p>
+                            <p class="pricing-detail">1-on-1 coaching</p>
                         </div>
                     </div>
-                    <a href="#" class="inline-flex items-center gap-3 mb-10 px-6 py-3 border border-zinc-700 text-zinc-300 hover:border-white hover:text-white transition-all text-xs font-bold uppercase tracking-widest rounded">
+                    <a href="#" class="pricing-download">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                         DOWNLOAD FULL PRICING (PDF)
                     </a>
 
                     <!-- Location list -->
-                    <div class="space-y-0 divide-y divide-zinc-900">
+                    <div class="location-list">
                         <?php
                         $locations = ['MALAYSIA', 'PHILIPPINES', 'SINGAPORE'];
                         foreach ($locations as $loc) : ?>
-                            <div class="flex items-center justify-between py-5 group cursor-pointer">
-                                <span class="font-black uppercase italic tracking-wide text-xl md:text-2xl text-zinc-300 group-hover:text-white transition-colors">
+                            <div class="location-item">
+                                <span class="location-name">
                                     <?= esc_html($loc) ?>
                                 </span>
                                 <svg class="w-5 h-5 text-[var(--color-bressel-red)] transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -308,15 +309,15 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 </div>
 
                 <!-- Right: image grid (3 courts) — B&W toned court photography -->
-                <div class="grid grid-cols-2 gap-3" data-animate>
-                    <div class="col-span-2 rounded-xl overflow-hidden aspect-video relative">
-                        <img src="<?= esc_url($assets_base . 'hero-bg.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover grayscale brightness-50" />
+                <div class="centers-images" data-animate>
+                    <div class="center-img-wrapper">
+                        <img src="<?= esc_url($assets_base . 'hero-bg.jpg') ?>" alt="BRESSEL Court" class="center-img" />
                     </div>
-                    <div class="rounded-xl overflow-hidden aspect-square relative">
-                        <img src="<?= esc_url($assets_base . 'cta-bg-overlay.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover grayscale brightness-40" />
+                    <div class="center-img-wrapper">
+                        <img src="<?= esc_url($assets_base . 'cta-bg-overlay.jpg') ?>" alt="BRESSEL Court" class="center-img" />
                     </div>
-                    <div class="rounded-xl overflow-hidden aspect-square relative">
-                        <img src="<?= esc_url($assets_base . 'quote-bg-silhouette.jpg') ?>" alt="BRESSEL Court" class="w-full h-full object-cover grayscale brightness-30" />
+                    <div class="center-img-wrapper">
+                        <img src="<?= esc_url($assets_base . 'quote-bg-silhouette.jpg') ?>" alt="BRESSEL Court" class="center-img" />
                     </div>
                 </div>
 
@@ -355,19 +356,19 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
         </div>
 
         <div class="container-custom relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-baseline mb-12 gap-4" data-animate>
+            <div class="shop-header mb-12 gap-4" data-animate>
                 <div>
                     <p class="text-zinc-600 text-xs uppercase tracking-widest mb-3">Engineered for communities and beyond.</p>
                     <h2>SHOP</h2>
                 </div>
                 <a href="<?= esc_url(get_post_type_archive_link('merch')) ?>"
-                   class="shop-all-link inline-flex items-center gap-2 px-6 py-3 border border-zinc-700 text-zinc-300 hover:border-white hover:text-white transition-all text-xs font-bold uppercase tracking-widest rounded">
+                   class="shop-all-link">
                     VISIT CATALOG
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="shop-grid md:grid-cols-2">
                 <?php
                 $merch_query = new WP_Query([
                     'post_type'      => 'merch',
@@ -400,14 +401,14 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                         $fb       = $fallback_products[$i] ?? $fallback_products[0];
                         if (empty($img_url)) $img_url = $fb['img'];
                 ?>
-                    <article class="product-card rounded-xl overflow-hidden border border-zinc-800 hover:border-zinc-600 transition-colors">
-                        <div class="relative h-64 md:h-72 bg-zinc-900 overflow-hidden">
-                            <img src="<?= esc_url($img_url) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="w-full h-full object-cover" />
+                    <article class="product-card">
+                        <div class="product-card-image">
+                            <img src="<?= esc_url($img_url) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="product-card-img" />
                         </div>
-                        <div class="p-6">
+                        <div class="product-card-body">
                             <p class="text-[var(--color-bressel-red)] text-[10px] font-bold uppercase tracking-widest mb-1"><?= esc_html($fb['series']) ?></p>
                             <h3 class="text-xl md:text-2xl font-black uppercase italic mb-3"><?= esc_html(get_the_title()) ?></h3>
-                            <div class="text-zinc-400 text-sm mb-5 line-clamp-2"><?php the_excerpt(); ?></div>
+                            <div class="product-card-desc line-clamp-2"><?php the_excerpt(); ?></div>
                             <div class="flex items-center justify-between">
                                 <span class="text-white font-bold text-lg">RM<?= esc_html($price) ?></span>
                                 <a href="<?= esc_url(home_url('/contact/?intent=purchase&target=' . urlencode(get_the_title()))) ?>"
@@ -423,19 +424,19 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     wp_reset_postdata();
                 else :
                     foreach ($fallback_products as $i => $p) : ?>
-                        <article class="product-card rounded-xl overflow-hidden border border-zinc-800">
-                            <div class="relative h-64 md:h-72 bg-zinc-900 overflow-hidden">
-                                <img src="<?= esc_url($p['img']) ?>" alt="<?= esc_attr($p['name']) ?>" class="w-full h-full object-cover opacity-60" />
+                        <article class="product-card">
+                            <div class="product-card-image">
+                                <img src="<?= esc_url($p['img']) ?>" alt="<?= esc_attr($p['name']) ?>" class="product-card-img" />
                             </div>
-                            <div class="p-6">
+                            <div class="product-card-body">
                                 <?php if ($p['series']) : ?>
-                                    <p class="text-[var(--color-bressel-red)] text-[10px] font-bold uppercase tracking-widest mb-1"><?= esc_html($p['series']) ?></p>
+                                    <p class="product-card-series"><?= esc_html($p['series']) ?></p>
                                 <?php endif; ?>
-                                <h3 class="text-xl md:text-2xl font-black uppercase italic mb-3"><?= esc_html($p['name']) ?></h3>
+                                <h3 class="product-card-name"><?= esc_html($p['name']) ?></h3>
                                 <div class="flex items-center justify-between mt-4">
-                                    <span class="text-white font-bold text-lg"><?= esc_html($p['price']) ?></span>
+                                    <span class="product-card-price"><?= esc_html($p['price']) ?></span>
                                     <a href="<?= esc_url($p['url']) ?>"
-                                       class="btn-solid-sm btn-ripple px-5 py-2 text-xs font-black uppercase tracking-widest">
+                                       class="btn-solid-sm btn-ripple">
                                         INQUIRE
                                     </a>
                                 </div>
@@ -467,26 +468,26 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
         <div class="relative z-10 section-padding">
             <div class="container-custom text-center max-w-3xl mx-auto">
 
-                <h2 class="text-5xl md:text-7xl lg:text-[clamp(5rem,12vw,12rem)] mb-6" data-animate>
+                <h2 class="newsletter-title lg:text-9xl" data-animate>
                     JOIN THE <span class="text-[var(--color-bressel-red)]">MOVEMENT.</span>
                 </h2>
 
-                <p class="text-zinc-300 text-base md:text-lg mb-10 max-w-xl mx-auto" data-animate>
+                <p class="newsletter-desc" data-animate>
                     Be part of the fastest growing precision sports community in Asia.
                     Gain first access to limited gear drops, tournament invites, and tactical breakdowns.
                 </p>
 
                 <!-- Email form (Fluent Forms or fallback) -->
-                <div class="newsletter-form max-w-lg mx-auto" data-animate>
+                <div class="newsletter-form" data-animate>
                     <?php if (function_exists('fluent_form')) : ?>
                         <?= do_shortcode('[fluentform id="2"]') ?>
                     <?php else : ?>
-                        <form class="flex flex-col sm:flex-row gap-3" action="#" method="post">
+                        <form class="newsletter-form-row" action="#" method="post">
                             <input type="email" name="email" required
                                    placeholder="ENTER EMAIL ADDRESS"
-                                   class="flex-grow px-6 py-4 bg-transparent border border-zinc-600 text-white placeholder-zinc-500 text-xs font-bold uppercase tracking-widest focus:outline-none focus:border-white transition-colors rounded-none" />
+                                   class="newsletter-input" />
                             <button type="submit"
-                                    class="btn-solid btn-ripple px-8 py-4 text-xs font-black uppercase tracking-widest inline-flex items-center gap-3 whitespace-nowrap justify-center">
+                                    class="btn-solid btn-ripple">
                                 SUBSCRIBE
                                 <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm7 4l-1.4 1.4L14.2 12l-3.6 3.6L12 17l5-5-5-5z"/></svg>
                             </button>
