@@ -2,6 +2,41 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2026-04-16
+
+### Added
+- **UI Components Demo Page** (`/ui-demo/`) — complete design system showcase
+  - 13 component sections: colors, typography, buttons, alerts, cards, forms, accordion, dropdown, grid, spacing, carousel, lightbox, navigation
+  - Sticky section navigation bar for quick jumping between components
+  - Live interactive previews of all components
+- **New Components**:
+  - `components/accordion.php` — expandable content sections with smooth animations
+  - `components/alert.php` — contextual feedback (success/warning/error/info)
+  - `components/testimonial-card.php` — customer testimonial with avatar, stars, quote
+- **Component Updates**:
+  - `components/button.php` — added `ghost` variant, `sm/md/lg` sizes, red accent option
+- **CSS Additions** (`src/css/components/ui-components.css`):
+  - Dropdown menu styles with transition animations
+  - Tooltip component (CSS-only, data-tooltip attribute)
+  - Skeleton loader with shimmer animation
+  - Progress bar component
+  - Badge component (red/green/zinc variants)
+  - Switch/toggle component
+  - Lightbox thumbnail hover effect
+- **JavaScript Additions**:
+  - Accordion toggle handler (auto-close siblings, icon rotation)
+  - Dropdown toggle handler (open/close, close on outside click)
+  - PhotoSwipe 5 CDN integration for lightbox gallery
+
+### Technical Details
+- All card components now use `placeholder.jpg` consistently as fallback
+- All image paths use `get_stylesheet_directory_uri()` for child-theme safety
+- PhotoSwipe 5 loaded via CDN (cdnjs.cloudflare.com)
+- Page created via WP-CLI (ID: 55), template assigned: `page-ui-demo.php`
+- Build: 62.26 kB CSS (gzip 11.22 kB), 6.73 kB JS (gzip 2.27 kB)
+
+---
+
 ## [1.0.0] - 2026-04-16
 
 ### Added

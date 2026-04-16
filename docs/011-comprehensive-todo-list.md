@@ -359,5 +359,24 @@ wp post meta update <ID> _bressel_event_location "Kuala Lumpur, Malaysia"
 
 ---
 
-**Last Updated:** April 16, 2026 - 7:30 PM  
+### UI-01: UI Components Demo Page ✅
+**Time:** 45 min  
+**Files:** `page-ui-demo.php`, `components/accordion.php`, `components/alert.php`, `components/testimonial-card.php`, `src/css/components/ui-components.css`, `main.js`
+**Tasks:**
+1. ✅ Created `/ui-demo/` page with 13 component sections
+2. ✅ Components: colors, typography, buttons, alerts, cards, forms, accordion, dropdown, grid, spacing, carousel, lightbox, navigation
+3. ✅ New components: accordion.php, alert.php, testimonial-card.php
+4. ✅ Updated button.php: ghost variant + 3 sizes (sm/md/lg)
+5. ✅ Added ui-components.css: dropdown, tooltip, skeleton, progress bar, badge, switch toggle
+6. ✅ Added accordion toggle JS + dropdown JS to main.js
+7. ✅ PhotoSwipe 5 CDN for lightbox gallery
+8. ✅ All cards use placeholder.jpg fallback
+9. ✅ Created page via WP-CLI (ID: 55), assigned template
+10. ✅ Built Vite assets (62.26 kB CSS, 6.73 kB JS)
+11. ✅ URL: http://localhost:8080/ui-demo/
+**Status:** ✅ COMPLETE
+
+---
+
+**Last Updated:** April 16, 2026 - 8:30 PM  
 **Next Review:** Before client presentation
