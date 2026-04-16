@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
   <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- Critical CSS to prevent white flash -->
   <style>
     html, body { background-color: #000000 !important; }
@@ -56,7 +56,7 @@
     </nav>
 
     <!-- Right: CTA + Mobile toggle -->
-    <div class="flex gap-4 items-center gap-4 relative z-[210]">
+    <div class="flex items-center gap-4 relative z-[210]">
         <a href="<?php echo esc_url(home_url('/contact/?intent=booking')); ?>"
          class="group btn-cta btn-md ripple hidden md:inline-flex">
         BOOK SESSION
@@ -65,7 +65,7 @@
       </a>
 
       <!-- Mobile Menu Toggle -->
-      <button id="mobile-menu-btn" class="hidden lg:block uppercase font-bold tracking-widest text-xs p-2 focus:outline-none">
+      <button id="mobile-menu-btn" class="lg:hidden uppercase font-bold tracking-widest text-xs p-2 focus:outline-none">
         <i class="bi bi-list text-2xl"></i>
       </button>
     </div>
@@ -98,10 +98,10 @@
       <div class="text-center">
         <span class="block font-bold uppercase tracking-widest text-xs mb-4">Connect With Us</span>
         <div class="flex gap-6 justify-center">
-          <a href="#" class="text-3xl text-white hover:text-bressel-red transition-colors duration-300"><i class="bi bi-whatsapp"></i></a>
-          <a href="#" class="text-3xl text-white hover:text-bressel-red transition-colors duration-300"><i class="bi bi-telegram"></i></a>
-          <a href="#" class="text-3xl text-white hover:text-bressel-red transition-colors duration-300"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-3xl text-white hover:text-[var(--color-bressel-red)] transition-colors duration-300"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="text-3xl text-white hover:text-[var(--color-bressel-red)] transition-colors duration-300"><i class="bi bi-telegram"></i></a>
+          <a href="#" class="text-3xl text-white hover:text-[var(--color-bressel-red)] transition-colors duration-300"><i class="bi bi-instagram"></i></a>
         </div>
       </div>
     </div>
-</div>>
+</div>

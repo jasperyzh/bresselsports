@@ -204,37 +204,9 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
 
 
     <!-- ═══════════════════════════════════════
-         5. QUOTE — Full-width dark pull quote
+         5. QUOTE CAROUSEL — Full-width dark pull quote with carousel
     ═══════════════════════════════════════ -->
-    <section id="quote" class="section-padding bg-zinc-950 relative overflow-hidden">
-        <!-- Faint player silhouette BG -->
-        <div class="absolute inset-0 opacity-50">
-            <img src="<?= esc_url($assets_base . 'quote-bg-silhouette.jpg') ?>"
-                 alt="" class="w-full h-full object-cover" aria-hidden="true" />
-        </div>
-
-        <div class="container-custom relative z-10 text-center max-w-5xl mx-auto">
-            <!-- Decorative icon -->
-            <div class="flex items-center justify-center gap-3 mb-8">
-                <span class="block w-8 h-0.5 bg-[var(--color-bressel-red)]"></span>
-                <svg class="w-6 h-6 text-[var(--color-bressel-red)]" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                </svg>
-                <span class="block w-8 h-0.5 bg-[var(--color-bressel-red)]"></span>
-            </div>
-
-            <blockquote>
-                <p class="text-3xl md:text-4xl lg:text-5xl font-black uppercase italic leading-tight text-white mb-8">
-                    "PADEL IS NOT JUST A GAME OF FORCE IT<br class="hidden lg:block">
-                    IS A SYMPHONY OF KINETIC PRECISION<br class="hidden lg:block">
-                    AND UNYIELDING GEOMETRY."
-                </p>
-                <cite class="not-italic block">
-                    <span class="text-zinc-500 uppercase tracking-[0.3em] text-xs font-bold">JEREMY / HEAD OF PRO TRAINING</span>
-                </cite>
-            </blockquote>
-        </div>
-    </section>
+    <?php get_template_part('components/quote-carousel'); ?>
 
 
     <!-- ═══════════════════════════════════════
