@@ -10,18 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openMenu() {
         isMenuOpen = true;
-        mobileMenu.classList.remove('hidden');
-        mobileMenu.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-        if (mobileMenuText) mobileMenuText.innerText = 'Close';
+        mobileMenu.classList.add('menu-open');
+        mobileMenu.classList.remove('invisible');
     }
 
     function closeMenu() {
         isMenuOpen = false;
-        mobileMenu.classList.add('hidden');
-        mobileMenu.classList.remove('flex');
-        document.body.style.overflow = '';
-        if (mobileMenuText) mobileMenuText.innerText = 'Menu';
+        mobileMenu.classList.remove('menu-open');
+        mobileMenu.classList.add('invisible');
     }
 
     function toggleMenu() {

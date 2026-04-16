@@ -21,7 +21,7 @@
   </style>
   <?php wp_head(); ?>
 </head>
-<body <?php body_class('bg-black text-white antialiased'); ?> style="background-color: #000000;">
+<body <?php body_class('antialiased'); ?>>
 <style>
   /* Custom header styles - migrated from classes */
   .header-transparent {
@@ -35,11 +35,11 @@
     border-bottom: 1px solid rgba(24, 24, 27, 0.6);
   }
 </style>
-<header id="main-header" class="header-transparent text-white sticky top-0 z-[100] transition-all duration-500">
+<header id="main-header" class="header-transparent sticky top-0 z-[100]">
   <div class="max-w-6xl mx-auto flex justify-between items-center h-16 md:h-20">
 
     <!-- Logo -->
-    <a href="<?= esc_url(home_url('/')); ?>" class="flex items-center gap-2 hover:opacity-80 transition-opacity relative z-[210] header-cta btn-ripple">
+    <a id="header-logo" href="<?= esc_url(home_url('/')); ?>" class="flex items-center gap-2 relative z-[210]">
       <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-bressel-white.png') ?>" alt="BRESSEL™" class="h-8 md:h-20 w-auto" loading="eager" />
     </a>
 
@@ -56,47 +56,52 @@
     </nav>
 
     <!-- Right: CTA + Mobile toggle -->
-    <div class="flex items-center gap-4 relative z-[210]">
+    <div class="flex gap-4 items-center gap-4 relative z-[210]">
         <a href="<?php echo esc_url(home_url('/contact/?intent=booking')); ?>"
-         class="group header-cta btn-ripple hidden md:inline-flex">
+         class="group btn-cta btn-md ripple hidden md:inline-flex">
         BOOK SESSION
         <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-white.svg') ?>" alt="Brain Icon" class="w-8 h-8 group-hover:hidden" />
         <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-red.svg') ?>" alt="Brain Icon" class="hidden w-8 h-8 group-hover:block" />
       </a>
 
       <!-- Mobile Menu Toggle -->
-      <button id="mobile-menu-btn" class="lg:hidden text-white uppercase font-bold tracking-widest text-xs p-2 focus:outline-none focus:text-[var(--color-bressel-red)] transition-colors">
-        <span id="mobile-menu-text">Menu</span>
+      <button id="mobile-menu-btn" class="hidden lg:block uppercase font-bold tracking-widest text-xs p-2 focus:outline-none">
+        <i class="bi bi-list text-2xl"></i>
       </button>
     </div>
   </div>
 </header>
 
 <!-- Full-Screen Mobile Menu Overlay -->
-<div id="mobile-menu" class="fixed inset-0 bg-black/95 backdrop-blur-3xl z-[200] hidden flex flex-col justify-center items-center">
-    <!-- Close Button (Top Right) -->
-    <button id="mobile-menu-close" class="absolute top-6 right-6 text-white hover:text-bressel-red transition-colors p-2 z-[220]">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-    </button>
-    
-    <nav class="w-full">
+<div id="mobile-menu" class="fixed inset-0 z-[9999] bg-black mobile-menu-overlay transition-opacity duration-300 ease-in-out opacity-0 invisible">
+    <!-- Header: Close Button -->
+    <div class="flex justify-end p-6">
+      <button id="mobile-menu-close" class="text-white hover:opacity-70 transition-opacity">
+        <i class="bi bi-x-lg text-4xl"></i>
+      </button>
+    </div>
+
+    <!-- Main Navigation (centered) -->
+    <nav class="flex-1 flex items-center justify-center">
       <?php
         wp_nav_menu([
           'theme_location' => 'primary',
           'container' => false,
-          'menu_class' => 'flex flex-col items-center space-y-8 uppercase font-black italic tracking-tighter',
+          'menu_class' => 'flex flex-col items-center gap-8 uppercase font-black italic tracking-tighter',
           'fallback_cb' => false,
         ]);
       ?>
     </nav>
-    <div class="absolute bottom-12 text-center">
-        <span class="block text-zinc-500 font-bold uppercase tracking-widest text-xs mb-4">Connect With Us</span>
+
+    <!-- Footer with Social Media -->
+    <div class="flex justify-center pb-12">
+      <div class="text-center">
+        <span class="block font-bold uppercase tracking-widest text-xs mb-4">Connect With Us</span>
         <div class="flex gap-6 justify-center">
-            <a href="#" class="text-white hover:text-bressel-red font-bold uppercase tracking-widest text-sm transition-colors">WA</a>
-            <a href="#" class="text-white hover:text-bressel-red font-bold uppercase tracking-widest text-sm transition-colors">TG</a>
-            <a href="#" class="text-white hover:text-bressel-red font-bold uppercase tracking-widest text-sm transition-colors">IG</a>
+          <a href="#" class="text-3xl text-white hover:text-bressel-red transition-colors duration-300"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="text-3xl text-white hover:text-bressel-red transition-colors duration-300"><i class="bi bi-telegram"></i></a>
+          <a href="#" class="text-3xl text-white hover:text-bressel-red transition-colors duration-300"><i class="bi bi-instagram"></i></a>
         </div>
+      </div>
     </div>
-</div>
+</div>>

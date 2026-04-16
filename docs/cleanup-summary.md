@@ -30,9 +30,6 @@
 /* Line 692-708: Header CTA duplicate */
 .header-cta { ... }
 
-/* Line 430-478: Ripple & Glow duplicates */
-.btn-ripple { ... }
-.btn-glow { ... }
 ```
 
 **After:** Single, organized button system

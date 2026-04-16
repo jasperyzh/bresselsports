@@ -1,0 +1,9 @@
+/* ============================================
+   Mobile Menu Overlay Component
+   ============================================ */
+
+/* Full-screen mobile menu overlay */
+.mobile-menu-overlay {
+  background-color: var(--color-bressel-black);
+  backdrop-filter: blur(20px);
+}

@@ -11,17 +11,18 @@
 /* ============================================
    Components (@layer components)
    ============================================ */
-/* @import './css/components/layout.css';
+@import './css/components/layout.css';
 @import './css/components/buttons.css';
 @import './css/components/header.css';
 @import './css/components/forms.css';
 @import './css/components/faq.css';
-@import './css/components/modal.css'; */
+@import './css/components/modal.css'; 
+@import './css/components/mobile-menu-overlay.css';
 
 /* ============================================
    Modifiers & Animations
    ============================================ */
-/* @import './css/modifiers/effects.css'; */
+@import './css/modifiers/effects.css';
 
 /* ============================================
    Utilities & Helpers
@@ -62,8 +63,7 @@
 /* Put CSS here that you want utilities to easily override */
 @layer base {
   :root {
-    --color-bressel-white: #ffffff;
-    --color-bressel-black: #000000;
+    /* Use @theme values directly */
   }
 }
 
@@ -77,11 +77,86 @@ html body {
   line-height: 1.6;
 }
 
+/* ====== TYPOGRAPHY BASE ====== */
+body {
+  font-size: 1rem;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-header);
   line-height: 1.2;
   margin-bottom: 0.75rem;
   color: var(--color-bressel-white);
+}
+
+/* ====== TYPOGRAPHY UTILITIES ====== */
+/* Tailwind v4 native utilities for common typography */
+@utility uppercase {
+  text-transform: uppercase;
+}
+
+@utility lowercase {
+  text-transform: lowercase;
+}
+
+@utility capitalize {
+  text-transform: capitalize;
+}
+
+/* Font weight */
+@utility font-bold {
+  font-weight: 700;
+}
+
+/* Letter spacing */
+@utility tracking-tighter {
+  letter-spacing: -0.05em;
+}
+
+@utility tracking-tight {
+  letter-spacing: -0.025em;
+}
+
+@utility tracking-normal {
+  letter-spacing: 0;
+}
+
+@utility tracking-wide {
+  letter-spacing: 0.025em;
+}
+
+@utility tracking-wider {
+  letter-spacing: 0.05em;
+}
+
+@utility tracking-widest {
+  letter-spacing: 0.1em;
+}
+
+/* Font sizes */
+@utility text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+@utility text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+@utility text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+@utility text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+@utility text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 a {
@@ -93,12 +168,7 @@ a:hover {
   color: var(--color-bressel-white);
 }
 
-/* Buttons - semantic styling */
-button, .btn {
-  cursor: pointer;
-}
-
-/* Forms - base styles */
+/* Forms - base styles
 input, textarea, select {
   font-family: var(--font-body);
 }
