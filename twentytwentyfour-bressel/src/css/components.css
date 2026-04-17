@@ -257,8 +257,31 @@
   .faq-content.hidden { opacity: 0; }
 
   /* ═══════ QUOTE CAROUSEL ═══════ */
-  .quote-slide { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
-  .quote-slide.active { display: block; opacity: 1; }
+  .carousel-bg-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+  .carousel-bg-slide {
+    position: absolute;
+    inset: 0;
+    transition: opacity 1.2s ease-in-out;
+    opacity: 0;
+  }
+  .carousel-bg-slide.active {
+    opacity: 1;
+  }
+  .quote-slide {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .quote-slide.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
   .dot {
     width: 0.75rem;
     height: 0.75rem;

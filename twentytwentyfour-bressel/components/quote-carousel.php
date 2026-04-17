@@ -12,21 +12,25 @@ $bg_image = $settings['bressel_quote_bg_image'] ?? '';
 
 // Default quotes if none configured
 if (empty($quotes)) {
+    $base = get_stylesheet_directory_uri() . '/assets/';
     $quotes = [
         [
             'quote' => 'PADEL IS NOT JUST A GAME OF FORCE.<br>IT IS A SYMPHONY OF KINETIC PRECISION<br>AND UNYIELDING GEOMETRY.',
             'author' => 'JEREMY',
-            'role' => 'HEAD OF PRO TRAINING'
+            'role' => 'HEAD OF PRO TRAINING',
+            'bg_image' => $base . 'hero-bg.jpg'
         ],
         [
             'quote' => 'THE WALL DOES NOT FORGIVE.<br>NEITHER DOES EXCELLENCE.<br>BOTH DEMAND TOTAL COMMITMENT.',
             'author' => 'BRESSEL ACADEMY',
-            'role' => ''
+            'role' => '',
+            'bg_image' => $base . 'academy-card.jpg'
         ],
         [
             'quote' => 'CHAMPIONS ARE NOT BUILT<br>ON THE COURT ALONE.<br>THEY ARE FORGED IN REPEITION.',
             'author' => 'DR. LISA TAN',
-            'role' => 'SPORTS PSYCHOLOGIST'
+            'role' => 'SPORTS PSYCHOLOGIST',
+            'bg_image' => $base . 'community-card.jpg'
         ]
     ];
 }
@@ -34,17 +38,18 @@ if (empty($quotes)) {
 // Count for auto-play timing
 $quote_count = count($quotes);
 $auto_play_interval = 6000; // 6 seconds per slide
+$default_bg = get_stylesheet_directory_uri() . '/assets/quote-bg-silhouette.jpg';
 ?>
 
 <section id="quote-carousel" class="aspect-[4/3] md:aspect-[3/2] relative overflow-hidden flex items-center justify-center" data-carousel data-auto-play="<?= esc_attr($auto_play_interval) ?>" data-slide-count="<?= esc_attr($quote_count) ?>">
     
-    <!-- Background Image — dramatic full-width -->
-    <div class="absolute inset-0">
-        <?php if ($bg_image) : ?>
-            <img src="<?= esc_url($bg_image) ?>" alt="" class="w-full h-full object-cover" aria-hidden="true" />
-        <?php else : ?>
-            <img src="<?= get_stylesheet_directory_uri() ?>/assets/quote-bg-silhouette.jpg" alt="" class="w-full h-full object-cover" aria-hidden="true" />
-        <?php endif; ?>
+    <!-- Background Images — per-slide with crossfade -->
+    <div class="carousel-bg-layer absolute inset-0">
+        <?php foreach ($quotes as $index => $quote) : ?>
+            <div class="carousel-bg-slide <?= $index === 0 ? 'active' : '' ?>" data-bg-index="<?= $index ?>">
+                <img src="<?= esc_url($quote['bg_image'] ?? $default_bg) ?>" alt="" class="w-full h-full object-cover" aria-hidden="true" />
+            </div>
+        <?php endforeach; ?>
     </div>
 
     <!-- Heavy dark overlay for text readability -->
@@ -89,7 +94,7 @@ $auto_play_interval = 6000; // 6 seconds per slide
             </div>
 
             <!-- Navigation Arrows — bottom positioned to not block text -->
-            <div class="quote-carousel-nav absolute bottom-4 left-0 right-0 flex justify-center gap-4 pointer-events-none">
+            <div class="hidden quote-carousel-nav absolute bottom-4 left-0 right-0 flex justify-center gap-4 pointer-events-none">
                 <button class="prev-btn pointer-events-auto w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 hover:bg-[var(--color-bressel-red)]/30 hover:border-[var(--color-bressel-red)]/40 flex items-center justify-center text-white hover:text-[var(--color-bressel-red)] transition-all">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
                     <span class="sr-only">Previous quote</span>
@@ -103,7 +108,7 @@ $auto_play_interval = 6000; // 6 seconds per slide
             <!-- Navigation Dots -->
             <div class="quote-carousel-dots flex justify-center gap-4 mt-8">
                 <?php foreach ($quotes as $index => $quote) : ?>
-                    <button class="dot w-3 h-3 rounded-full bg-zinc-700 hover:bg-zinc-500 transition-all <?= $index === 0 ? 'active bg-[var(--color-bressel-red)] w-8' : '' ?>" data-dot-index="<?= $index ?>">
+                    <button class="dot w-3 h-3 rounded-full bg-zinc-600 hover:bg-zinc-500 transition-all <?= $index === 0 ? 'active bg-[var(--color-bressel-red)] w-8' : '' ?>" data-dot-index="<?= $index ?>">
                         <span class="sr-only">Go to slide <?php echo $index + 1; ?></span>
                     </button>
                 <?php endforeach; ?>

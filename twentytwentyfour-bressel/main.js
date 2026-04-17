@@ -375,6 +375,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (quoteCarousel) {
         const slides = quoteCarousel.querySelectorAll('.quote-slide');
         const dots = quoteCarousel.querySelectorAll('.dot');
+        const bgSlides = quoteCarousel.querySelectorAll('.carousel-bg-slide');
         const prevBtn = quoteCarousel.querySelector('.prev-btn');
         const nextBtn = quoteCarousel.querySelector('.next-btn');
         
@@ -383,12 +384,26 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let currentSlide = 0;
         let autoPlayTimer = null;
+        let isTransitioning = false;
         
         function goToSlide(index) {
-            // Remove active class from all
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active', 'bg-[var(--color-bressel-red)]'));
-            dots.forEach(dot => dot.classList.add('bg-zinc-600'));
+            if (isTransitioning) return;
+            isTransitioning = true;
+            
+            // Crossfade background
+            bgSlides.forEach(bg => bg.classList.remove('active'));
+            if (bgSlides[index]) {
+                bgSlides[index].classList.add('active');
+            }
+            
+            // Fade slide content
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Update dots
+            dots.forEach(dot => dot.classList.remove('active', 'bg-[var(--color-bressel-red)]', 'w-8'));
+            dots.forEach(dot => dot.classList.add('bg-zinc-700'));
             
             // Activate target slide
             currentSlide = index;
@@ -397,9 +412,14 @@ document.addEventListener('DOMContentLoaded', () => {
             
             slides[currentSlide]?.classList.add('active');
             if (dots[currentSlide]) {
-                dots[currentSlide].classList.add('active', 'bg-[var(--color-bressel-red)]');
-                dots[currentSlide].classList.remove('bg-zinc-600');
+                dots[currentSlide].classList.add('active', 'bg-[var(--color-bressel-red)]', 'w-8');
+                dots[currentSlide].classList.remove('bg-zinc-700');
             }
+            
+            // Allow next transition after animation completes
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 800);
         }
         
         function nextSlide() {
