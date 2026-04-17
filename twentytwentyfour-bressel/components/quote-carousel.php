@@ -36,7 +36,7 @@ $quote_count = count($quotes);
 $auto_play_interval = 6000; // 6 seconds per slide
 ?>
 
-<section id="quote-carousel" class="aspect-[4/3] md:aspect-[3/1] relative overflow-hidden flex items-center justify-center" data-carousel data-auto-play="<?= esc_attr($auto_play_interval) ?>" data-slide-count="<?= esc_attr($quote_count) ?>">
+<section id="quote-carousel" class="aspect-[4/3] md:aspect-[3/2] relative overflow-hidden flex items-center justify-center" data-carousel data-auto-play="<?= esc_attr($auto_play_interval) ?>" data-slide-count="<?= esc_attr($quote_count) ?>">
     
     <!-- Background Image — dramatic full-width -->
     <div class="absolute inset-0">
@@ -74,7 +74,7 @@ $auto_play_interval = 6000; // 6 seconds per slide
                         </div>
 
                         <blockquote>
-                            <p class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black uppercase italic leading-[1.1] text-white mb-8" style="text-shadow: 0 4px 20px rgba(0,0,0,0.8);">
+                            <p class="text-[clamp(1.75rem,4vw,4.5rem)] font-black uppercase italic leading-[1.1] text-white mb-8" style="text-shadow: 0 4px 20px rgba(0,0,0,0.8);">
                                 <?php echo wp_kses_post($quote_text); ?>
                             </p>
                             <cite class="not-italic block">
