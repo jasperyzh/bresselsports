@@ -15,6 +15,17 @@
   }
 }
 
+/* ═══════ FOOTER LOGO - same sizing as header ═══════ */
+.footer-logo img {
+  height: 4rem !important;
+  width: auto !important;
+}
+@media (min-width: 768px) {
+  .footer-logo img {
+    height: 5rem !important;
+  }
+}
+
 /* ═══════ NAV MENU ITEMS ═══════ */
 /* Unlayered: beats WordPress global-styles */
 .menu-item a {

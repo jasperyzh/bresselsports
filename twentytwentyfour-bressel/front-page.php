@@ -406,13 +406,15 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     <p class="text-zinc-600 text-xs uppercase tracking-widest mb-3">Engineered for communities and beyond.</p>
                     <h2>SHOP</h2>
                 </div>
-                <a href="<?= esc_url(get_post_type_archive_link('merch')) ?>"
-                    class="shop-all-link">
+                <div>
+                    <a href="<?= esc_url(get_post_type_archive_link('merch')) ?>"
+                    class="shop-all-link btn-cta">
                     VISIT CATALOG
                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                 </a>
+                </div>
             </div>
 
             <div class="shop-grid md:grid-cols-2 md:grid-flow-dense">
@@ -521,10 +523,9 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
          8. EQUIP YOUR CLUB — B2B CTA
          Bold headline + BULK INQUIRY button
     ═══════════════════════════════════════ -->
-    <section class="section-padding page-dark relative noise-overlay texture-dark overflow-hidden" id="equip-club">
+    <!-- <section class="section-padding page-dark relative noise-overlay texture-dark overflow-hidden" id="equip-club">
         <div class="container-custom text-center">
 
-            <!-- BEYOND watermark background -->
             <div class="beyond-watermark text-[12rem] md:text-[20rem] lg:text-[28rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none">
                 BEYOND
             </div>
@@ -546,7 +547,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 </a>
             </div>
         </div>
-    </section>
+    </section> -->
 
 
     <!-- ═══════════════════════════════════════
@@ -587,11 +588,8 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                                 placeholder="ENTER EMAIL ADDRESS"
                                 class="newsletter-input" />
                             <button type="submit"
-                                class="btn-solid btn-ripple">
+                                class="btn-solid btn-cta">
                                 SUBSCRIBE
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm7 4l-1.4 1.4L14.2 12l-3.6 3.6L12 17l5-5-5-5z" />
-                                </svg>
                             </button>
                         </form>
                     <?php endif; ?>

@@ -16,21 +16,21 @@ if (empty($quotes)) {
     $quotes = [
         [
             'quote' => 'PADEL IS NOT JUST A GAME OF FORCE.<br>IT IS A SYMPHONY OF KINETIC PRECISION<br>AND UNYIELDING GEOMETRY.',
-            'author' => 'JEREMY',
-            'role' => 'HEAD OF PRO TRAINING',
-            'bg_image' => $base . 'hero-bg.jpg'
+            'author' => 'Dani',
+            'role' => 'Padel Coach of Malaysia\'s National Team',
+            'bg_image' => $base . '20260402_115159.webp'
         ],
         [
             'quote' => 'THE WALL DOES NOT FORGIVE.<br>NEITHER DOES EXCELLENCE.<br>BOTH DEMAND TOTAL COMMITMENT.',
-            'author' => 'BRESSEL ACADEMY',
-            'role' => '',
-            'bg_image' => $base . 'academy-card.jpg'
+            'author' => 'Ryan The Weekend Pedel Warrior',
+            'role' => 'Padel Enthusiast',
+            'bg_image' => $base . 'hero-bg.jpg'
         ],
         [
             'quote' => 'CHAMPIONS ARE NOT BUILT<br>ON THE COURT ALONE.<br>THEY ARE FORGED IN REPEITION.',
-            'author' => 'DR. LISA TAN',
+            'author' => 'Coach C',
             'role' => 'SPORTS PSYCHOLOGIST',
-            'bg_image' => $base . 'community-card.jpg'
+            'bg_image' => $base . '20260402_115809.webp'
         ]
     ];
 }
@@ -41,7 +41,7 @@ $auto_play_interval = 6000; // 6 seconds per slide
 $default_bg = get_stylesheet_directory_uri() . '/assets/quote-bg-silhouette.jpg';
 ?>
 
-<section id="quote-carousel" class="aspect-[4/3] md:aspect-[3/2] relative overflow-hidden flex items-center justify-center" data-carousel data-auto-play="<?= esc_attr($auto_play_interval) ?>" data-slide-count="<?= esc_attr($quote_count) ?>">
+<section id="quote-carousel" class="aspect-[4/3] md:aspect-[3/2] lg:aspect-[2/1] relative overflow-hidden flex items-center justify-center" data-carousel data-auto-play="<?= esc_attr($auto_play_interval) ?>" data-slide-count="<?= esc_attr($quote_count) ?>">
     
     <!-- Background Images — per-slide with crossfade -->
     <div class="carousel-bg-layer absolute inset-0">

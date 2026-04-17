@@ -18,8 +18,8 @@
 
             <!-- Col 1: Brand -->
             <div class="lg:col-span-1">
-                <a href="<?= esc_url(home_url('/')) ?>" class="block mb-6">
-                    <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-bressel-white.png') ?>" alt="BRESSEL™" class="h-10 w-auto" loading="eager" />
+                <a href="<?= esc_url(home_url('/')) ?>" class="block mb-6 footer-logo">
+                    <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-bressel-white.png') ?>" alt="BRESSEL™" class="h-7 md:h-10 w-auto max-w-none" loading="eager" />
                 </a>
                 <p class="text-zinc-500 text-xs leading-relaxed max-w-[220px] mb-5">
                     The world's leading high-performance padel academy. Redefining kinetic precision for the professional era.
