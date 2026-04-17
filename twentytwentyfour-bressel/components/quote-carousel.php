@@ -40,6 +40,9 @@ $auto_play_interval = 6000; // 6 seconds per slide
     <!-- Heavy dark overlay for text readability -->
     <div class="absolute inset-0 bg-black/60"></div>
 
+    <!-- Noise texture overlay -->
+    <div class="absolute inset-0 opacity-[0.08] mix-blend-overlay pointer-events-none" style="background-image: url('<?= esc_url(get_stylesheet_directory_uri() . '/assets/textures/noise--.png') ?>'); background-size: 256px 256px; background-repeat: repeat;"></div>
+
     <!-- Content -->
     <div class="relative z-10 text-center max-w-5xl mx-auto px-6">
         

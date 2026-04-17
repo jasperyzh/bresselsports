@@ -71,3 +71,13 @@ footer li > a {
   background-color: var(--color-bressel-red);
   margin-bottom: 1.5rem;
 }
+
+/* Noise texture animation (subtle TV static) */
+@keyframes noise-flicker {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.12; }
+}
+
+.noise-animate {
+  animation: noise-flicker 3s ease-in-out infinite;
+}

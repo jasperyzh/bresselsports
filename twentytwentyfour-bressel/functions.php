@@ -85,7 +85,7 @@ add_action('wp_enqueue_scripts', 'bressel_enqueue_assets', 10);
 add_action('wp_head', function () {
     if (wp_get_environment_type() === 'development') {
         echo '<script type="module" src="http://localhost:5173/@vite/client"></script>';
-        echo '<link rel="stylesheet" href="http://localhost:5173/main.css">';
+        echo '<link rel="stylesheet" href="http://localhost:5173/src/main.css">';
         echo '<script type="module" src="http://localhost:5173/main.js"></script>';
     }
 }, 999);

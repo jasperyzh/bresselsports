@@ -44,18 +44,28 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
         <!-- Content -->
         <div class="relative z-20 container-custom">
 
+            <!-- BEYOND wordmark: large decorative background -->
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" style="z-index: 5;">
+                <img src="<?= esc_url($assets_base . 'brand/beyond.svg') ?>"
+                     alt="BEYOND"
+                     class="w-[80vw] md:w-[60vw] lg:w-[45vw] opacity-[0.04]" />
+            </div>
+
             <!-- EST / tagline line -->
-            <div class="hero-tagline mb-6">
+            <div class="hero-tagline mb-4">
                 <span class="block w-8 h-0.5 bg-[var(--color-bressel-red)]"></span>
-                <span class="text-[var(--color-bressel-red)] uppercase text-xs">EST. 2020 / PLAY BEYOND</span>
+                <span class="text-[var(--color-bressel-red)] uppercase text-xs">PLAY BEYOND</span>
                 <span class="block w-8 h-0.5 bg-[var(--color-bressel-red)]"></span>
             </div>
 
             <!-- Main headline -->
-            <h1 class="hero-headline mb-6 max-w-4xl">
+            <h1 class="hero-headline mb-3 max-w-4xl">
                 WORLD-CLASS PADEL,<br>
                 <span class="text-[var(--color-bressel-red)]">WITHIN REACH.</span>
             </h1>
+
+            <!-- Surge accent bar under headline -->
+            <div class="surge-accent mb-6" style="width: clamp(4rem, 12vw, 8rem);"></div>
 
             <!-- Body copy -->
             <p class="hero-body text-zinc-300 max-w-xl mb-10 leading-relaxed">
@@ -148,15 +158,18 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 ['label' => 'LIVE',     'text' => 'ACADEMY RANKING UPDATES'],
                 ['label' => 'NEW DROP', 'text' => 'PRECISION SERIES V2'],
             ];
-            foreach ($ticker_items as $item) : ?>
-                <span class="ticker-item">
-                    <span class="ticker-label">
-                        <?= esc_html($item['label']) ?>
+            // Duplicate items for infinite scroll (animation moves -50%)
+            for ($i = 0; $i < 2; $i++) :
+                foreach ($ticker_items as $item) : ?>
+                    <span class="ticker-item">
+                        <span class="ticker-label">
+                            <?= esc_html($item['label']) ?>
+                        </span>
+                        <span class="ticker-text"><?= esc_html($item['text']) ?></span>
+                        <span class="ticker-separator w-4 h-px bg-zinc-700"></span>
                     </span>
-                    <span class="ticker-text"><?= esc_html($item['text']) ?></span>
-                    <span class="ticker-separator w-4 h-px bg-zinc-700"></span>
-                </span>
-            <?php endforeach; ?>
+                <?php endforeach;
+            endfor; ?>
         </div>
     </div>
 
@@ -204,15 +217,20 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     ],
                 ];
                 foreach ($pillars as $i => $pillar) : ?>
-                    <article class="pillar-card" data-animate>
-                        <!-- Full-bleed background image -->
+                    <article class="pillar-card relative" data-animate>
                         <img src="<?= esc_url($pillar['img']) ?>"
                              alt="<?= esc_attr($pillar['alt']) ?>"
                              class="pillar-card-img" />
-                        
+
                         <!-- Dark gradient overlay (bottom-heavy for text readability) -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20"></div>
-                        
+
+                        <!-- Noise texture overlay -->
+                        <div class="absolute inset-0 opacity-[0.06] mix-blend-overlay pointer-events-none" style="background-image: url('<?= esc_url($assets_base . 'textures/noise--.png') ?>'); background-size: 256px 256px; background-repeat: repeat;"></div>
+
+                        <!-- Surge accent bar (bottom) -->
+                        <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--color-bressel-red)] opacity-40"></div>
+
                         <!-- Red accent bar (top) -->
                         <div class="absolute top-0 left-0 right-0 h-1 bg-[var(--color-bressel-red)] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                         
@@ -260,7 +278,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
          6. BRESSEL ACADEMY
          Left: title + pricing + locations. Right: court image grid
     ═══════════════════════════════════════ -->
-    <section id="centers" class="section-padding page-dark">
+    <section id="centers" class="section-padding page-dark texture-dark">
         <div class="container-custom">
             <div class="centers-grid lg:grid-cols-2">
 
@@ -331,15 +349,19 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
     ═══════════════════════════════════════ -->
     <div class="news-ticker border-y border-zinc-800 bg-zinc-950 overflow-hidden py-3">
         <div class="ticker-track flex flex-nowrap gap-0 whitespace-nowrap">
-            <?php foreach ($ticker_items as $item) : ?>
-                <span class="ticker-item inline-flex items-center gap-3 px-6 text-xs font-bold uppercase tracking-widest">
-                    <span class="<?= !empty($item['accent']) ? 'text-[var(--color-bressel-red)]' : 'text-zinc-600' ?>">
-                        <?= esc_html($item['label']) ?>
+            <?php
+            // Duplicate items for infinite scroll (animation moves -50%)
+            for ($i = 0; $i < 2; $i++) :
+                foreach ($ticker_items as $item) : ?>
+                    <span class="ticker-item inline-flex items-center gap-3 px-6 text-xs font-bold uppercase tracking-widest">
+                        <span class="<?= !empty($item['accent']) ? 'text-[var(--color-bressel-red)]' : 'text-zinc-600' ?>">
+                            <?= esc_html($item['label']) ?>
+                        </span>
+                        <span class="text-zinc-300"><?= esc_html($item['text']) ?></span>
+                        <span class="ticker-separator w-4 h-px bg-zinc-700"></span>
                     </span>
-                    <span class="text-zinc-300"><?= esc_html($item['text']) ?></span>
-                    <span class="ticker-separator w-4 h-px bg-zinc-700"></span>
-                </span>
-            <?php endforeach; ?>
+                <?php endforeach;
+            endfor; ?>
         </div>
     </div>
 
@@ -348,7 +370,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
          7. SHOP
          Ghost "BRESSEL PRO" watermark, 2 product cards
     ═══════════════════════════════════════ -->
-    <section id="shop" class="section-padding bg-black relative overflow-hidden">
+    <section id="shop" class="section-padding bg-black relative overflow-hidden noise-overlay texture-dark">
 
         <!-- Ghost watermark -->
         <div class="watermark-text absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none z-0 leading-none">
@@ -368,7 +390,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 </a>
             </div>
 
-            <div class="shop-grid md:grid-cols-2">
+            <div class="shop-grid md:grid-cols-2 md:grid-flow-dense">
                 <?php
                 $merch_query = new WP_Query([
                     'post_type'      => 'merch',
@@ -378,18 +400,36 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 // Fallback product data if no merch posts yet
                 $fallback_products = [
                     [
-                        'name'    => 'BRESSEL PADEL-X',
+                        'name'    => 'BRESSSEL APEX PRO',
                         'series'  => 'FLAGSHIP SERIES',
-                        'price'   => 'RM160.00',
-                        'img'     => $assets_base . 'cta-bg-overlay.jpg',
-                        'url'     => home_url('/contact/?intent=purchase&target=Bressel+Padel-X'),
+                        'price'   => 'RM1,650.00',
+                        'img'     => $assets_base . 'products/bressel-rackets.jpg',
+                        'url'     => home_url('/contact/?intent=purchase&target=Bressel+Apex+Pro'),
+                        'desc'    => 'Engineered for maximum power output and vibration dampening.',
                     ],
                     [
                         'name'    => 'KINETIC GRIP-V1',
-                        'series'  => '',
-                        'price'   => 'RM159.00',
-                        'img'     => $assets_base . 'quote-bg-silhouette.jpg',
-                        'url'     => home_url('/contact/?intent=purchase&target=Kinetic+Grip-V1'),
+                        'series'  => 'FOOTWEAR',
+                        'price'   => 'RM389.00',
+                        'img'     => $assets_base . 'products/lifestyle-shot.jpg',
+                        'url'     => home_url('/contact/?intent=purchase&target=Kinetic+Grip+V1'),
+                        'desc'    => 'Lateral stability on synthetic turf.',
+                    ],
+                    [
+                        'name'    => 'ELITE TOUR BAG',
+                        'series'  => 'ACCESSORIES',
+                        'price'   => 'RM520.00',
+                        'img'     => $assets_base . 'products/black-tote-bag.jpg',
+                        'url'     => home_url('/contact/?intent=purchase&target=Elite+Tour+Bag'),
+                        'desc'    => 'Thermal lining for 3 rackets + apparel storage.',
+                    ],
+                    [
+                        'name'    => 'COMPRESSION PRO TEE',
+                        'series'  => 'APPAREL',
+                        'price'   => 'RM185.00',
+                        'img'     => $assets_base . 'products/t-shirt-beyond.jpg',
+                        'url'     => home_url('/contact/?intent=purchase&target=Compression+Pro+Tee'),
+                        'desc'    => 'Breathable micro-mesh technology.',
                     ],
                 ];
 
@@ -424,7 +464,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     wp_reset_postdata();
                 else :
                     foreach ($fallback_products as $i => $p) : ?>
-                        <article class="product-card">
+                        <article class="product-card <?= $i === 0 ? 'product-card-hero' : '' ?>">
                             <div class="product-card-image">
                                 <img src="<?= esc_url($p['img']) ?>" alt="<?= esc_attr($p['name']) ?>" class="product-card-img" />
                             </div>
@@ -433,6 +473,9 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                                     <p class="product-card-series"><?= esc_html($p['series']) ?></p>
                                 <?php endif; ?>
                                 <h3 class="product-card-name"><?= esc_html($p['name']) ?></h3>
+                                <?php if (!empty($p['desc'])) : ?>
+                                    <p class="product-card-desc"><?= esc_html($p['desc']) ?></p>
+                                <?php endif; ?>
                                 <div class="flex items-center justify-between mt-4">
                                     <span class="product-card-price"><?= esc_html($p['price']) ?></span>
                                     <a href="<?= esc_url($p['url']) ?>"
@@ -450,7 +493,39 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
 
 
     <!-- ═══════════════════════════════════════
-         8. CTA / NEWSLETTER
+         8. EQUIP YOUR CLUB — B2B CTA
+         Bold headline + BULK INQUIRY button
+    ═══════════════════════════════════════ -->
+    <section class="section-padding page-dark relative noise-overlay texture-dark" id="equip-club">
+        <div class="container-custom text-center">
+
+            <!-- BEYOND watermark background -->
+            <div class="beyond-watermark text-[12rem] md:text-[20rem] lg:text-[28rem] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none">
+                BEYOND
+            </div>
+
+            <div class="relative z-10">
+                <h2 class="section-title-lg text-center mb-4">
+                    EQUIP YOUR <span class="text-[var(--color-bressel-red)]">CLUB</span>
+                </h2>
+                <p class="text-zinc-400 max-w-xl mx-auto mb-8">
+                    Custom bulk orders for pro-shops, academies, and tournament organizers.
+                    Access tiered pricing and personalized branding.
+                </p>
+                <a href="<?= esc_url(home_url('/contact/?intent=bulk-inquiry')) ?>"
+                   class="btn-solid btn-ripple inline-flex items-center gap-3">
+                    BULK INQUIRY PORTAL
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm7 4l-1.4 1.4L14.2 12l-3.6 3.6L12 17l5-5-5-5z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════
+         9. CTA / NEWSLETTER
          Warm gradient bg, "JOIN THE MOVEMENT."
          email input + SUBSCRIBE
     ═══════════════════════════════════════ -->

@@ -6,10 +6,15 @@
  */
 ?>
 <footer class="bg-[#050505] border-t border-zinc-900 py-20 md:py-24">
+    <style>
+        .footer-grid { display:grid; grid-template-columns:1fr; gap:2rem; }
+        @media(min-width:48rem){ .footer-grid{grid-template-columns:repeat(2,1fr)} }
+        @media(min-width:64rem){ .footer-grid{grid-template-columns:5fr 1fr 1fr 1fr 1fr;gap:3rem} }
+    </style>
 
     <!-- Main Footer Grid -->
     <div class="container-custom">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+        <div class="footer-grid">
 
             <!-- Col 1: Brand -->
             <div class="lg:col-span-1">

@@ -26,6 +26,9 @@
 - **Colors:** Deep Black (Backgrounds), Clean White (Text), Bressel Red (#E62E2D).
 - **Typography:** Black, bold, momentum-driven sans-serif (Italics preferred for headers).
 
+## Project Components
+- **page-ui-demo.php** — Critical WordPress framework component. Live design system showcase with 13 interactive component sections (colors, typography, buttons, alerts, cards, forms, accordion, dropdown, grid, spacing, carousel, lightbox, navigation). Used for client presentations and component verification.
+
 ## Implemented Features
 1. **BRESSEL Academy:** 
    - CPT: `coach`. 

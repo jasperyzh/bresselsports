@@ -85,6 +85,9 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+  @media (min-width: 48rem) {
+    .about-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 
   .about-card {
     position: relative;
@@ -233,6 +236,9 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+  @media (min-width: 48rem) {
+    .pillar-grid { grid-template-columns: repeat(3, 1fr); }
+  }
 
   .pillar-card {
     position: relative;
@@ -327,6 +333,9 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 3rem;
+  }
+  @media (min-width: 64rem) {
+    .centers-grid { grid-template-columns: repeat(2, 1fr); }
   }
 
   .pricing-grid {
@@ -512,6 +521,9 @@
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
+  @media (min-width: 48rem) {
+    .shop-grid { grid-template-columns: repeat(2, 1fr); }
+  }
 
   .product-card {
     border-radius: 0.75rem;
@@ -566,6 +578,36 @@
     font-weight: 700;
     font-size: 1.125rem;
     color: white;
+  }
+
+  /* Asymmetric hero product card */
+  .product-card-hero {
+    grid-column: span 2;
+  }
+  .product-card-hero .product-card-image {
+    height: 28rem;
+  }
+  .product-card-hero .product-card-name {
+    font-size: 2rem;
+  }
+
+  /* Surge accent on product cards */
+  .product-card {
+    position: relative;
+  }
+  .product-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 3rem;
+    height: 2px;
+    background-color: var(--color-bressel-red);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .product-card:hover::after {
+    opacity: 0.6;
   }
 
   /* ====== NEWSLETTER SECTION ====== */
@@ -633,5 +675,74 @@
 
   footer li a {
     color: var(--color-bressel-white);
+  }
+
+  /* ====== NOISE TEXTURE SYSTEM ====== */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/textures/noise--.png');
+    background-size: 512px 512px;
+    background-repeat: repeat;
+    mix-blend-mode: overlay;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .noise-overlay > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .texture-dark {
+    position: relative;
+  }
+  .texture-dark::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../assets/textures/noise--.png');
+    background-size: 512px 512px;
+    background-repeat: repeat;
+    mix-blend-mode: soft-light;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  /* Surge graphic element */
+  .surge-accent {
+    position: relative;
+  }
+  .surge-accent::before {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 6rem;
+    height: auto;
+    background-image: url('../assets/brand/the_surge.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+  }
+
+  /* BEYOND watermark */
+  .beyond-watermark {
+    position: absolute;
+    font-family: var(--font-header);
+    font-weight: 900;
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255,51,31,0.06);
+    text-stroke: 1px rgba(255,51,31,0.06);
+    text-transform: uppercase;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
   }
 }
