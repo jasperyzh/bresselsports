@@ -299,7 +299,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
          6. BRESSEL ACADEMY
          Left: title + pricing + locations. Right: court image grid
     ═══════════════════════════════════════ -->
-    <section id="centers" class="section-padding page-dark texture-dark">
+    <section id="academy" class="section-padding page-dark texture-dark">
         <div class="container-custom">
             <div class="centers-grid lg:grid-cols-2">
 
@@ -324,7 +324,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                             <p class="pricing-detail">1-on-1 coaching</p>
                         </div>
                     </div>
-                    <a href="#" class="pricing-download">
+                    <a href="<?= esc_url(get_stylesheet_directory_uri() . '/assets/price-list.pdf') ?>" class="pricing-download btn-cta">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>
@@ -352,13 +352,13 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 <!-- Right: image grid (3 courts) — B&W toned court photography -->
                 <div class="centers-images" data-animate>
                     <div class="center-img-wrapper">
-                        <img src="<?= esc_url($assets_base . 'hero-bg.jpg') ?>" alt="BRESSEL Court" class="center-img" />
+                        <img src="<?= esc_url($assets_base . '20260227_195629.webp') ?>" alt="BRESSEL Court" class="center-img" />
                     </div>
                     <div class="center-img-wrapper">
-                        <img src="<?= esc_url($assets_base . 'cta-bg-overlay.jpg') ?>" alt="BRESSEL Court" class="center-img" />
+                        <img src="<?= esc_url($assets_base . '20260402_115248.webp') ?>" alt="BRESSEL Court" class="center-img" />
                     </div>
                     <div class="center-img-wrapper">
-                        <img src="<?= esc_url($assets_base . 'quote-bg-silhouette.jpg') ?>" alt="BRESSEL Court" class="center-img" />
+                        <img src="<?= esc_url($assets_base . '20260402_120037.webp') ?>" alt="BRESSEL Court" class="center-img" />
                     </div>
                 </div>
 
