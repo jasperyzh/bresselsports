@@ -27,7 +27,7 @@ get_header();
                 <?php else : ?>
                     <div class="bg-zinc-900 p-6 rounded-lg">
                         <h3 class="text-xl font-bold mb-4">Quick Contact</h3>
-                        <p class="text-zinc-400 mb-4">Email us at: info@bresselpadel.com</p>
+                        <p class="text-zinc-400 mb-4">Email us at: hola@bresselsports.com</p>
                         <a href="<?= esc_url(home_url('/contact/?intent=booking')) ?>" class="btn-solid inline-flex items-center gap-2 px-6 py-3">
                             BOOK SESSION
                         </a>
