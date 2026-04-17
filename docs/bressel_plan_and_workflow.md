@@ -82,7 +82,7 @@ The mockup shows the complete homepage layout:
 
 ## AI Agent Workflow & Cognitive Layer Best Practices
 
-The project relies on `~/Desktop/ai-cognitive-layer`, specifically utilizing the **KISE Engineer** persona.
+The project relies on `experiments/secops_research/` (cognitive layer), specifically utilizing the **KISE Engineer** persona.
 
 ### Core Principles for AI Agents
 1. **Zero-bloat & Localism:**
