@@ -17,6 +17,16 @@ if (empty($quotes)) {
             'quote' => 'PADEL IS NOT JUST A GAME OF FORCE.<br>IT IS A SYMPHONY OF KINETIC PRECISION<br>AND UNYIELDING GEOMETRY.',
             'author' => 'JEREMY',
             'role' => 'HEAD OF PRO TRAINING'
+        ],
+        [
+            'quote' => 'THE WALL DOES NOT FORGIVE.<br>NEITHER DOES EXCELLENCE.<br>BOTH DEMAND TOTAL COMMITMENT.',
+            'author' => 'BRESSEL ACADEMY',
+            'role' => ''
+        ],
+        [
+            'quote' => 'CHAMPIONS ARE NOT BUILT<br>ON THE COURT ALONE.<br>THEY ARE FORGED IN REPEITION.',
+            'author' => 'DR. LISA TAN',
+            'role' => 'SPORTS PSYCHOLOGIST'
         ]
     ];
 }
@@ -26,7 +36,7 @@ $quote_count = count($quotes);
 $auto_play_interval = 6000; // 6 seconds per slide
 ?>
 
-<section id="quote-carousel" class="min-h-[80vh] md:min-h-screen relative overflow-hidden flex items-center justify-center" data-carousel data-auto-play="<?= esc_attr($auto_play_interval) ?>" data-slide-count="<?= esc_attr($quote_count) ?>">
+<section id="quote-carousel" class="aspect-[4/3] md:aspect-[3/1] relative overflow-hidden flex items-center justify-center" data-carousel data-auto-play="<?= esc_attr($auto_play_interval) ?>" data-slide-count="<?= esc_attr($quote_count) ?>">
     
     <!-- Background Image — dramatic full-width -->
     <div class="absolute inset-0">
@@ -59,12 +69,12 @@ $auto_play_interval = 6000; // 6 seconds per slide
                     <div class="quote-slide <?= $index === 0 ? 'active' : '' ?>" data-slide-index="<?= $index ?>">
                         <div class="flex items-center justify-center gap-3 mb-8">
                             <span class="block w-8 h-0.5 bg-[var(--color-bressel-red)]"></span>
-                            <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-red.svg') ?>" alt="Brand Icon" class="w-12 h-12 group-hover:block" />
+                            <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-red.svg') ?>" alt="Brand Icon" class="w-12 h-12" />
                             <span class="block w-8 h-0.5 bg-[var(--color-bressel-red)]"></span>
                         </div>
 
                         <blockquote>
-                            <p class="text-2xl md:text-4xl lg:text-6xl font-black uppercase italic leading-tight text-white mb-8" style="text-shadow: 0 4px 20px rgba(0,0,0,0.8);">
+                            <p class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black uppercase italic leading-[1.1] text-white mb-8" style="text-shadow: 0 4px 20px rgba(0,0,0,0.8);">
                                 <?php echo wp_kses_post($quote_text); ?>
                             </p>
                             <cite class="not-italic block">
@@ -78,8 +88,20 @@ $auto_play_interval = 6000; // 6 seconds per slide
                 <?php endforeach; ?>
             </div>
 
+            <!-- Navigation Arrows — bottom positioned to not block text -->
+            <div class="quote-carousel-nav absolute bottom-4 left-0 right-0 flex justify-center gap-4 pointer-events-none">
+                <button class="prev-btn pointer-events-auto w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 hover:bg-[var(--color-bressel-red)]/30 hover:border-[var(--color-bressel-red)]/40 flex items-center justify-center text-white hover:text-[var(--color-bressel-red)] transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    <span class="sr-only">Previous quote</span>
+                </button>
+                <button class="next-btn pointer-events-auto w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 hover:bg-[var(--color-bressel-red)]/30 hover:border-[var(--color-bressel-red)]/40 flex items-center justify-center text-white hover:text-[var(--color-bressel-red)] transition-all">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    <span class="sr-only">Next quote</span>
+                </button>
+            </div>
+
             <!-- Navigation Dots -->
-            <div class="quote-carousel-dots flex justify-center gap-4 mt-10">
+            <div class="quote-carousel-dots flex justify-center gap-4 mt-8">
                 <?php foreach ($quotes as $index => $quote) : ?>
                     <button class="dot w-3 h-3 rounded-full bg-zinc-700 hover:bg-zinc-500 transition-all <?= $index === 0 ? 'active bg-[var(--color-bressel-red)] w-8' : '' ?>" data-dot-index="<?= $index ?>">
                         <span class="sr-only">Go to slide <?php echo $index + 1; ?></span>
@@ -87,17 +109,7 @@ $auto_play_interval = 6000; // 6 seconds per slide
                 <?php endforeach; ?>
             </div>
 
-            <!-- Navigation Arrows -->
-            <div class="quote-carousel-nav absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between pointer-events-none px-4 md:px-8">
-                <button class="prev-btn pointer-events-auto w-14 h-14 md:w-16 md:h-16 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 hover:bg-[var(--color-bressel-red)]/30 hover:border-[var(--color-bressel-red)]/40 flex items-center justify-center text-white hover:text-[var(--color-bressel-red)] transition-all">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                    <span class="sr-only">Previous quote</span>
-                </button>
-                <button class="next-btn pointer-events-auto w-14 h-14 md:w-16 md:h-16 rounded-full bg-black/40 backdrop-blur-sm border border-white/10 hover:bg-[var(--color-bressel-red)]/30 hover:border-[var(--color-bressel-red)]/40 flex items-center justify-center text-white hover:text-[var(--color-bressel-red)] transition-all">
-                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    <span class="sr-only">Next quote</span>
-                </button>
-            </div>
+
         </div>
     </div>
 </section>
