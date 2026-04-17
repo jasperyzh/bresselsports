@@ -42,7 +42,7 @@
 
     <!-- Logo -->
     <a id="header-logo" href="<?= esc_url(home_url('/')); ?>" class="flex items-center gap-2 relative z-[210]">
-      <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-bressel-white.png') ?>" alt="BRESSEL™" class="h-7 md:h-10 w-auto" loading="eager" />
+      <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-bressel-white.png') ?>" alt="BRESSEL™" class="h-7 md:h-10 w-auto max-w-none" loading="eager" />
     </a>
 
     <!-- Desktop Nav (centered) -->
@@ -60,10 +60,10 @@
     <!-- Right: CTA + Mobile toggle -->
     <div class="flex items-center gap-4 relative z-[210]">
         <a href="<?php echo esc_url(home_url('/contact/?intent=booking')); ?>"
-         class="group btn-cta btn-md ripple hidden md:inline-flex">
+         class="btn-cta btn-md ripple hidden md:inline-flex">
         BOOK SESSION
-        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-white.svg') ?>" alt="Brain Icon" class="w-5 h-5 group-hover:hidden" />
-        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-red.svg') ?>" alt="Brain Icon" class="hidden w-5 h-5 group-hover:block" />
+        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-white.svg') ?>" alt="Brain Icon" class="w-5 h-5 cta-icon-white" />
+        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-red.svg') ?>" alt="Brain Icon" class="w-5 h-5 cta-icon-red" />
       </a>
 
       <!-- Mobile Menu Toggle -->
@@ -75,7 +75,7 @@
 </header>
 
 <!-- Full-Screen Mobile Menu Overlay -->
-<div id="mobile-menu" class="fixed inset-0 z-[9999] bg-black mobile-menu-overlay transition-opacity duration-300 ease-in-out opacity-0 invisible">
+<div id="mobile-menu" class="bg-black mobile-menu-overlay">
     <!-- Header: Close Button -->
     <div class="flex justify-end p-6">
       <button id="mobile-menu-close" class="text-white hover:opacity-70 transition-opacity">
@@ -98,11 +98,11 @@
     <!-- Footer with Social Media -->
     <div class="flex justify-center pb-12">
       <div class="text-center">
-        <span class="block font-bold uppercase tracking-widest text-xs mb-4">Connect With Us</span>
-        <div class="flex gap-6 justify-center">
-          <a href="#" class="text-3xl text-white hover:text-[var(--color-bressel-red)] transition-colors duration-300"><i class="bi bi-whatsapp"></i></a>
-          <a href="#" class="text-3xl text-white hover:text-[var(--color-bressel-red)] transition-colors duration-300"><i class="bi bi-telegram"></i></a>
-          <a href="#" class="text-3xl text-white hover:text-[var(--color-bressel-red)] transition-colors duration-300"><i class="bi bi-instagram"></i></a>
+        <span class="block font-bold uppercase tracking-widest text-xs mb-4 mobile-social-label">Connect With Us</span>
+        <div class="flex gap-6 justify-center mobile-social">
+          <a href="#" class="text-3xl"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="text-3xl"><i class="bi bi-telegram"></i></a>
+          <a href="#" class="text-3xl"><i class="bi bi-instagram"></i></a>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Title: Front Page Template
  * Description: Homepage — styled to match homepage_50pct.jpg mockup.
@@ -17,38 +18,38 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
          Full-screen dark photo, EST. tagline,
          two-line headline, body, dual CTAs
     ═══════════════════════════════════════ -->
-    <section id="hero" class="hero-section relative min-h-screen flex-col justify-end pb-24 md:pb-32" data-parallax>
+    <section id="hero" class="hero-section relative flex-col justify-end pb-24 md:pb-32" data-parallax>
 
-    <!-- Static fallback background (shown if video fails to load) -->
-    <div class="absolute inset-0 z-0">
-        <img src="<?= esc_url($assets_base . 'hero-bg.jpg') ?>"
-             alt=""
-             class="img-cover select-none pointer-events-none opacity-40"
-             aria-hidden="true"
-             style="<?php if (!file_exists(get_stylesheet_directory() . '/assets/background-video.mp4')): ?>display:block;<?php else: ?>display:none;<?php endif; ?>"
-             id="hero-fallback-bg" />
-    </div>
+        <!-- Static fallback background (shown if video fails to load) -->
+        <div class="absolute inset-0 z-0">
+            <img src="<?= esc_url($assets_base . 'hero-bg.jpg') ?>"
+                alt=""
+                class="hero-bg-image select-none pointer-events-none"
+                aria-hidden="true"
+                style="<?php if (!file_exists(get_stylesheet_directory() . '/assets/background-video.mp4')): ?>display:block;<?php else: ?>display:none;<?php endif; ?>"
+                id="hero-fallback-bg" />
+        </div>
 
-    <!-- BG Video (with poster fallback) -->
-    <video data-parallax-target
-           autoplay loop muted playsinline
-           poster="<?= esc_url($assets_base . 'cta-bg-overlay.jpg') ?>"
-           class="absolute inset-0 img-cover select-none pointer-events-none opacity-40"<?php if (!file_exists(get_stylesheet_directory() . '/assets/background-video.mp4')): ?> onload="this.style.display='none'; document.getElementById('hero-fallback-bg').style.display='block';" onerror="this.style.display='none'; document.getElementById('hero-fallback-bg').style.display='block';"<?php endif; ?>>
-        <source src="<?= esc_url($assets_base . 'background-video.mp4') ?>" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+        <!-- BG Video (with poster fallback) -->
+        <video data-parallax-target
+            autoplay loop muted playsinline
+            poster="<?= esc_url($assets_base . 'cta-bg-overlay.jpg') ?>"
+            class="hero-bg-video select-none pointer-events-none" <?php if (!file_exists(get_stylesheet_directory() . '/assets/background-video.mp4')): ?> onload="this.style.display='none'; document.getElementById('hero-fallback-bg').style.display='block';" onerror="this.style.display='none'; document.getElementById('hero-fallback-bg').style.display='block';" <?php endif; ?>>
+            <source src="<?= esc_url($assets_base . 'background-video.mp4') ?>" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
 
         <!-- Dark overlay: heavier at bottom so text pops -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 z-10"></div>
 
-        <!-- Content -->
-        <div class="relative z-20 container-custom">
+        <!-- Content — lower-left, rule of thirds -->
+        <div class="relative z-20 hero-content-inner container mx-auto">
 
             <!-- BEYOND wordmark: large decorative background -->
             <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" style="z-index: 5;">
                 <img src="<?= esc_url($assets_base . 'brand/beyond.svg') ?>"
-                     alt="BEYOND"
-                     class="w-[80vw] md:w-[60vw] lg:w-[45vw] opacity-[0.04]" />
+                    alt="BEYOND"
+                    class="w-[80vw] md:w-[60vw] lg:w-[45vw] opacity-[0.04]" />
             </div>
 
             <!-- EST / tagline line -->
@@ -76,12 +77,14 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
             <!-- CTAs -->
             <div class="hero-ctas sm:flex-row">
                 <a href="<?= esc_url(home_url('/contact/?intent=booking')) ?>"
-                   class="btn-solid btn-ripple">
+                    class="btn-cta btn-md ripple hidden md:inline-flex">
                     BOOK SESSION
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm7 4l-1.4 1.4L14.2 12l-3.6 3.6L12 17l5-5-5-5z"/></svg>
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm7 4l-1.4 1.4L14.2 12l-3.6 3.6L12 17l5-5-5-5z" />
+                    </svg>
                 </a>
                 <a href="#programs"
-                   class="btn-outline">
+                    class="btn-outline btn-md ripple hidden md:inline-flex">
                     EXPLORE PROGRAMMES
                 </a>
             </div>
@@ -96,17 +99,39 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
 
 
     <!-- ═══════════════════════════════════════
-         2. ABOUT — Academy + Community cards
+         2. ABOUT — Coach + Academy + Community
     ═══════════════════════════════════════ -->
     <section id="about" class="section-padding page-dark">
         <div class="container-custom">
-            <div class="about-grid md:grid-cols-2">
+            <div class="about-grid md:grid-cols-2 items-center">
+
+                <!-- Malaysia National Coach — hero card -->
+                <div class="about-card about-card--coach aspect-[3/2] md:aspect-[3/4]" data-animate>
+                    <img src="<?= esc_url($assets_base . 'team/teams_photos--Sequence 0103.webp') ?>"
+                        alt="BRESSEL Malaysia National Coach"
+                        class="about-card-img about-card-img--coach" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10"></div>
+                    <div class="about-card-content about-card-content--coach">
+                        <span class="about-card-badge">MALAYSIA NATIONAL COACH</span>
+                        <h3 class="about-card-title">MEET YOUR COACH</h3>
+                        <p class="about-card-desc">
+                            Led by our national coaching lead — world-class technique, proven tournament pedigree, and a commitment to elevating every player's potential.
+                        </p>
+                        <a href="<?= esc_url(home_url('/contact/?intent=booking')) ?>"
+                            class="inline-flex items-center gap-2 no-underline text-white font-bold uppercase tracking-widest text-xs !text-white hover:text-[var(--color-bressel-red)] transition-colors group/link">
+                            BOOK A SESSION
+                            <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
 
                 <!-- Academy card -->
                 <div class="about-card" data-animate>
                     <img src="<?= esc_url($assets_base . 'academy-card.jpg') ?>"
-                         alt="BRESSEL Academy"
-                         class="about-card-img" />
+                        alt="BRESSEL Academy"
+                        class="about-card-img" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
                     <div class="about-card-content">
                         <h3 class="about-card-title">ACADEMY</h3>
@@ -114,19 +139,20 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                             Master the technical precision of the pros. Our elite-level training modules focus on footwork, court positioning, and explosive agility.
                         </p>
                         <a href="<?= esc_url(get_post_type_archive_link('coach')) ?>"
-                           class="inline-flex items-center gap-2 text-[var(--color-bressel-red)] font-bold uppercase tracking-widest text-xs hover:text-white transition-colors group/link">
+                            class="inline-flex items-center gap-2 no-underline text-white font-bold uppercase tracking-widest text-xs !text-white hover:text-[var(--color-bressel-red)] transition-colors group/link">
                             EXPLORE PROGRAMS
-                            <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
                         </a>
                     </div>
                 </div>
 
                 <!-- Community card -->
-                <!-- Community card -->
                 <div class="about-card" data-animate>
                     <img src="<?= esc_url($assets_base . 'community-card.jpg') ?>"
-                         alt="BRESSEL Community"
-                         class="about-card-img" />
+                        alt="BRESSEL Community"
+                        class="about-card-img" />
                     <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/10"></div>
                     <div class="about-card-content">
                         <h3 class="about-card-title">COMMUNITY</h3>
@@ -134,9 +160,11 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                             Connect with players who match your intensity. Join local ladders, enter international tournaments, and rank up.
                         </p>
                         <a href="<?= esc_url(home_url('/contact/')) ?>"
-                           class="inline-flex items-center gap-2 text-[var(--color-bressel-red)] font-bold uppercase tracking-widest text-xs hover:text-white transition-colors group/link">
+                            class="inline-flex items-center gap-2 no-underline text-white font-bold uppercase tracking-widest text-xs !text-white hover:text-[var(--color-bressel-red)] transition-colors group/link">
                             FIND A COURT
-                            <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            <svg class="w-4 h-4 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -168,7 +196,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                         <span class="ticker-text"><?= esc_html($item['text']) ?></span>
                         <span class="ticker-separator w-4 h-px bg-zinc-700"></span>
                     </span>
-                <?php endforeach;
+            <?php endforeach;
             endfor; ?>
         </div>
     </div>
@@ -219,8 +247,8 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 foreach ($pillars as $i => $pillar) : ?>
                     <article class="pillar-card relative" data-animate>
                         <img src="<?= esc_url($pillar['img']) ?>"
-                             alt="<?= esc_attr($pillar['alt']) ?>"
-                             class="pillar-card-img" />
+                            alt="<?= esc_attr($pillar['alt']) ?>"
+                            class="pillar-card-img" />
 
                         <!-- Dark gradient overlay (bottom-heavy for text readability) -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20"></div>
@@ -233,32 +261,25 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
 
                         <!-- Red accent bar (top) -->
                         <div class="absolute top-0 left-0 right-0 h-1 bg-[var(--color-bressel-red)] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                        
+
                         <!-- Content overlay -->
                         <div class="pillar-card-content">
-                            <!-- Red icon accent -->
-                            <div class="pillar-card-icon">
-                                <svg class="w-6 h-6 text-[var(--color-bressel-red)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <?php if ($i === 0) : ?>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
-                                    <?php elseif ($i === 1) : ?>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                                    <?php else : ?>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                                    <?php endif; ?>
-                                </svg>
-                            </div>
-                            
-                            <h3 class="pillar-card-title">
+                            <img src="<?= esc_url($assets_base . 'favicon.svg') ?>"
+                                alt=""
+                                class="w-5 h-5 mb-3" />
+
+                            <h3 class="pillar-card-title !text-white">
                                 <?= esc_html($pillar['title']) ?>
                             </h3>
-                            <p class="pillar-card-desc">
+                            <p class="pillar-card-desc !text-white">
                                 <?= esc_html($pillar['desc']) ?>
                             </p>
                             <a href="<?= esc_url($pillar['url']) ?>"
-                               class="pillar-card-link">
+                                class="pillar-card-link !text-white hidden">
                                 INQUIRE NOW
-                                <svg class="w-3 h-3 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                <svg class="w-3 h-3 transition-transform group-hover/link:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                </svg>
                             </a>
                         </div>
                     </article>
@@ -304,7 +325,9 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                         </div>
                     </div>
                     <a href="#" class="pricing-download">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
                         DOWNLOAD FULL PRICING (PDF)
                     </a>
 
@@ -318,8 +341,8 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                                     <?= esc_html($loc) ?>
                                 </span>
                                 <svg class="w-5 h-5 text-[var(--color-bressel-red)] transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                 </svg>
                             </div>
                         <?php endforeach; ?>
@@ -360,7 +383,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                         <span class="text-zinc-300"><?= esc_html($item['text']) ?></span>
                         <span class="ticker-separator w-4 h-px bg-zinc-700"></span>
                     </span>
-                <?php endforeach;
+            <?php endforeach;
             endfor; ?>
         </div>
     </div>
@@ -384,9 +407,11 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     <h2>SHOP</h2>
                 </div>
                 <a href="<?= esc_url(get_post_type_archive_link('merch')) ?>"
-                   class="shop-all-link">
+                    class="shop-all-link">
                     VISIT CATALOG
-                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
                 </a>
             </div>
 
@@ -441,24 +466,24 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                         $fb       = $fallback_products[$i] ?? $fallback_products[0];
                         if (empty($img_url)) $img_url = $fb['img'];
                 ?>
-                    <article class="product-card">
-                        <div class="product-card-image">
-                            <img src="<?= esc_url($img_url) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="product-card-img" />
-                        </div>
-                        <div class="product-card-body">
-                            <p class="text-[var(--color-bressel-red)] text-[10px] font-bold uppercase tracking-widest mb-1"><?= esc_html($fb['series']) ?></p>
-                            <h3 class="text-xl md:text-2xl font-black uppercase italic mb-3"><?= esc_html(get_the_title()) ?></h3>
-                            <div class="product-card-desc line-clamp-2"><?php the_excerpt(); ?></div>
-                            <div class="flex items-center justify-between">
-                                <span class="text-white font-bold text-lg">RM<?= esc_html($price) ?></span>
-                                <a href="<?= esc_url(home_url('/contact/?intent=purchase&target=' . urlencode(get_the_title()))) ?>"
-                                   class="btn-solid-sm btn-ripple px-5 py-2 text-xs font-black uppercase tracking-widest">
-                                    INQUIRE
-                                </a>
+                        <article class="product-card">
+                            <div class="product-card-image">
+                                <img src="<?= esc_url($img_url) ?>" alt="<?= esc_attr(get_the_title()) ?>" class="product-card-img" />
                             </div>
-                        </div>
-                    </article>
-                <?php
+                            <div class="product-card-body">
+                                <p class="text-[var(--color-bressel-red)] text-[10px] font-bold uppercase tracking-widest mb-1"><?= esc_html($fb['series']) ?></p>
+                                <h3 class="text-xl md:text-2xl font-black uppercase italic mb-3"><?= esc_html(get_the_title()) ?></h3>
+                                <div class="product-card-desc line-clamp-2"><?php the_excerpt(); ?></div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-white font-bold text-lg">RM<?= esc_html($price) ?></span>
+                                    <a href="<?= esc_url(home_url('/contact/?intent=purchase&target=' . urlencode(get_the_title()))) ?>"
+                                        class="btn-solid-sm btn-ripple px-5 py-2 text-xs font-black uppercase tracking-widest">
+                                        INQUIRE
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    <?php
                         $i++;
                     endwhile;
                     wp_reset_postdata();
@@ -479,13 +504,13 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                                 <div class="flex items-center justify-between mt-4">
                                     <span class="product-card-price"><?= esc_html($p['price']) ?></span>
                                     <a href="<?= esc_url($p['url']) ?>"
-                                       class="btn-solid-sm btn-ripple">
+                                        class="btn-solid-sm btn-ripple">
                                         INQUIRE
                                     </a>
                                 </div>
                             </div>
                         </article>
-                    <?php endforeach;
+                <?php endforeach;
                 endif; ?>
             </div>
         </div>
@@ -496,7 +521,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
          8. EQUIP YOUR CLUB — B2B CTA
          Bold headline + BULK INQUIRY button
     ═══════════════════════════════════════ -->
-    <section class="section-padding page-dark relative noise-overlay texture-dark" id="equip-club">
+    <section class="section-padding page-dark relative noise-overlay texture-dark overflow-hidden" id="equip-club">
         <div class="container-custom text-center">
 
             <!-- BEYOND watermark background -->
@@ -513,10 +538,10 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     Access tiered pricing and personalized branding.
                 </p>
                 <a href="<?= esc_url(home_url('/contact/?intent=bulk-inquiry')) ?>"
-                   class="btn-solid btn-ripple inline-flex items-center gap-3">
+                    class="btn-solid btn-ripple inline-flex items-center gap-3">
                     BULK INQUIRY PORTAL
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm7 4l-1.4 1.4L14.2 12l-3.6 3.6L12 17l5-5-5-5z"/>
+                        <path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm7 4l-1.4 1.4L14.2 12l-3.6 3.6L12 17l5-5-5-5z" />
                     </svg>
                 </a>
             </div>
@@ -537,7 +562,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
         <!-- Subtle BG image overlay -->
         <div class="absolute inset-0 z-[1]">
             <img src="<?= esc_url($assets_base . 'cta-bg-overlay.jpg') ?>"
-                 alt="" class="w-full h-full object-cover opacity-30" aria-hidden="true" />
+                alt="" class="w-full h-full object-cover opacity-30" aria-hidden="true" />
         </div>
 
         <div class="relative z-10 section-padding">
@@ -559,12 +584,14 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     <?php else : ?>
                         <form class="newsletter-form-row" action="#" method="post">
                             <input type="email" name="email" required
-                                   placeholder="ENTER EMAIL ADDRESS"
-                                   class="newsletter-input" />
+                                placeholder="ENTER EMAIL ADDRESS"
+                                class="newsletter-input" />
                             <button type="submit"
-                                    class="btn-solid btn-ripple">
+                                class="btn-solid btn-ripple">
                                 SUBSCRIBE
-                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm7 4l-1.4 1.4L14.2 12l-3.6 3.6L12 17l5-5-5-5z"/></svg>
+                                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm7 4l-1.4 1.4L14.2 12l-3.6 3.6L12 17l5-5-5-5z" />
+                                </svg>
                             </button>
                         </form>
                     <?php endif; ?>

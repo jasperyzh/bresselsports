@@ -3,8 +3,7 @@
    Only: ticker animation, watermark, newsletter gradient, hero
    ============================================ */
 
-/* Hero section */
-.hero-section { min-height: 100svh; }
+
 
 /* Newsletter CTA gradient */
 .cta-newsletter { position: relative; }

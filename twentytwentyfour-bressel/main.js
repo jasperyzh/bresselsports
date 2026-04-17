@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function openMenu() {
         isMenuOpen = true;
         mobileMenu.classList.add('menu-open');
-        mobileMenu.classList.remove('invisible');
+        document.body.style.overflow = 'hidden';
     }
 
     function closeMenu() {
         isMenuOpen = false;
         mobileMenu.classList.remove('menu-open');
-        mobileMenu.classList.add('invisible');
+        document.body.style.overflow = '';
     }
 
     function toggleMenu() {
