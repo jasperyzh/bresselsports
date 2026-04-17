@@ -43,7 +43,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80 z-10"></div>
 
         <!-- Content — lower-left, rule of thirds -->
-        <div class="relative z-20 hero-content-inner container mx-auto">
+        <div class="relative z-20 hero-content-inner container mx-auto px-4">
 
             <!-- BEYOND wordmark: large decorative background -->
             <div class="absolute inset-0 flex items-center justify-center pointer-events-none select-none" style="z-index: 5;">
@@ -77,11 +77,8 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
             <!-- CTAs -->
             <div class="hero-ctas sm:flex-row">
                 <a href="<?= esc_url(home_url('/contact/?intent=booking')) ?>"
-                    class="btn-cta btn-md ripple hidden md:inline-flex">
-                    BOOK SESSION
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2zm7 4l-1.4 1.4L14.2 12l-3.6 3.6L12 17l5-5-5-5z" />
-                    </svg>
+                    class="btn-cta btn-md hidden md:inline-flex justify-center">
+                    BOOK Session
                 </a>
                 <a href="#programs"
                     class="btn-outline btn-md ripple hidden md:inline-flex">
@@ -106,7 +103,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
             <div class="about-grid md:grid-cols-2 items-center">
 
                 <!-- Malaysia National Coach — hero card -->
-                <div class="about-card about-card--coach aspect-[3/2] md:aspect-[3/4]" data-animate>
+                <div class="about-card about-card--coach aspect-[3/4] md:aspect-[3/4]" data-animate>
                     <img src="<?= esc_url($assets_base . 'team/teams_photos--Sequence 0103.webp') ?>"
                         alt="BRESSEL Malaysia National Coach"
                         class="about-card-img about-card-img--coach" />
@@ -223,25 +220,25 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                 <?php
                 $pillars = [
                     [
-                        'title' => 'PROFESSIONAL',
-                        'desc'  => 'World-class training using BRESSEL methodology. Racket mechanics, shot precision, and match-level IQ.',
+                        'title' => 'JUNIOR',
+                        'desc'  => 'Future champions start young. Age-group programs building technique, court sense, and competitive grit from the ground up.',
                         'img'   => $assets_base . 'academy-card.jpg',
-                        'alt'   => 'Professional padel training',
-                        'url'   => home_url('/contact/?intent=inquiry&source=professional'),
+                        'alt'   => 'Junior padel development',
+                        'url'   => home_url('/contact/?intent=inquiry&source=junior'),
                     ],
                     [
                         'title' => 'COMPETITION',
-                        'desc'  => 'Designed for regional tournament competitors. Tactics, endurance, and mental toughness under pressure.',
-                        'img'   => $assets_base . 'quote-bg-silhouette.jpg',
+                        'desc'  => 'For players who play to win. Tournament prep, match strategy, and mental toughness designed for competitive circuits.',
+                        'img'   => $assets_base . 'FA-Junior-Padel-League-Logo-ICON.webp',
                         'alt'   => 'Competition tournament',
                         'url'   => home_url('/contact/?intent=inquiry&source=competition'),
                     ],
                     [
-                        'title' => 'COACHES',
-                        'desc'  => 'Certification programs using the BRESSEL methodology. Become the next generation of padel excellence instructors.',
+                        'title' => 'COMMUNITY',
+                        'desc'  => 'More than a court — a network. Social leagues, tournaments, and a community of players who push each other.',
                         'img'   => $assets_base . 'community-card.jpg',
-                        'alt'   => 'Coach certification program',
-                        'url'   => home_url('/contact/?intent=inquiry&source=coaches'),
+                        'alt'   => 'Community padel network',
+                        'url'   => home_url('/contact/?intent=inquiry&source=community'),
                     ],
                 ];
                 foreach ($pillars as $i => $pillar) : ?>
@@ -324,7 +321,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                             <p class="pricing-detail">1-on-1 coaching</p>
                         </div>
                     </div>
-                    <a href="<?= esc_url(get_stylesheet_directory_uri() . '/assets/price-list.pdf') ?>" class="pricing-download btn-cta">
+                    <a target="_blank" href="<?= esc_url(get_stylesheet_directory_uri() . '/assets/price-list.pdf') ?>" class="pricing-download btn-cta">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                         </svg>

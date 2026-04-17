@@ -129,10 +129,10 @@
 
 /* CTA hidden on mobile, shown at md+ (beats Tailwind hidden utility) */
 @media (max-width: 767px) {
-  .btn-cta { display: none !important; }
+  header .btn-cta { display: none !important; }
 }
 @media (min-width: 768px) {
-  .btn-cta { display: inline-flex !important; }
+  header .btn-cta { display: inline-flex !important; }
 }
 
 /* Sizes */
