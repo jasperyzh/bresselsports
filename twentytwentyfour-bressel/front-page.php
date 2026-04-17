@@ -222,7 +222,7 @@ $assets_base = get_stylesheet_directory_uri() . '/assets/';
                     [
                         'title' => 'JUNIOR',
                         'desc'  => 'Future champions start young. Age-group programs building technique, court sense, and competitive grit from the ground up.',
-                        'img'   => $assets_base . 'academy-card.jpg',
+                        'img'   => $assets_base . 'junior-placeholder.png',
                         'alt'   => 'Junior padel development',
                         'url'   => home_url('/contact/?intent=inquiry&source=junior'),
                     ],
