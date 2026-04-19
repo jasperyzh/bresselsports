@@ -41,7 +41,7 @@ $auto_play_interval = 6000; // 6 seconds per slide
 $default_bg = get_stylesheet_directory_uri() . '/assets/quote-bg-silhouette.jpg';
 ?>
 
-<section id="quote-carousel" class="aspect-[4/3] md:aspect-[3/2] lg:aspect-[2/1] relative overflow-hidden flex items-center justify-center" data-carousel data-auto-play="<?= esc_attr($auto_play_interval) ?>" data-slide-count="<?= esc_attr($quote_count) ?>">
+<section id="quote-carousel" class="min-h-[60vh] md:min-h-[50vh] relative overflow-hidden flex items-center justify-center py-24 md:py-32" data-carousel data-auto-play="<?= esc_attr($auto_play_interval) ?>" data-slide-count="<?= esc_attr($quote_count) ?>">
     
     <!-- Background Images — per-slide with crossfade -->
     <div class="carousel-bg-layer absolute inset-0">

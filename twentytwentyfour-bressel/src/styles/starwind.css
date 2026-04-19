@@ -1,0 +1,167 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/forms";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--starwind-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--starwind-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-accent: var(--primary-accent);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-accent: var(--secondary-accent);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-error: var(--error);
+  --color-error-foreground: var(--error-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-outline: var(--outline);
+
+  --radius-xs: calc(var(--radius) - 0.375rem);
+  --radius-sm: calc(var(--radius) - 0.25rem);
+  --radius-md: calc(var(--radius) - 0.125rem);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 0.25rem);
+  --radius-2xl: calc(var(--radius) + 0.5rem);
+  --radius-3xl: calc(var(--radius) + 1rem);
+
+  --color-sidebar: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-outline: var(--sidebar-outline);
+}
+
+:root {
+  /* BRESSEL BRAND — Dark theme by default */
+  --background: var(--color-bressel-black);
+  --foreground: var(--color-bressel-white);
+  --card: var(--color-bressel-black);
+  --card-foreground: var(--color-bressel-white);
+  --popover: var(--color-bressel-black);
+  --popover-foreground: var(--color-bressel-white);
+  --primary: var(--color-bressel-red);
+  --primary-foreground: var(--color-bressel-white);
+  --primary-accent: var(--color-bressel-red);
+  --secondary: var(--color-bressel-zinc-800);
+  --secondary-foreground: var(--color-bressel-white);
+  --secondary-accent: var(--color-bressel-black);
+  --muted: var(--color-bressel-zinc-800);
+  --muted-foreground: var(--color-bressel-zinc-400);
+  --accent: var(--color-bressel-zinc-600);
+  --accent-foreground: var(--color-bressel-white);
+  --info: var(--color-bressel-red);
+  --info-foreground: var(--color-bressel-white);
+  --success: var(--color-green-500);
+  --success-foreground: var(--color-bressel-white);
+  --warning: var(--color-amber-500);
+  --warning-foreground: var(--color-bressel-black);
+  --error: var(--color-red-600);
+  --error-foreground: var(--color-bressel-white);
+  --border: var(--color-bressel-zinc-600);
+  --input: var(--color-bressel-zinc-600);
+  --outline: var(--color-bressel-red);
+  --radius: 0.5rem;
+
+  /* sidebar */
+  --sidebar-background: var(--color-bressel-black);
+  --sidebar-foreground: var(--color-bressel-white);
+  --sidebar-primary: var(--color-bressel-red);
+  --sidebar-primary-foreground: var(--color-bressel-white);
+  --sidebar-accent: var(--color-bressel-zinc-800);
+  --sidebar-accent-foreground: var(--color-bressel-white);
+  --sidebar-border: var(--color-bressel-zinc-600);
+  --sidebar-outline: var(--color-bressel-red);
+}
+
+.light {
+  --background: var(--color-bressel-white);
+  --foreground: var(--color-bressel-black);
+  --card: var(--color-bressel-white);
+  --card-foreground: var(--color-bressel-black);
+  --popover: var(--color-bressel-white);
+  --popover-foreground: var(--color-bressel-black);
+  --primary: var(--color-bressel-red);
+  --primary-foreground: var(--color-bressel-white);
+  --primary-accent: var(--color-bressel-red);
+  --secondary: var(--color-bressel-zinc-200);
+  --secondary-foreground: var(--color-bressel-black);
+  --secondary-accent: var(--color-bressel-white);
+  --muted: var(--color-bressel-zinc-200);
+  --muted-foreground: var(--color-bressel-zinc-600);
+  --accent: var(--color-bressel-zinc-400);
+  --accent-foreground: var(--color-bressel-black);
+  --info: var(--color-bressel-red);
+  --info-foreground: var(--color-bressel-white);
+  --success: var(--color-green-600);
+  --success-foreground: var(--color-bressel-white);
+  --warning: var(--color-amber-600);
+  --warning-foreground: var(--color-bressel-black);
+  --error: var(--color-red-700);
+  --error-foreground: var(--color-bressel-white);
+  --border: var(--color-bressel-zinc-200);
+  --input: var(--color-bressel-zinc-200);
+  --outline: var(--color-bressel-red);
+
+  --sidebar-background: var(--color-bressel-white);
+  --sidebar-foreground: var(--color-bressel-black);
+  --sidebar-primary: var(--color-bressel-red);
+  --sidebar-primary-foreground: var(--color-bressel-white);
+  --sidebar-accent: var(--color-bressel-zinc-200);
+  --sidebar-accent-foreground: var(--color-bressel-black);
+  --sidebar-border: var(--color-bressel-zinc-200);
+  --sidebar-outline: var(--color-bressel-red);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-outline/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+}

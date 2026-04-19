@@ -1,0 +1,480 @@
+---
+/**
+ * Bressel UI Demo — Full Component Showcase
+ * 
+ * This is our visual spec / design system page.
+ * Built with Starwind base classes + Bressel brand overrides.
+ * 
+ * To use in WP: Create a page and use this as a template,
+ * or load via Elementor as a full-width canvas.
+ * 
+ * Preview: Run `npm run dev` and visit the route.
+ */
+---
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bressel UI Demo — Design System</title>
+  <style>
+    /* Quick inline styles for demo (will move to CSS files) */
+    body {
+      font-family: "Inter", sans-serif;
+      background: #090808;
+      color: #FBFBFF;
+    }
+    h1, h2, h3, h4, h5, h6,
+    .font-oswald, .h1, .h2, .h3 {
+      font-family: "Oswald", sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       HEADER — Starwind Nav Shell
+       ═══════════════════════════════════════════ -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-zinc-800">
+    <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="font-oswald font-bold text-xl tracking-widest text-white">BRESSSEL</a>
+      
+      <!-- Nav Links (Starwind nav pattern) -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#buttons" class="text-zinc-400 hover:text-white transition text-sm uppercase tracking-wider">Buttons</a>
+        <a href="#cards" class="text-zinc-400 hover:text-white transition text-sm uppercase tracking-wider">Cards</a>
+        <a href="#forms" class="text-zinc-400 hover:text-white transition text-sm uppercase tracking-wider">Forms</a>
+        <a href="#grids" class="text-zisc-400 hover:text-white transition text-sm uppercase tracking-wider">Grids</a>
+        <a href="#sections" class="text-zinc-400 hover:text-white transition text-sm uppercase tracking-wider">Sections</a>
+        
+        <!-- CTA Button (solid variant) -->
+        <button class="bg-[#FF331F] text-white px-5 py-2 font-bold uppercase tracking-widest rounded text-xs hover:bg-white hover:text-[#FF331F] transition">
+          Book Now
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-24 pb-32">
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 0: INTRO
+         ═══════════════════════════════════════════ -->
+    <section class="max-w-7xl mx-auto px-6 py-16 text-center">
+      <h1 class="font-oswald font-bold text-6xl md:text-8xl uppercase tracking-tight mb-6">
+        Bressel<br><span class="text-[#FF331F]">UI System</span>
+      </h1>
+      <p class="text-zinc-400 text-lg max-w-2xl mx-auto">
+        Starwind base classes × Bressel brand overrides. 
+        Build complete sections, not component-by-component.
+      </p>
+      <div class="mt-8 flex justify-center gap-4">
+        <div class="text-xs text-zinc-500 uppercase tracking-widest">v1.0</div>
+        <div class="text-zinc-700">|</div>
+        <div class="text-xs text-zinc-500 uppercase tracking-widest">Starwind UI</div>
+        <div class="text-zinc-700">|</div>
+        <div class="text-xs text-zinc-500 uppercase tracking-widest">Tailwind v4</div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 1: BUTTONS
+         ═══════════════════════════════════════════ -->
+    <section id="buttons" class="max-w-7xl mx-auto px-6 py-16">
+      <div class="border-b border-zinc-800 pb-4 mb-12">
+        <h2 class="font-oswald font-bold text-3xl tracking-wider">BUTTONS</h2>
+        <p class="text-zinc-400 mt-2">All variants × All sizes. Starwind base, Bressel override.</p>
+      </div>
+
+      <!-- SOLID -->
+      <div class="mb-12">
+        <h3 class="text-zinc-500 text-xs uppercase tracking-widest mb-6">Solid (Primary)</h3>
+        <div class="flex flex-wrap items-center gap-6">
+          <button class="bg-[#FF331F] text-white px-5 py-2 font-bold uppercase tracking-widest rounded text-xs hover:bg-white hover:text-[#FF331F] transition">SM</button>
+          <button class="bg-[#FF331F] text-white px-8 py-4 font-bold uppercase tracking-widest rounded text-sm hover:bg-white hover:text-[#FF331F] transition">MD</button>
+          <button class="bg-[#FF331F] text-white px-10 py-5 font-bold uppercase tracking-widest rounded text-base hover:bg-white hover:text-[#FF331F] transition">LG</button>
+        </div>
+      </div>
+
+      <!-- OUTLINE -->
+      <div class="mb-12">
+        <h3 class="text-zinc-500 text-xs uppercase tracking-widest mb-6">Outline</h3>
+        <div class="flex flex-wrap items-center gap-6">
+          <button class="border-2 border-zinc-700 text-zinc-300 px-5 py-2 font-bold uppercase tracking-widest rounded text-xs hover:border-white hover:text-white transition">SM</button>
+          <button class="border-2 border-zinc-700 text-zinc-300 px-8 py-4 font-bold uppercase tracking-widest rounded text-sm hover:border-white hover:text-white transition">MD</button>
+          <button class="border-2 border-zinc-700 text-zinc-300 px-10 py-5 font-bold uppercase tracking-widest rounded text-base hover:border-white hover:text-white transition">LG</button>
+        </div>
+      </div>
+
+      <!-- GHOST -->
+      <div class="mb-12">
+        <h3 class="text-zinc-500 text-xs uppercase tracking-widest mb-6">Ghost</h3>
+        <div class="flex flex-wrap items-center gap-6">
+          <button class="text-zinc-400 px-5 py-2 font-bold uppercase tracking-widest rounded text-xs hover:text-white hover:bg-zinc-800 transition">SM</button>
+          <button class="text-zinc-400 px-8 py-4 font-bold uppercase tracking-widest rounded text-sm hover:text-white hover:bg-zinc-800 transition">MD</button>
+          <button class="text-zinc-400 px-10 py-5 font-bold uppercase tracking-widest rounded text-base hover:text-white hover:bg-zinc-800 transition">LG</button>
+        </div>
+      </div>
+
+      <!-- GHOST RED ACCENT -->
+      <div class="mb-12">
+        <h3 class="text-zinc-500 text-xs uppercase tracking-widest mb-6">Ghost Red Accent</h3>
+        <div class="flex flex-wrap items-center gap-6">
+          <button class="text-[#FF331F] px-5 py-2 font-bold uppercase tracking-widest rounded text-xs hover:text-white hover:bg-[#FF331F] transition">SM</button>
+          <button class="text-[#FF331F] px-8 py-4 font-bold uppercase tracking-widest rounded text-sm hover:text-white hover:bg-[#FF331F] transition">MD</button>
+          <button class="text-[#FF331F] px-10 py-5 font-bold uppercase tracking-widest rounded text-base hover:text-white hover:bg-[#FF331F] transition">LG</button>
+        </div>
+      </div>
+
+      <!-- LINK BUTTONS (compound: <a> with button styles) -->
+      <div class="mb-12">
+        <h3 class="text-zinc-500 text-xs uppercase tracking-widest mb-6">Link Buttons (anchor tags)</h3>
+        <div class="flex flex-wrap items-center gap-6">
+          <a href="#" class="text-white bg-zinc-800 px-8 py-4 font-bold uppercase tracking-widest rounded text-sm hover:bg-[#FF331F] transition">Book Session →</a>
+          <a href="#" class="text-[#FF331F] px-8 py-4 font-bold uppercase tracking-widest rounded text-sm hover:text-white hover:bg-[#FF331F] transition">View Profile →</a>
+          <a href="#" class="border-2 border-zinc-700 text-zinc-300 px-8 py-4 font-bold uppercase tracking-widest rounded text-sm hover:border-[#FF331F] hover:text-[#FF331F] transition">Inquire to Buy →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 2: CARDS
+         ═══════════════════════════════════════════ -->
+    <section id="cards" class="max-w-7xl mx-auto px-6 py-16">
+      <div class="border-b border-zinc-800 pb-4 mb-12">
+        <h2 class="font-oswald font-bold text-3xl tracking-wider">CARDS</h2>
+        <p class="text-zinc-400 mt-2">Color variants + noise texture overlay.</p>
+      </div>
+
+      <!-- CARDS WITHOUT TEXTURE -->
+      <div class="mb-12">
+        <h3 class="text-zinc-500 text-xs uppercase tracking-widest mb-6">Card Variants (base)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Default -->
+          <div class="bg-zinc-800 rounded-lg p-6">
+            <h3 class="font-oswald font-bold text-lg mb-2">Default</h3>
+            <p class="text-zinc-400 text-sm">Standard zinc-800 card.</p>
+          </div>
+          <!-- Red -->
+          <div class="bg-[#FF331F] rounded-lg p-6 text-white">
+            <h3 class="font-oswald font-bold text-lg mb-2">Accent</h3>
+            <p class="text-white/80 text-sm">Brand red variant.</p>
+          </div>
+          <!-- Dark Frame -->
+          <div class="bg-black border border-zinc-800 rounded-lg p-6">
+            <h3 class="font-oswald font-bold text-lg mb-2">Dark Frame</h3>
+            <p class="text-zinc-400 text-sm">Black card, zinc border.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CARDS WITH TEXTURE -->
+      <div class="mb-12">
+        <h3 class="text-zinc-500 text-xs uppercase tracking-widest mb-6">With Noise Texture (premium feel)</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="relative bg-zinc-800 rounded-lg p-6 overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none opacity-[0.05]" style="background-image: url('/wp-content/themes/twentytwentyfour-bressel/assets/textures/noise--.png'); background-size: 256px 256px; background-repeat: repeat; mix-blend-mode: soft-light;"></div>
+            <div class="relative z-10">
+              <h3 class="font-oswald font-bold text-lg mb-2">Card + Texture</h3>
+              <p class="text-zinc-400 text-sm">Noise overlay for premium feel.</p>
+            </div>
+          </div>
+          <div class="relative bg-[#FF331F] rounded-lg p-6 text-white overflow-hidden">
+            <div class="absolute inset-0 pointer-events-none opacity-[0.08]" style="background-image: url('/wp-content/themes/twentytwentyfour-bressel/assets/textures/noise--.png'); background-size: 256px 256px; background-repeat: repeat; mix-blend-mode: soft-light;"></div>
+            <div class="relative z-10">
+              <h3 class="font-oswald font-bold text-lg mb-2">Accent + Texture</h3>
+              <p class="text-white/80 text-sm">Brand accent with grain.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 3: GOLDEN RATIO GRID SPLITS
+         ═══════════════════════════════════════════ -->
+    <section id="grids" class="max-w-7xl mx-auto px-6 py-16">
+      <div class="border-b border-zinc-800 pb-4 mb-12">
+        <h2 class="font-oswald font-bold text-3xl tracking-wider">GOLDEN RATIO GRID</h2>
+        <p class="text-zinc-400 mt-2">61.8% / 38.2% splits for layout hierarchy.</p>
+      </div>
+
+      <!-- 61.8 / 38.2 split -->
+      <div class="mb-12">
+        <h3 class="text-zinc-500 text-xs uppercase tracking-widest mb-4">61.8% / 38.2% — Content Primary</h3>
+        <div class="grid grid-cols-1 md:grid-cols-[61.8fr_38.2fr] gap-4">
+          <div class="bg-zinc-800 rounded-lg p-8">
+            <h3 class="font-oswald font-bold text-2xl mb-2">61.8%</h3>
+            <p class="text-zinc-400">Primary content area</p>
+          </div>
+          <div class="bg-zinc-800/60 rounded-lg p-8">
+            <h3 class="font-oswald font-bold text-lg mb-2">38.2%</h3>
+            <p class="text-zinc-400">Sidebar / CTA area</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 38.2 / 61.8 split -->
+      <div class="mb-12">
+        <h3 class="text-zinc-500 text-xs uppercase tracking-widest mb-4">38.2% / 61.8% — Visual Primary</h3>
+        <div class="grid grid-cols-1 md:grid-cols-[38.2fr_61.8fr] gap-4">
+          <div class="bg-zinc-800/60 rounded-lg p-8">
+            <h3 class="font-oswald font-bold text-lg mb-2">38.2%</h3>
+            <p class="text-zinc-400">Image / visual area</p>
+          </div>
+          <div class="bg-zinc-800 rounded-lg p-8">
+            <h3 class="font-oswald font-bold text-2xl mb-2">61.8%</h3>
+            <p class="text-zinc-400">Text / content area</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 4: BADGES
+         ═══════════════════════════════════════════ -->
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <div class="border-b border-zinc-800 pb-4 mb-12">
+        <h2 class="font-oswald font-bold text-3xl tracking-wider">BADGES</h2>
+        <p class="text-zinc-400 mt-2">Status indicators, labels, tags.</p>
+      </div>
+
+      <div class="flex flex-wrap gap-4">
+        <span class="bg-[#FF331F] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">NEW</span>
+        <span class="bg-zinc-800 text-zinc-300 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">COMING SOON</span>
+        <span class="border border-zinc-600 text-zinc-400 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">FEATURED</span>
+        <span class="bg-zinc-800 text-[#FF331F] px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">SALE</span>
+        <span class="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest">IN STOCK</span>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 5: FORMS / INPUTS
+         ═══════════════════════════════════════════ -->
+    <section id="forms" class="max-w-7xl mx-auto px-6 py-16">
+      <div class="border-b border-zinc-800 pb-4 mb-12">
+        <h2 class="font-oswald font-bold text-3xl tracking-wider">FORMS & INPUTS</h2>
+        <p class="text-zinc-400 mt-2">Input fields, selects, textareas. Focus state = red border.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-6">
+          <div>
+            <label class="block text-zinc-400 text-xs uppercase tracking-widest mb-2">Email Address</label>
+            <input type="email" placeholder="you@example.com" class="w-full bg-zinc-800 border border-zinc-600 rounded px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-[#FF331F] transition" />
+          </div>
+          <div>
+            <label class="block text-zinc-400 text-xs uppercase tracking-widest mb-2">Full Name</label>
+            <input type="text" placeholder="Your name" class="w-full bg-zinc-800 border border-zinc-600 rounded px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-[#FF331F] transition" />
+          </div>
+          <div>
+            <label class="block text-zinc-400 text-xs uppercase tracking-widest mb-2">Phone</label>
+            <input type="tel" placeholder="+60 12-345-6789" class="w-full bg-zinc-800 border border-zinc-600 rounded px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-[#FF331F] transition" />
+          </div>
+        </div>
+        <div class="space-y-6">
+          <div>
+            <label class="block text-zinc-400 text-xs uppercase tracking-widest mb-2">Select Program</label>
+            <select class="w-full bg-zinc-800 border border-zinc-600 rounded px-4 py-3 text-white focus:outline-none focus:border-[#FF331F] transition appearance-none">
+              <option>Choose a program...</option>
+              <option>Beginner Padel</option>
+              <option>Intermediate Coaching</option>
+              <option>Elite Training</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-zinc-400 text-xs uppercase tracking-widest mb-2">Message</label>
+            <textarea rows="4" placeholder="Tell us about your goals..." class="w-full bg-zinc-800 border border-zinc-600 rounded px-4 py-3 text-white placeholder-zinc-500 focus:outline-none focus:border-[#FF331F] transition resize-none"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 6: ACCORDION
+         ═══════════════════════════════════════════ -->
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <div class="border-b border-zinc-800 pb-4 mb-12">
+        <h2 class="font-oswald font-bold text-3xl tracking-wider">ACCORDION / FAQ</h2>
+        <p class="text-zinc-400 mt-2">Expandable sections. Starwind accordion pattern.</p>
+      </div>
+
+      <div class="space-y-2 max-w-2xl">
+        <details class="bg-zinc-800 rounded-lg overflow-hidden">
+          <summary class="px-6 py-4 cursor-pointer font-oswald font-bold tracking-wider hover:text-[#FF331F] transition">What level of experience do I need?</summary>
+          <div class="px-6 pb-4 text-zinc-400">No experience needed. We welcome beginners through elite athletes. Our programs are tailored to your level.</div>
+        </details>
+        <details class="bg-zinc-800 rounded-lg overflow-hidden">
+          <summary class="px-6 py-4 cursor-pointer font-oswald font-bold tracking-wider hover:text-[#FF331F] transition">Where are your academy locations?</summary>
+          <div class="px-6 pb-4 text-zinc-400">We have multiple centers across Malaysia. View our locations in the Academy section.</div>
+        </details>
+        <details class="bg-zinc-800 rounded-lg overflow-hidden">
+          <summary class="px-6 py-4 cursor-pointer font-oswald font-bold tracking-wider hover:text-[#FF331F] transition">Do I need my own equipment?</summary>
+          <div class="px-6 pb-4 text-zinc-400">No. We provide rackets and balls for all beginners. Shop for your own gear in our merchandise section.</div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 7: TOAST / NOTIFICATIONS
+         ═══════════════════════════════════════════ -->
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <div class="border-b border-zinc-800 pb-4 mb-12">
+        <h2 class="font-oswald font-bold text-3xl tracking-wider">TOAST / NOTIFICATIONS</h2>
+        <p class="text-zinc-400 mt-2">Success, info, warning, error states.</p>
+      </div>
+
+      <div class="space-y-3 max-w-md">
+        <div class="bg-[#FF331F] rounded p-4 text-white font-bold">
+          ✓ Session booked successfully!
+        </div>
+        <div class="bg-zinc-800 border-l-4 border-[#FF331F] rounded p-4">
+          <p class="font-bold text-sm text-[#FF331F]">Info</p>
+          <p class="text-zinc-400 text-sm">Your booking is confirmed. Check your email.</p>
+        </div>
+        <div class="bg-zinc-800 border-l-4 border-yellow-500 rounded p-4">
+          <p class="font-bold text-sm text-yellow-500">Warning</p>
+          <p class="text-zinc-400 text-sm">Only 2 spots remaining for this session.</p>
+        </div>
+        <div class="bg-zinc-800 border-l-4 border-red-600 rounded p-4">
+          <p class="font-bold text-sm text-red-600">Error</p>
+          <p class="text-zinc-400 text-sm">Failed to send message. Please try again.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 8: DIVIDERS & ACCENT BARS
+         ═══════════════════════════════════════════ -->
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <div class="border-b border-zinc-800 pb-4 mb-12">
+        <h2 class="font-oswald font-bold text-3xl tracking-wider">DIVIDERS & ACCENT BARS</h2>
+        <p class="text-zinc-400 mt-2">Section breaks, red accent separators.</p>
+      </div>
+
+      <div class="space-y-8">
+        <div class="border-b border-zinc-600 opacity-25"></div>
+        <div class="flex items-center gap-4">
+          <span class="h-px bg-zinc-600 flex-1"></span>
+          <span class="w-8 h-0.5 bg-[#FF331F]"></span>
+          <span class="text-zinc-500 text-xs uppercase tracking-widest">Or</span>
+          <span class="w-8 h-0.5 bg-[#FF331F]"></span>
+          <span class="h-px bg-zinc-600 flex-1"></span>
+        </div>
+        <div class="border-b border-zinc-600 opacity-25"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 9: HERO / FULL-SCREEN CTA
+         ═══════════════════════════════════════════ -->
+    <section id="sections" class="max-w-7xl mx-auto px-6 py-16">
+      <div class="border-b border-zinc-800 pb-4 mb-12">
+        <h2 class="font-oswald font-bold text-3xl tracking-wider">HERO / CTA COMPOSITION</h2>
+        <p class="text-zinc-400 mt-2">Full section layout using all patterns together.</p>
+      </div>
+
+      <div class="bg-black border border-zinc-800 rounded-lg overflow-hidden">
+        <div class="p-12 text-center">
+          <div class="w-8 h-0.5 bg-[#FF331F] mx-auto mb-6"></div>
+          <h1 class="font-oswald font-bold text-5xl md:text-7xl uppercase tracking-tight mb-4">
+            World-Class<br>Padel, Within<br>Reach
+          </h1>
+          <p class="text-zinc-400 text-lg mb-8 max-w-xl mx-auto">
+            Join Malaysia's fastest-growing padel academy. Beginner to elite — find your level.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <button class="bg-[#FF331F] text-white px-8 py-4 font-bold uppercase tracking-widest rounded text-sm hover:bg-white hover:text-[#FF331F] transition">
+              Start Now
+            </button>
+            <button class="border-2 border-zinc-700 text-zinc-300 px-8 py-4 font-bold uppercase tracking-widest rounded text-sm hover:border-white hover:text-white transition">
+              Watch Video
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SECTION 10: MERCH / PRODUCT CARDS
+         ═══════════════════════════════════════════ -->
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      <div class="border-b border-zinc-800 pb-4 mb-12">
+        <h2 class="font-oswald font-bold text-3xl tracking-wider">PRODUCT CARDS</h2>
+        <p class="text-zinc-400 mt-2">E-commerce card pattern. Image + title + price + CTA.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Product 1 -->
+        <div class="bg-zinc-800 rounded-lg overflow-hidden">
+          <div class="h-48 bg-zinc-600"></div>
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-bold text-lg">Pro Padel Racket</h3>
+              <span class="text-[#FF331F] font-bold">RM 389</span>
+            </div>
+            <p class="text-zinc-400 text-sm mb-4">Carbon fiber frame. Tournament grade.</p>
+            <button class="w-full bg-[#FF331F] text-white px-4 py-3 font-bold uppercase tracking-widest rounded text-xs hover:bg-white hover:text-[#FF331F] transition">Inquire to Buy</button>
+          </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="bg-zinc-800 rounded-lg overflow-hidden">
+          <div class="h-48 bg-zinc-600"></div>
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-bold text-lg">Tournament Balls (3-pack)</h3>
+              <span class="text-[#FF331F] font-bold">RM 45</span>
+            </div>
+            <p class="text-zinc-400 text-sm mb-4">Official tournament balls.</p>
+            <button class="w-full bg-[#FF331F] text-white px-4 py-3 font-bold uppercase tracking-widest rounded text-xs hover:bg-white hover:text-[#FF331F] transition">Inquire to Buy</button>
+          </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="bg-zinc-800 rounded-lg overflow-hidden">
+          <div class="h-48 bg-zinc-600"></div>
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-oswald font-bold text-lg">Bressel Branded Shirt</h3>
+              <span class="text-[#FF331F] font-bold">RM 89</span>
+            </div>
+            <p class="text-zinc-400 text-sm mb-4">Performance fabric. Limited edition.</p>
+            <button class="w-full bg-[#FF331F] text-white px-4 py-3 font-bold uppercase tracking-widest rounded text-xs hover:bg-white hover:text-[#FF331F] transition">Inquire to Buy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ -->
+  <footer class="bg-black border-t border-zinc-800 py-12">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div class="font-oswald font-bold text-xl tracking-widest mb-4">BRESSSEL</div>
+        <p class="text-zinc-400 text-sm">World-class padel, within reach.</p>
+      </div>
+      <div>
+        <h4 class="font-bold uppercase tracking-widest text-xs text-zinc-500 mb-4">Academy</h4>
+        <a href="#" class="block text-zinc-400 text-sm hover:text-white transition">Coaches</a>
+        <a href="#" class="block text-zinc-400 text-sm hover:text-white transition">Programs</a>
+        <a href="#" class="block text-zinc-400 text-sm hover:text-white transition">Schedule</a>
+      </div>
+      <div>
+        <h4 class="font-bold uppercase tracking-widest text-xs text-zinc-500 mb-4">Shop</h4>
+        <a href="#" class="block text-zinc-400 text-sm hover:text-white transition">Rackets</a>
+        <a href="#" class="block text-zinc-400 text-sm hover:text-white transition">Apparel</a>
+        <a href="#" class="block text-zinc-400 text-sm hover:text-white transition">Accessories</a>
+      </div>
+      <div>
+        <h4 class="font-bold uppercase tracking-widest text-xs text-zinc-500 mb-4">Contact</h4>
+        <a href="#" class="block text-zinc-400 text-sm hover:text-white transition">Book a Session</a>
+        <a href="#" class="block text-zinc-400 text-sm hover:text-white transition">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 /* ============================================
-   BRESSEL™ CSS Entry Point — Classless Architecture
+   BRESSEL™ CSS Entry Point — Classless + Starwind Architecture
    ============================================ */
 
 @source "../../**/*.php";
@@ -25,8 +25,15 @@
   --color-bressel-zinc-800: #27272a;
 }
 
+/* ====== Starwind UI — Design system layer ====== */
+/* Imports: Tailwind v4 + design tokens + component base styles */
+@import './styles/starwind.css';
+
 /* ====== Base CSS (element selectors) ====== */
 @import './css/base.css';
+
+/* ====== Starwind Patterns (jycom-derived reusable patterns) ====== */
+@import './css/starwind-patterns.css';
 
 /* ====== Components (@layer components) ====== */
 @import './css/components.css';
