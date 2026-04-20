@@ -175,31 +175,29 @@ $merch_query = new WP_Query([
          Mockup: Three image cards with overlay text
          PROFESSIONAL | COMPETITION | COACHES
     ═══════════════════════════════════════ -->
-    <section id="programs" class="section-padding pillars-section noise-overlay">
-
+    <section id="programs" class="py-20 relative">
         <div class="container-custom">
 
-            <!-- Section header -->
-            <div class="section-header">
+            <div class="mb-12">
                 <p class="caption">Engineered for community excellence.</p>
                 <h2 class="heading-lg">PROGRAM PILLARS</h2>
             </div>
 
             <!-- Ghost watermark -->
-            <div class="ghost-watermark">ACADEMY</div>
+            <div class="absolute top-8 left-8 font-black italic text-8xl md:text-9xl text-transparent" style="-webkit-text-stroke: 1px rgba(255,51,31,0.06)">ACADEMY</div>
 
-            <!-- Three pillars (@base-ui/ card pattern) -->
-            <div class="pillars-grid">
+            <!-- Three pillars -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
 
                 <!-- PROFESSIONAL -->
-                <article class="pillar-card card card--pillar">
-                    <img src="<?= esc_url($assets_base . '20260402_115035.webp') ?>" alt="Professional Training" class="card-image pillar-card-img" />
-                    <div class="pillar-card-overlay"></div>
-                    <div class="pillar-card-content">
-                        <span class="badge badge-red">PROFESSIONAL</span>
-                        <h3 class="heading-md">ELITE COACHING</h3>
-                        <p class="body">World-class coaching for serious athletes. Technical mastery, match strategy, and competitive edge.</p>
-                        <a href="<?= esc_url(home_url('/contact/?intent=inquiry&source=professional')) ?>" class="btn btn-ghost">
+                <article class="card card--pillar h-96 relative">
+                    <img src="<?= esc_url($assets_base . '20260402_115035.webp') ?>" alt="Professional Training" class="card-image" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute inset-x-0 bottom-0 p-6">
+                        <span class="badge badge-red mb-2">PROFESSIONAL</span>
+                        <h3 class="heading-md mb-2">ELITE COACHING</h3>
+                        <p class="body mb-4">World-class coaching for serious athletes. Technical mastery, match strategy, and competitive edge.</p>
+                        <a href="<?= esc_url(home_url('/contact/?intent=inquiry&source=professional')) ?>" class="btn btn-ghost inline-flex items-center gap-2">
                             INQUIRE NOW
                             <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                         </a>
@@ -207,14 +205,14 @@ $merch_query = new WP_Query([
                 </article>
 
                 <!-- COMPETITION -->
-                <article class="pillar-card card card--pillar">
-                    <img src="<?= esc_url($assets_base . 'FA-Junior-Padel-League-Logo-ICON.webp') ?>" alt="Competition" class="card-image pillar-card-img" style="object-position: center; background: var(--color-bressel-black-soft);" />
-                    <div class="pillar-card-overlay"></div>
-                    <div class="pillar-card-content">
-                        <span class="badge badge-red">COMPETITION</span>
-                        <h3 class="heading-md">TOURNAMENT READY</h3>
-                        <p class="body">Designed for regional tournament competitors. Strategy, endurance, and mental toughness.</p>
-                        <a href="<?= esc_url(home_url('/contact/?intent=inquiry&source=competition')) ?>" class="btn btn-ghost">
+                <article class="card card--pillar h-96 relative">
+                    <img src="<?= esc_url($assets_base . 'FA-Junior-Padel-League-Logo-ICON.webp') ?>" alt="Competition" class="card-image" style="object-position: center; background: var(--color-bressel-black-soft);" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute inset-x-0 bottom-0 p-6">
+                        <span class="badge badge-red mb-2">COMPETITION</span>
+                        <h3 class="heading-md mb-2">TOURNAMENT READY</h3>
+                        <p class="body mb-4">Designed for regional tournament competitors. Strategy, endurance, and mental toughness.</p>
+                        <a href="<?= esc_url(home_url('/contact/?intent=inquiry&source=competition')) ?>" class="btn btn-ghost inline-flex items-center gap-2">
                             INQUIRE NOW
                             <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                         </a>
@@ -222,14 +220,14 @@ $merch_query = new WP_Query([
                 </article>
 
                 <!-- COACHES -->
-                <article class="pillar-card card card--pillar">
-                    <img src="<?= esc_url($assets_base . '20260402_115214.webp') ?>" alt="Coaches Certification" class="card-image pillar-card-img" />
-                    <div class="pillar-card-overlay"></div>
-                    <div class="pillar-card-content">
-                        <span class="badge badge-zinc">COACHES</span>
-                        <h3 class="heading-md">CERTIFICATION</h3>
-                        <p class="body">Certification programs using the BRESSEL™ methodology. Train the next generation of coaches.</p>
-                        <a href="<?= esc_url(home_url('/contact/?intent=inquiry&source=coaches')) ?>" class="btn btn-ghost">
+                <article class="card card--pillar h-96 relative">
+                    <img src="<?= esc_url($assets_base . '20260402_115214.webp') ?>" alt="Coaches Certification" class="card-image" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    <div class="absolute inset-x-0 bottom-0 p-6">
+                        <span class="badge badge-zinc mb-2">COACHES</span>
+                        <h3 class="heading-md mb-2">CERTIFICATION</h3>
+                        <p class="body mb-4">Certification programs using the BRESSEL™ methodology. Train the next generation of coaches.</p>
+                        <a href="<?= esc_url(home_url('/contact/?intent=inquiry&source=coaches')) ?>" class="btn btn-ghost inline-flex items-center gap-2">
                             INQUIRE NOW
                             <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                         </a>
