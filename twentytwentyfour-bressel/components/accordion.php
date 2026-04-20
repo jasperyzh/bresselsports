@@ -10,7 +10,7 @@
  *   default_open: int or array of item indices (default: none)
  */
 
-require_once get_template_directory() . '/components/base-ui-tv.php';
+require_once get_stylesheet_directory() . '/components/base-ui-tv.php';
 
 $items     = $args['items'] ?? [];
 $type      = $args['type'] ?? 'single';

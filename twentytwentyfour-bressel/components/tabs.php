@@ -9,7 +9,7 @@
  *   default: index of default active tab (default: 0)
  */
 
-require_once get_template_directory() . '/components/base-ui-tv.php';
+require_once get_stylesheet_directory() . '/components/base-ui-tv.php';
 
 $tabs    = $args['tabs'] ?? [];
 $default = $args['default'] ?? 0;

@@ -5,7 +5,7 @@
  * How-to Use: get_template_part('components/button', null, array('text' => '...', 'url' => '...', 'variant' => 'primary|outline|ghost', 'size' => 'sm|md|lg'));
  */
 
-require_once get_template_directory() . '/components/base-ui-tv.php';
+require_once get_stylesheet_directory() . '/components/base-ui-tv.php';
 
 $text    = $args['text'] ?? 'Click Here';
 $url     = $args['url'] ?? '#';

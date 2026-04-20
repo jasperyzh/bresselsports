@@ -12,7 +12,7 @@
  *   action_url: action button URL
  */
 
-require_once get_template_directory() . '/components/base-ui-tv.php';
+require_once get_stylesheet_directory() . '/components/base-ui-tv.php';
 
 $header      = $args['header'] ?? '';
 $description = $args['description'] ?? '';

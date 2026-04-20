@@ -15,8 +15,8 @@
  *   trigger_size: size of the trigger button (default: md)
  */
 
-require_once get_template_directory() . '/components/base-ui-tv.php';
-require_once get_template_directory() . '/components/button.php';
+require_once get_stylesheet_directory() . '/components/base-ui-tv.php';
+require_once get_stylesheet_directory() . '/components/button.php';
 
 $id         = $args['id'] ?? 'dialog-' . uniqid();
 $title      = $args['title'] ?? 'Dialog';
