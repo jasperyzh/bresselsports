@@ -36,6 +36,36 @@ function bressel_enqueue_assets()
         $manifest_path = $dist_path . '/manifest.json';
     }
 
+    // 3. Enqueue Base UI JavaScript components
+    $js_dir = get_stylesheet_directory() . '/src/js';
+    if (file_exists($js_dir . '/base-ui.js')) {
+        wp_enqueue_script(
+            'base-ui',
+            get_stylesheet_directory_uri() . '/src/js/base-ui.js',
+            array(),
+            BRESSSELTHEME_VERSION,
+            true
+        );
+    }
+    if (file_exists($js_dir . '/carousel.js')) {
+        wp_enqueue_script(
+            'carousel',
+            get_stylesheet_directory_uri() . '/src/js/carousel.js',
+            array('base-ui'),
+            BRESSSELTHEME_VERSION,
+            true
+        );
+    }
+    if (file_exists($js_dir . '/tabs.js')) {
+        wp_enqueue_script(
+            'tabs',
+            get_stylesheet_directory_uri() . '/src/js/tabs.js',
+            array('base-ui'),
+            BRESSSELTHEME_VERSION,
+            true
+        );
+    }
+
     if (file_exists($manifest_path)) {
         $manifest = json_decode(file_get_contents($manifest_path), true);
 
@@ -47,7 +77,7 @@ function bressel_enqueue_assets()
                 wp_enqueue_script(
                     'bressel-main',
                     $dist_uri . '/' . $main_entry['file'],
-                    array(),
+                    array('base-ui'),
                     BRESSSELTHEME_VERSION,
                     true
                 );
@@ -71,7 +101,7 @@ function bressel_enqueue_assets()
             wp_enqueue_style('bressel-tailwind', $dist_uri . '/main.css', array('global-styles'), BRESSSELTHEME_VERSION);
         }
         if (file_exists($dist_path . '/main.js')) {
-            wp_enqueue_script('bressel-main', $dist_uri . '/main.js', array(), BRESSSELTHEME_VERSION, true);
+            wp_enqueue_script('bressel-main', $dist_uri . '/main.js', array('base-ui'), BRESSSELTHEME_VERSION, true);
         }
     }
 }
