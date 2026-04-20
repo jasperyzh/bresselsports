@@ -1,25 +1,29 @@
 <?php
 /**
- * Title: Coach Archive Template
- * Description: Displays a grid of all registered coaches.
+ * Title: Coach Archive Template — KISE + @base-ui/
+ * Description: Displays grid of all coaches using semantic classes
  * How-to Use: Automatically handled by WordPress at /academy/
  */
 
 get_header();
 ?>
 
-<main class="section-padding bg-black text-white min-h-screen">
+<main class="py-20 min-h-screen">
     <div class="container-custom">
         
-        <header class="mb-20">
-            <div class="accent-bar"></div>
-            <h1 class="italic leading-none">THE<br/><span class="text-gradient-red">ACADEMY</span></h1>
-            <p class="text-zinc-400 mt-6 max-w-2xl text-xl font-medium italic">
+        <!-- Header -->
+        <header class="mb-16">
+            <div class="w-16 h-1 bg-red mb-6"></div>
+            <h1 class="heading-xl mb-6">
+                THE<br/><span class="accent">ACADEMY</span>
+            </h1>
+            <p class="body-lg max-w-3xl">
                 Our world-class coaching staff is here to take your game to the next level.
             </p>
         </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <!-- Coaches Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
             <?php 
             $coach_query = new WP_Query([
                 'post_type' => 'coach',
@@ -36,7 +40,7 @@ get_header();
                 endwhile;
                 wp_reset_postdata();
             else : ?>
-                <p class="text-zinc-500 italic">No coaches found. Add coaches in WordPress Admin.</p>
+                <p class="body text-zinc-500 col-span-full">No coaches found. Add coaches in WordPress Admin.</p>
             <?php endif; ?>
         </div>
 
