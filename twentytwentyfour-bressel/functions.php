@@ -27,53 +27,51 @@ function bressel_enqueue_assets()
         BRESSSELTHEME_VERSION
     );
 
-    // 2. Vite Integration (Production Mode Only)
-    if (wp_get_environment_type() !== 'development') {
-        $dist_path = get_stylesheet_directory() . '/dist';
-        $dist_uri  = get_stylesheet_directory_uri() . '/dist';
-        // Check both common manifest locations
-        $manifest_path = $dist_path . '/.vite/manifest.json';
-        if (!file_exists($manifest_path)) {
-            $manifest_path = $dist_path . '/manifest.json';
-        }
+    // 2. Vite Integration (always load built assets; dev client added in wp_head for hot-reload)
+    $dist_path = get_stylesheet_directory() . '/dist';
+    $dist_uri  = get_stylesheet_directory_uri() . '/dist';
+    // Check both common manifest locations
+    $manifest_path = $dist_path . '/.vite/manifest.json';
+    if (!file_exists($manifest_path)) {
+        $manifest_path = $dist_path . '/manifest.json';
+    }
 
-        if (file_exists($manifest_path)) {
-            $manifest = json_decode(file_get_contents($manifest_path), true);
+    if (file_exists($manifest_path)) {
+        $manifest = json_decode(file_get_contents($manifest_path), true);
 
-            if (isset($manifest['main.js'])) {
-                $main_entry = $manifest['main.js'];
+        if (isset($manifest['main.js'])) {
+            $main_entry = $manifest['main.js'];
 
-                // Enqueue Main JS
-                if (isset($main_entry['file'])) {
-                    wp_enqueue_script(
-                        'bressel-main',
-                        $dist_uri . '/' . $main_entry['file'],
-                        array(),
-                        BRESSSELTHEME_VERSION,
-                        true
+            // Enqueue Main JS
+            if (isset($main_entry['file'])) {
+                wp_enqueue_script(
+                    'bressel-main',
+                    $dist_uri . '/' . $main_entry['file'],
+                    array(),
+                    BRESSSELTHEME_VERSION,
+                    true
+                );
+            }
+
+            // Enqueue Main CSS
+            if (isset($main_entry['css']) && is_array($main_entry['css'])) {
+                foreach ($main_entry['css'] as $index => $css_file) {
+                    wp_enqueue_style(
+                        'bressel-main-style-' . $index,
+                        $dist_uri . '/' . $css_file,
+                        array('global-styles'),
+                        BRESSSELTHEME_VERSION
                     );
                 }
-
-                // Enqueue Main CSS
-                if (isset($main_entry['css']) && is_array($main_entry['css'])) {
-                    foreach ($main_entry['css'] as $index => $css_file) {
-                        wp_enqueue_style(
-                            'bressel-main-style-' . $index,
-                            $dist_uri . '/' . $css_file,
-                            array('global-styles'),
-                            BRESSSELTHEME_VERSION
-                        );
-                    }
-                }
             }
-        } else {
-            // Fallback if manifest is missing but files exist directly
-            if (file_exists($dist_path . '/main.css')) {
-                wp_enqueue_style('bressel-tailwind', $dist_uri . '/main.css', array('global-styles'), BRESSSELTHEME_VERSION);
-            }
-            if (file_exists($dist_path . '/main.js')) {
-                wp_enqueue_script('bressel-main', $dist_uri . '/main.js', array(), BRESSSELTHEME_VERSION, true);
-            }
+        }
+    } else {
+        // Fallback if manifest is missing but files exist directly
+        if (file_exists($dist_path . '/main.css')) {
+            wp_enqueue_style('bressel-tailwind', $dist_uri . '/main.css', array('global-styles'), BRESSSELTHEME_VERSION);
+        }
+        if (file_exists($dist_path . '/main.js')) {
+            wp_enqueue_script('bressel-main', $dist_uri . '/main.js', array(), BRESSSELTHEME_VERSION, true);
         }
     }
 }
