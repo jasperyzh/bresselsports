@@ -1,0 +1,298 @@
+/* ============================================
+   BRESSEL™ Base UI — Semantic Component System
+   KISE + @base-ui/ Architecture
+   
+   Purpose: Semantic component classes (agnostic of brand/section)
+   Rules: 
+   - All classes are semantic (describe what, not how)
+   - Colors, borders, interactions defined in CSS
+   - No Tailwind utilities (no .flex, .gap-4, .p-4)
+   - Use BRESSEL brand tokens (colors, fonts)
+   ============================================ */
+
+/* ====== BRESSEL BRAND TOKENS ====== */
+:root {
+  /* Colors */
+  --color-bressel-red: #FF331F;
+  --color-bressel-red-hover: #E62A1A;
+  --color-bressel-black: #090808;
+  --color-bressel-black-soft: #18181B;
+  --color-bressel-white: #FBFBFF;
+  --color-bressel-yellow: #EEFF2C;
+  --color-bressel-darkyellow: #C1DE00;
+  
+  /* Zinc scale */
+  --color-bressel-zinc-200: #e4e4e7;
+  --color-bressel-zinc-400: #a1a1aa;
+  --color-bressel-zinc-600: #52525b;
+  --color-bressel-zinc-800: #27272a;
+  
+  /* Typography */
+  --font-header: "Oswald", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+  --letter-spacing-wide: 0.1em;
+  --letter-spacing-wider: 0.15em;
+  --letter-spacing-widest: 0.25em;
+}
+
+/* ====== TYPOGRAPHY HIERARCHY ====== */
+
+/* Large headings (Hero, page titles) */
+.heading-xl {
+  font-family: var(--font-header);
+  font-weight: var(--font-weight-black);
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: var(--color-bressel-white);
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  margin-bottom: 1rem;
+}
+
+/* Section headings */
+.heading-lg {
+  font-family: var(--font-header);
+  font-weight: var(--font-weight-black);
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--color-bressel-white);
+  font-size: clamp(1.75rem, 4vw, 4.5rem);
+  margin-bottom: 0.75rem;
+}
+
+/* Card titles, subheadings */
+.heading-md {
+  font-family: var(--font-header);
+  font-weight: var(--font-weight-black);
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: var(--color-bressel-white);
+  font-size: clamp(1.25rem, 3vw, 2.25rem);
+  margin-bottom: 0.5rem;
+}
+
+/* Small headings, labels */
+.heading-sm {
+  font-family: var(--font-header);
+  font-weight: var(--font-weight-bold);
+  font-style: italic;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-bressel-white);
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Large body text */
+.body-lg {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.625;
+  color: var(--color-bressel-zinc-400);
+  margin-bottom: 1rem;
+}
+
+/* Standard body text */
+.body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-bressel-zinc-400);
+  margin-bottom: 0.75rem;
+}
+
+/* Caption text (small, uppercase) */
+.caption {
+  font-family: var(--font-header);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-widest);
+  color: var(--color-bressel-zinc-400);
+  margin-bottom: 0.5rem;
+}
+
+/* ====== BUTTON COMPONENT ====== */
+
+/* Base button */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-header);
+  font-weight: var(--font-weight-bold);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  border-radius: 0;
+  border: 2px solid transparent;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  text-decoration: none !important;
+  line-height: 1;
+}
+
+/* Button variants */
+.btn-primary {
+  background-color: var(--color-bressel-red);
+  border-color: var(--color-bressel-red);
+  color: var(--color-bressel-white) !important;
+}
+.btn-primary:hover {
+  background-color: var(--color-bressel-red-hover);
+  border-color: var(--color-bressel-red-hover);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: rgba(255,255,255,0.3);
+  color: var(--color-bressel-white) !important;
+}
+.btn-outline:hover {
+  border-color: #fff;
+  background: rgba(255,255,255,0.05);
+  color: #fff !important;
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-bressel-zinc-400) !important;
+}
+.btn-ghost:hover {
+  color: var(--color-bressel-white) !important;
+}
+
+/* Button sizes */
+.btn-sm { font-size: 0.625rem; padding: 0.5rem 1rem; letter-spacing: 0.1em; }
+.btn-md { font-size: 1rem; padding: 0.75rem 1.5rem; }
+.btn-lg { font-size: 1.125rem; padding: 1rem 2rem; }
+
+/* ====== CARD COMPONENT ====== */
+
+/* Base card */
+.card {
+  background-color: var(--color-bressel-black-soft);
+  border: 1px solid var(--color-bressel-zinc-800);
+  border-radius: 0.375rem;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+.card:hover {
+  border-color: var(--color-bressel-zinc-600);
+}
+
+/* Card image */
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Card content */
+.card-content {
+  padding: 1.5rem;
+}
+
+/* Card variants */
+.card--pillar:hover {
+  border-color: var(--color-bressel-red);
+}
+
+.card--product:hover {
+  border-color: rgba(255,51,31,0.3);
+}
+
+/* ====== BADGE COMPONENT ====== */
+
+/* Base badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  font-family: var(--font-header);
+  font-size: 0.625rem;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  border-radius: 0;
+  border: 1px solid;
+}
+
+/* Badge variants */
+.badge-red {
+  background-color: rgba(255,51,31,0.1);
+  color: var(--color-bressel-red);
+  border-color: rgba(255,51,31,0.3);
+}
+
+.badge-green {
+  background-color: rgba(34,197,94,0.15);
+  color: #22c55e;
+  border-color: rgba(34,197,94,0.3);
+}
+
+.badge-zinc {
+  background-color: rgba(161,161,170,0.1);
+  color: #a1a1aa;
+  border-color: rgba(161,161,170,0.3);
+}
+
+/* ====== NAVIGATION COMPONENT ====== */
+
+/* Navigation link */
+.nav-link {
+  font-family: var(--font-header);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: var(--color-bressel-zinc-400);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.nav-link:hover {
+  color: var(--color-bressel-white);
+}
+.nav-link.active {
+  color: var(--color-bressel-white);
+}
+
+/* ====== INPUT COMPONENT ====== */
+
+/* Base input */
+.input {
+  font-family: var(--font-body);
+  color: var(--color-bressel-white);
+  background-color: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 0;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wide);
+  outline: none;
+  transition: border-color 0.2s ease;
+  width: 100%;
+}
+.input::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+.input:focus {
+  border-color: var(--color-bressel-red);
+}
+
+/* Accent utility for red text */
+.accent {
+  color: var(--color-bressel-red);
+}
