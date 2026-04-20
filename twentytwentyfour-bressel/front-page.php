@@ -36,43 +36,43 @@ $merch_query = new WP_Query([
          "WORLD-CLASS PADEL, WITHIN REACH.",
          two CTAs: BOOK SESSION + EXPLORE PROGRAMMES
     ═══════════════════════════════════════ -->
-    <section id="hero" class="hero-fullscreen">
+    <section id="hero" class="relative min-h-screen flex flex-col justify-end items-center text-center overflow-hidden">
 
         <!-- Background image (video placeholder) -->
         <?php if (file_exists(get_stylesheet_directory() . '/assets/background-video.mp4')) : ?>
-            <video autoplay loop muted playsinline class="hero-bg" poster="<?= esc_url($assets_base . 'hero-bg.jpg') ?>">
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover opacity-35 brightness-60" poster="<?= esc_url($assets_base . 'hero-bg.jpg') ?>">
                 <source src="<?= esc_url($assets_base . 'background-video.mp4') ?>" type="video/mp4">
             </video>
         <?php else : ?>
-            <img src="<?= esc_url($assets_base . 'hero-bg.jpg') ?>" alt="" class="hero-bg" />
+            <img src="<?= esc_url($assets_base . 'hero-bg.jpg') ?>" alt="" class="absolute inset-0 w-full h-full object-cover opacity-35 brightness-60" />
         <?php endif; ?>
 
-        <!-- Dark overlay -->
-        <div class="hero-overlay"></div>
+        <!-- Dark overlay using gradient -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/80"></div>
 
         <!-- Content — centered -->
-        <div class="hero-content">
+        <div class="relative z-10 px-6 pt-48 pb-12 max-w-4xl">
 
             <!-- EST / tagline -->
-            <div class="hero-tagline">
-                <span class="rule"></span>
+            <div class="flex items-center justify-center gap-4 mb-6">
+                <div class="w-8 h-0.5 bg-red"></div>
                 <span class="caption">EST. 2026 / PLAY BOLDER</span>
-                <span class="rule"></span>
+                <div class="w-8 h-0.5 bg-red"></div>
             </div>
 
             <!-- Headline -->
-            <h1 class="heading-xl">
+            <h1 class="heading-xl mb-6">
                 WORLD-CLASS PADEL,<br>
                 <span class="accent">WITHIN REACH.</span>
             </h1>
 
             <!-- Body copy -->
-            <p class="body-lg">
+            <p class="body-lg max-w-2xl mx-auto mb-8">
                 Unlock your potential with elite coaching modules, community integration, and the precision of BRESSEL™ PRO equipment.
             </p>
 
             <!-- Dual CTAs (uses @base-ui/ .btn pattern) -->
-            <div class="hero-ctas">
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="<?= esc_url(home_url('/contact/?intent=booking')) ?>" class="btn btn-primary">
                     BOOK SESSION
                 </a>
@@ -90,23 +90,23 @@ $merch_query = new WP_Query([
          2. ACADEMY + COMMUNITY — Two Horizontal Cards
          Mockup: Two side-by-side cards with image-left, text-right
     ═══════════════════════════════════════ -->
-    <section id="academy-community" class="section-padding">
+    <section class="py-20">
         <div class="container-custom">
 
-            <div class="h-cards-grid">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
 
-                <!-- Academy Card (@base-ui/ card pattern) -->
-                <article class="h-card card">
-                    <div class="h-card-img-wrap">
+                <!-- Academy Card -->
+                <article class="card flex flex-col md:flex-row h-auto md:h-80">
+                    <div class="w-full md:w-1/2 h-64 md:h-full flex-shrink-0">
                         <img src="<?= esc_url($assets_base . 'academy-card.jpg') ?>" alt="BRESSEL Academy" class="card-image" />
                     </div>
-                    <div class="h-card-content card-content">
-                        <span class="badge badge-red">ACADEMY</span>
-                        <h2 class="heading-md">MASTER THE GAME</h2>
-                        <p class="body">
+                    <div class="w-full md:w-1/2 p-6 flex flex-col justify-center">
+                        <span class="badge badge-red mb-2">ACADEMY</span>
+                        <h2 class="heading-md mb-3">MASTER THE GAME</h2>
+                        <p class="body mb-6">
                             Master the technical precision of the pros. Elite-level training modules focus on footwork, court positioning, and explosive agility.
                         </p>
-                        <a href="<?= esc_url(get_post_type_archive_link('coach')) ?>" class="btn btn-ghost">
+                        <a href="<?= esc_url(get_post_type_archive_link('coach')) ?>" class="btn btn-ghost inline-flex items-center gap-2">
                             EXPLORE PROGRAMS
                             <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -115,18 +115,18 @@ $merch_query = new WP_Query([
                     </div>
                 </article>
 
-                <!-- Community Card (@base-ui/ card pattern) -->
-                <article class="h-card card">
-                    <div class="h-card-img-wrap">
+                <!-- Community Card -->
+                <article class="card flex flex-col md:flex-row h-auto md:h-80">
+                    <div class="w-full md:w-1/2 h-64 md:h-full flex-shrink-0">
                         <img src="<?= esc_url($assets_base . 'community-card.jpg') ?>" alt="BRESSEL Community" class="card-image" />
                     </div>
-                    <div class="h-card-content card-content">
-                        <span class="badge badge-zinc">COMMUNITY</span>
-                        <h2 class="heading-md">JOIN THE MOVEMENT</h2>
-                        <p class="body">
+                    <div class="w-full md:w-1/2 p-6 flex flex-col justify-center">
+                        <span class="badge badge-zinc mb-2">COMMUNITY</span>
+                        <h2 class="heading-md mb-3">JOIN THE MOVEMENT</h2>
+                        <p class="body mb-6">
                             Connect with players who match your intensity. Join local ladders, enter international tournaments, and rank up.
                         </p>
-                        <a href="<?= esc_url(home_url('/contact/')) ?>" class="btn btn-ghost">
+                        <a href="<?= esc_url(home_url('/contact/')) ?>" class="btn btn-ghost inline-flex items-center gap-2">
                             FIND A COURT
                             <svg width="1rem" height="1rem" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
