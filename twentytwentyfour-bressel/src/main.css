@@ -5,6 +5,10 @@
 @source "../../**/*.php";
 @import "tailwindcss";
 
+/* ====== @base-ui/ BRESSEL Design Tokens ====== */
+/* Imported from src/styles/bressel-tokens.css */
+@import './styles/bressel-tokens.css';
+
 /* ====== @theme Directive (brand tokens) ====== */
 @theme {
   /* BRAND COLORS */
@@ -40,6 +44,9 @@
 
 /* ====== Sections (classless styles for each section) ====== */
 @import './css/sections.css';
+
+/* ====== Mockup Match (pixel-perfect sections) ====== */
+@import './css/mockup-match.css';
 
 /* ====== Utilities (semantic replacements for Tailwind) ====== */
 @import './css/utilities.css';

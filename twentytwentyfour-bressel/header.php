@@ -1,8 +1,8 @@
 <?php
 /**
- * Title: Theme Header
- * Description: The global header template including the head section and navigation.
- * How-to Use: Automatically loaded via get_header().
+ * Title: Theme Header — Mockup-Matched
+ * Description: Clean header with BRESSEL logo, nav links, and red CTA button
+ * Layout: Logo (left) | Nav (center) | BOOK SESSION (right)
  */
 ?>
 <!DOCTYPE html>
@@ -17,93 +17,215 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <!-- Critical CSS to prevent white flash -->
+  <!-- Critical CSS -->
   <style>
-    html, body { background-color: #000000 !important; }
+    html, body { background-color: #090808 !important; }
   </style>
   <?php wp_head(); ?>
 </head>
 <body <?php body_class('antialiased'); ?>>
+
 <style>
-  /* Custom header styles - migrated from classes */
-  .header-transparent {
-    background-color: transparent;
-    backdrop-filter: blur(0px);
-    border-bottom: 1px solid transparent;
+  /* Header styles */
+  .header-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: rgba(9, 8, 8, 0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(39, 39, 42, 0.6);
+    padding: 0 1.5rem;
+    transition: all 0.3s ease;
   }
-  .header-scrolled {
-    background-color: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(24, 24, 27, 0.6);
+
+  .header-inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 4rem;
+  }
+
+  @media (min-width: 64rem) {
+    .header-inner {
+      height: 5rem;
+    }
+  }
+
+  .header-nav {
+    display: none;
+  }
+
+  @media (min-width: 64rem) {
+    .header-nav {
+      display: flex;
+      gap: 2.5rem;
+      align-items: center;
+    }
+  }
+
+  /* @base-ui/ nav-link pattern */
+  .header-nav .nav-link {
+    font-family: var(--font-header);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-bressel-zinc-400, #a1a1aa);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .header-nav .nav-link:hover {
+    color: var(--color-bressel-white, #FBFBFF);
+  }
+
+  /* @base-ui/ button pattern override */
+  .header-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-header);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.75rem 1.5rem;
+    color: #ffffff !important;
+    background-color: var(--color-bressel-red);
+    border: 2px solid var(--color-bressel-red);
+    border-radius: 0;
+    transition: all 0.2s ease;
+    text-decoration: none !important;
+  }
+
+  .header-cta:hover {
+    background-color: #e62a1a;
+    border-color: #e62a1a;
+  }
+
+  .mobile-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  @media (min-width: 64rem) {
+    .mobile-toggle {
+      display: none;
+    }
+  }
+
+  /* Mobile menu overlay */
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background-color: rgba(9, 8, 8, 0.98);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+
+  .mobile-menu-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  .mobile-menu a {
+    font-family: var(--font-header);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #d4d4d8;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .mobile-menu a:hover {
+    color: #ffffff;
+  }
+
+  .mobile-social {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .mobile-social a {
+    color: #52525b;
+    font-size: 1.25rem;
+  }
+
+  .mobile-social a:hover {
+    color: var(--color-bressel-red);
   }
 </style>
-<header id="main-header" class="header-transparent sticky top-0 z-[100]">
-  <div class="max-w-6xl mx-auto flex justify-between items-center h-16 md:h-20">
+
+<header class="header-bar">
+  <div class="header-inner">
 
     <!-- Logo -->
-    <a id="header-logo" href="<?= esc_url(home_url('/')); ?>" class="flex items-center gap-2 relative z-[210]">
-      <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-bressel-white.png') ?>" alt="BRESSEL™" class="h-7 md:h-10 w-auto max-w-none" loading="eager" />
+    <a href="<?= esc_url(home_url('/')) ?>" class="header-logo">
+      <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-bressel-white.png') ?>" alt="BRESSEL™" class="h-6 w-auto md:h-8" />
     </a>
 
-    <!-- Desktop Nav (centered) -->
-    <nav class="hidden lg:block absolute left-1/2 -translate-x-1/2">
-      <?php
-        wp_nav_menu([
-          'theme_location' => 'primary',
-          'container' => false,
-          'menu_class' => 'bressel-desktop-nav',
-          'fallback_cb' => false,
-        ]);
-      ?>
+    <!-- Desktop Navigation (@base-ui/ .nav pattern) -->
+    <nav class="header-nav nav">
+      <a href="<?= esc_url(get_post_type_archive_link('coach')) ?>" class="nav-link">ACADEMY</a>
+      <a href="<?= esc_url(home_url('/community/')) ?>" class="nav-link">COMMUNITY</a>
+      <a href="<?= esc_url(get_post_type_archive_link('merch')) ?>" class="nav-link">PRO GEAR</a>
     </nav>
 
     <!-- Right: CTA + Mobile toggle -->
-    <div class="flex items-center gap-4 relative z-[210]">
-        <a href="<?php echo esc_url(home_url('/contact/?intent=booking')); ?>"
-         class="btn-cta btn-md ripple hidden md:inline-flex">
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <a href="<?= esc_url(home_url('/contact/?intent=booking')) ?>" class="btn btn-primary header-cta">
         BOOK SESSION
-        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-white.svg') ?>" alt="Brain Icon" class="w-5 h-5 cta-icon-white" />
-        <img src="<?= esc_url(get_stylesheet_directory_uri() . '/assets/logo-icon-red.svg') ?>" alt="Brain Icon" class="w-5 h-5 cta-icon-red" />
       </a>
-
-      <!-- Mobile Menu Toggle -->
-      <button id="mobile-menu-btn" class="lg:hidden uppercase font-bold tracking-widest text-xs p-2 focus:outline-none">
-        <i class="bi bi-list text-2xl"></i>
+      <button class="mobile-toggle" aria-label="Open menu" onclick="document.getElementById('mobile-menu').classList.add('open')">
+        <i class="bi bi-list"></i>
       </button>
     </div>
+
   </div>
 </header>
 
-<!-- Full-Screen Mobile Menu Overlay -->
-<div id="mobile-menu" class="bg-black mobile-menu-overlay">
-    <!-- Header: Close Button -->
-    <div class="flex justify-end p-6">
-      <button id="mobile-menu-close" class="text-white hover:opacity-70 transition-opacity">
-        <i class="bi bi-x-lg text-4xl"></i>
-      </button>
-    </div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu">
+  <button class="mobile-menu-close" aria-label="Close menu" onclick="document.getElementById('mobile-menu').classList.remove('open')">
+    <i class="bi bi-x-lg"></i>
+  </button>
 
-    <!-- Main Navigation (centered) -->
-    <nav class="flex-1 flex items-center justify-center">
-      <?php
-        wp_nav_menu([
-          'theme_location' => 'primary',
-          'container' => false,
-          'menu_class' => 'flex flex-col items-center gap-8 uppercase font-black italic tracking-tighter',
-          'fallback_cb' => false,
-        ]);
-      ?>
-    </nav>
+  <nav>
+    <a href="<?= esc_url(get_post_type_archive_link('coach')) ?>" class="nav-link">ACADEMY</a>
+    <a href="<?= esc_url(home_url('/community/')) ?>" class="nav-link">COMMUNITY</a>
+    <a href="<?= esc_url(get_post_type_archive_link('merch')) ?>" class="nav-link">PRO GEAR</a>
+    <a href="<?= esc_url(home_url('/contact/?intent=booking')) ?>" class="nav-link" style="color: var(--color-bressel-red);">BOOK SESSION</a>
+  </nav>
 
-    <!-- Footer with Social Media -->
-    <div class="flex justify-center pb-12">
-      <div class="text-center">
-        <span class="block font-bold uppercase tracking-widest text-xs mb-4 mobile-social-label">Connect With Us</span>
-        <div class="flex gap-6 justify-center mobile-social">
-          <a href="#" class="text-3xl"><i class="bi bi-whatsapp"></i></a>
-          <a href="#" class="text-3xl"><i class="bi bi-telegram"></i></a>
-          <a href="#" class="text-3xl"><i class="bi bi-instagram"></i></a>
-        </div>
-      </div>
-    </div>
+  <div class="mobile-social">
+    <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+    <a href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+    <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+  </div>
 </div>

@@ -27,6 +27,7 @@ alias wp-admin='open http://localhost:8080/wp-admin/'
 alias wp-login='open http://localhost:8080/wp-login.php'
 alias wp-site='open http://localhost:8080/'
 alias wp-ui-demo='open http://localhost:8080/ui-demo/'
+alias wp-live-admin='open http://104.248.157.67/wp-admin/'
 
 # --- SSH & Live Server ---
 alias wp-live='ssh root@bressel-live'

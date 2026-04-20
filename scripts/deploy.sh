@@ -13,9 +13,10 @@ set -e
 # --- Configuration ---
 PROJECT_DIR="/home/matsu/Desktop/wp_bressel"
 THEME_DIR="$PROJECT_DIR/twentytwentyfour-bressel"
-LIVE_HOST="bressel-live"  # SSH config alias → root@46.101.172.116
+LIVE_HOST="bressel-live"  # SSH config alias → root@104.248.157.67
 LIVE_PATH="/var/www/html"
 ENV="${1:-production}"
+WP_PATH="/var/www/html"  # WordPress root on live server
 
 # --- Colors ---
 GREEN='\033[0;32m'
@@ -86,13 +87,9 @@ log "Files synced to $LIVE_HOST"
 echo ""
 log "Step 3/4: Clearing WordPress caches..."
 
-ssh "$LIVE_HOST" <<'SSH_EOF'
-# Try WP-CLI cache flush
-wp cache flush --allow-root 2>/dev/null || true
-# Clear transients
-wp transient delete --all --allow-root 2>/dev/null || true
-echo "Caches cleared."
-SSH_EOF
+ssh "$LIVE_HOST" "wp cache flush --path=$WP_PATH --allow-root 2>/dev/null || true && wp transient delete --all --path=$WP_PATH --allow-root 2>/dev/null || true && echo 'Caches cleared.'"
+ssh "$LIVE_HOST" "wp transient delete --all --path=$WP_PATH --allow-root 2>/dev/null || true"
+ssh "$LIVE_HOST" "wp option get permalink_structure --path=$WP_PATH --allow-root" 2>/dev/null || true
 
 log "Caches cleared"
 
@@ -100,16 +97,9 @@ log "Caches cleared"
 echo ""
 log "Step 4/4: Verifying deployment..."
 
-ssh "$LIVE_HOST" <<SSH_EOF
-echo "=== Server Status ==="
-wp core version --allow-root 2>/dev/null || echo "WP-CLI not installed on server"
-echo ""
-echo "=== Active Plugins ==="
-wp plugin list --status=active --allow-root 2>/dev/null || echo "WP-CLI check failed"
-echo ""
-echo "=== PHP Version ==="
-php --version 2>/dev/null | head -1 || echo "PHP check failed"
-SSH_EOF
+ssh "$LIVE_HOST" "wp core version --path=$WP_PATH --allow-root 2>/dev/null || echo 'WP-CLI check failed'"
+ssh "$LIVE_HOST" "wp plugin list --path=$WP_PATH --allow-root 2>/dev/null || echo 'Plugin list check failed'"
+ssh "$LIVE_HOST" "php --version 2>/dev/null | head -1 || echo 'PHP check failed'"
 
 # --- Done ---
 echo ""

@@ -16,7 +16,8 @@ shift
 if [ "$ACTION" = "local" ]; then
     docker exec bressel_wpcli wp --allow-root "$@"
 elif [ "$ACTION" = "live" ]; then
-    ssh bressel-live "wp --allow-root $*"
+    # WP-CLI on live server needs --path=/var/www/html
+    ssh bressel-live "wp --path=/var/www/html --allow-root $*"
 else
     echo "Usage: $0 [local|live] [wp command...]"
     echo ""
